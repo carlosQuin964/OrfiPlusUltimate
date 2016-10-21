@@ -35,7 +35,7 @@ public class CrearJoyaController implements Serializable {
     private DisenioFacade facadeDisenio;
     private Orden orden;
 
-    private List<Joya> joyas = joyaFacade.consultarJoya();
+    private List<Joya> joyas ;
     /**
      * Creates a new instance of CrearJoyaController
      */

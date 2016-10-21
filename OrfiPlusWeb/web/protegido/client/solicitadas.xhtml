@@ -16,106 +16,60 @@
 
             <ui:define name="content">
 
-                <div class="container">
-                    <f:view>
-                        <h:form>
-                            <h1><h:outputText value="Joyas Solicitadas"/></h1>
-                            <p:dataTable value="#{crearJoyaController.verJoyasSolicitadas()}" var="item">
+                    <p:carousel 
+                        value="#{crearJoyaController.verJoyasSolicitadas()}" 
+                        headerText="Responsive" 
+                        var="item" 
+                        itemStyle="text-align:center" 
+                        responsive="true">
+                        <p:panelGrid 
+                            columns="2" 
+                            style="width:100%;margin:10px 0px" 
+                            columnClasses="label,value" 
+                            layout="grid" 
+                            styleClass="ui-panelgrid-blank">
+                            <f:facet name="header">
+                                <p:graphicImage name="car_img1.jpg" library="images"/> 
+                            </f:facet>
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Codigo Orden:"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.idOrden.idORDEN}"/>
-                                </p:column>
+                            <h:outputText value="Orden:" class="titulos"/>
+                            <h:outputText value="#{item.idOrden}" />
+                            
+                            <h:outputText value="Codigo:" />
+                            <h:outputText value="#{item.idJoya}" />
+                            
+                            <h:outputText value="Tipo Joya:" />
+                            <h:outputText value="#{item.idTipo}" />
+                            
+                            <h:outputText value="Material:" />
+                            <h:outputText value="#{item.idMaterial}" />
+                            
+                            <h:outputText value="Gramaje" />
+                            <h:outputText value="#{item.gramaje}" />
+                            
+                            <h:outputText value="Diseño" />
+                            <h:outputText value="#{item.idDisenio}" />
+                            
+                            <h:outputText value="Inscripcion:" />
+                            <h:outputText value="#{item.inscripcion}" />
+                                                        
+                            <h:outputText value="Cantidad:" />
+                            <h:outputText value="#{item.cantidad}" />
+                                                        
+                            <h:outputText value="Valor:" />
+                            <h:outputText value="#{item.valorUnitario}" />
+                                                        
+                            <h:outputText value="Total:" />
+                            <h:outputText value="#{item.valorTotal}" />
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Codigo Joya:"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.idJoya}"/>
-                                </p:column>
+                        </p:panelGrid>
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Gramaje:"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.gramaje}"/>
-                                </p:column>
+                        <f:facet name="footer">
+                            In total there are  cars.
+                        </f:facet>
+                    </p:carousel>
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Talla:"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.talla}"/>
-                                </p:column>
 
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Inscripcion:"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.inscripcion}"/>
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Cantidad:"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.cantidad}"/>
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="ValorUnitario:"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.valorUnitario}"/>
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="ValorTotal:"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.valorTotal}"/>
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Diseño de la Joya:"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.idDisenio.disenio}"/>
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Tipo Material:"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.idMaterial.material}"/>
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Tipo de joya:"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.idTipo.tipo}"/>
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Estado Fabricación:"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.idEstado.estadoJoya}"/>
-                                </p:column>
-
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Imagen Joya:"/>
-                                    </f:facet>
-                                    <h:graphicImage value="#{item.urlJoya}" />
-                                </p:column>
-                            </p:dataTable>
-                        </h:form>
-                    </f:view>
-                </div>
             </ui:define>
 
         </ui:composition>
