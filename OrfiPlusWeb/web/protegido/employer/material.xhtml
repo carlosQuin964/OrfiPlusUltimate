@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          <link href="../../resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/css/table.css" rel="stylesheet" type="text/css"/>
+         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="../../resources/js/jquery-1.12.0.min.js" type="text/javascript"></script>
+        <script src="../../resources/js/bootstrap.js" type="text/javascript"></script>
+    
+        <script src="../../resources/js/table.js" type="text/javascript"></script>
+    </head>
+    <body>
+          <ui:composition template="./../../WEB-INF/template/emplyTemplate.xhtml">
+
+            <ui:define name="title">
+                title
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form class="mover">
+                        
+                        <div class="container mover">
+    
+    	<div class="row">
+			<div class="col-md-6 ">
+				<div class="panel panel-success ">
+					<div class="panel-heading">
+						<h3 class="panel-title">Materiales</h3>
+						<div class="pull-right">
+							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+								<i class="glyphicon glyphicon-filter"></i>
+							</span>
+						</div>
+					</div>
+					<div class="panel-body">
+						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Materiales" />
+					</div>
+                        <h:dataTable value="#{materialesVController.verMaterias()}" var="item" class="table table-hover" id="dev-table">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="idMATERIAL"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idMATERIAL}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="material"/>
+                                </f:facet>
+                                <h:outputText value="#{item.material}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="descripcion"/>
+                                </f:facet>
+                                <h:outputText value="#{item.descripcion}"/>
+                            </h:column>
+                           
+                           
+                            
+                           
+                            
+                        </h:dataTable>
+                                          	</div>
+                                                     <h:commandButton value="Reporte Materiales" actionListener="#{ReporteMaterial.exportarPDF()}" class="btn btn-info btn-lg" />
+			</div>
+		
+		</div>
+	</div>
+                    </h:form>
+              
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>

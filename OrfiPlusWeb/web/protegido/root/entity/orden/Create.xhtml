@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdenCreateDlg" widgetVar="OrdenCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateOrdenTitle}" closeOnEscape="true">
+
+            <h:form id="OrdenCreateForm">
+
+                <h:panelGroup id="display" rendered="#{ordenController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateOrdenLabel_fechaEntrega}" for="fechaEntrega" />
+                        <p:calendar id="fechaEntrega" pattern="MM/dd/yyyy" value="#{ordenController.selected.fechaEntrega}" title="#{myBundle.CreateOrdenTitle_fechaEntrega}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateOrdenLabel_fechaOrden}" for="fechaOrden" />
+                        <p:calendar id="fechaOrden" pattern="MM/dd/yyyy" value="#{ordenController.selected.fechaOrden}" title="#{myBundle.CreateOrdenTitle_fechaOrden}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateOrdenLabel_estadoinfo}" for="estadoinfo" />
+                        <p:selectBooleanCheckbox id="estadoinfo" value="#{ordenController.selected.estadoinfo}" />
+
+                        <p:outputLabel value="#{myBundle.CreateOrdenLabel_valorTotal}" for="valorTotal" />
+                        <p:inputText id="valorTotal" value="#{ordenController.selected.valorTotal}" title="#{myBundle.CreateOrdenTitle_valorTotal}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateOrdenLabel_personaList}" for="personaList" />
+                        <p:selectManyMenu id="personaList" value="#{ordenController.selected.personaList}"  converter="personaConverter">
+                            <f:selectItems value="#{personaController.items}"
+                                           var="personaListItem"
+                                           itemValue="#{personaListItem}"
+                                           itemLabel="#{personaListItem.idPERSONAS.toString()}"
+                                           />
+
+                        </p:selectManyMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ordenController.saveNew}" value="#{myBundle.Save}" update="display,:OrdenListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('OrdenCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('OrdenCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/protegido/root/generic/template.xhtml">
+
+    <ui:define name="title">
+        <h:outputText value="#{myBundle.JoyaTitle}"/>
+    </ui:define>
+
+    <ui:define name="body">
+
+        <ui:include src="../../entity/joya/List.xhtml"/>
+        <ui:include src="../../entity/joya/View.xhtml"/>
+        <ui:include src="../../entity/joya/Edit.xhtml"/>
+        <ui:include src="../../entity/joya/Create.xhtml"/>
+        <ui:include src="../../entity/tipo/View.xhtml"/>
+        <ui:include src="../../entity/orden/View.xhtml"/>
+        <ui:include src="../../entity/disenio/View.xhtml"/>
+        <ui:include src="../../entity/material/View.xhtml"/>
+        <ui:include src="../../entity/estado/View.xhtml"/>
+
+    </ui:define>
+
+</ui:composition>

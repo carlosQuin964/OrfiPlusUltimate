@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DisenioListForm">
+
+        <p:panel header="#{myBundle.ListDisenioTitle}">
+            <p:contextMenu id="DisenioDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('DisenioListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('DisenioListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('DisenioListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('DisenioListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.DisenioMenuItem_joyaList}" icon="ui-icon-search"  action="#{disenioController.navigateJoyaList}" disabled="#{empty disenioController.selected.joyaList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{disenioController.items}"
+                         lazy="false"
+                         rowKey="#{item.idDISENIO}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{disenioController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{disenioController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idDISENIO}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:DisenioDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:DisenioDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('DisenioListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idDISENIO}" filterBy="#{item.idDISENIO}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDisenioTitle_idDISENIO}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idDISENIO}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.disenio}" filterBy="#{item.disenio}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDisenioTitle_disenio}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.disenio}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.descripcion}" filterBy="#{item.descripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDisenioTitle_descripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcion}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.estadoinfo}" filterBy="#{item.estadoinfo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDisenioTitle_estadoinfo}"/>
+                    </f:facet>
+                    <h:selectBooleanCheckbox id="estadoinfo" value="#{item.estadoinfo}" title="#{myBundle.EditDisenioTitle_estadoinfo}"  disabled="true"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.precioxdisenio}" filterBy="#{item.precioxdisenio}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDisenioTitle_precioxdisenio}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.precioxdisenio}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.urlDisenio}" filterBy="#{item.urlDisenio}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDisenioTitle_urlDisenio}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.urlDisenio}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{disenioController.prepareCreate}" update=":DisenioCreateForm" oncomplete="PF('DisenioCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":DisenioViewForm" oncomplete="PF('DisenioViewDialog').show()" disabled="#{empty disenioController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":DisenioEditForm" oncomplete="PF('DisenioEditDialog').show()" disabled="#{empty disenioController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{disenioController.delete}" update=":growl,datalist" disabled="#{empty disenioController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/protegido/root/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

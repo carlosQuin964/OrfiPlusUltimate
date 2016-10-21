@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdenViewDlg" widgetVar="OrdenViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewOrdenTitle}" closeOnEscape="true">
+
+            <h:form id="OrdenViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{ordenController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewOrdenLabel_idORDEN}"/>
+                        <h:outputText value="#{ordenController.selected.idORDEN}" title="#{myBundle.ViewOrdenTitle_idORDEN}"/>
+
+                        <h:outputText value="#{myBundle.ViewOrdenLabel_fechaEntrega}"/>
+                        <h:outputText value="#{ordenController.selected.fechaEntrega}" title="#{myBundle.ViewOrdenTitle_fechaEntrega}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewOrdenLabel_fechaOrden}"/>
+                        <h:outputText value="#{ordenController.selected.fechaOrden}" title="#{myBundle.ViewOrdenTitle_fechaOrden}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewOrdenLabel_estadoinfo}"/>
+                        <h:selectBooleanCheckbox id="estadoinfo" value="#{ordenController.selected.estadoinfo}" title="#{myBundle.EditOrdenTitle_estadoinfo}"  disabled="true"/>
+
+                        <h:outputText value="#{myBundle.ViewOrdenLabel_valorTotal}"/>
+                        <h:outputText value="#{ordenController.selected.valorTotal}" title="#{myBundle.ViewOrdenTitle_valorTotal}"/>
+
+                        <h:outputText value="#{myBundle.ViewOrdenLabel_personaList}"/>
+                        <h:selectManyMenu converter="personaConverter">
+                            <f:selectItems value="#{ordenController.selected.personaList}"
+                                           var="personaListItem"
+                                           itemValue="#{personaListItem}"
+                                           itemLabel="#{personaListItem.idPERSONAS.toString()}"
+                                           />
+
+                        </h:selectManyMenu>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('OrdenViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AuditoriaJoyaEditDlg" widgetVar="AuditoriaJoyaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditAuditoriaJoyaTitle}" closeOnEscape="true">
+
+            <h:form id="AuditoriaJoyaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{auditoriaJoyaController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditAuditoriaJoyaLabel_idAuditoriaJoya}" for="idAuditoriaJoya" />
+                        <h:outputText id="idAuditoriaJoya" value="#{auditoriaJoyaController.selected.idAuditoriaJoya}" />
+
+                        <p:outputLabel value="#{myBundle.EditAuditoriaJoyaLabel_idUsuario}" for="idUsuario" />
+                        <p:inputText id="idUsuario" value="#{auditoriaJoyaController.selected.idUsuario}" title="#{myBundle.EditAuditoriaJoyaTitle_idUsuario}"/>
+
+                        <p:outputLabel value="#{myBundle.EditAuditoriaJoyaLabel_usuario}" for="usuario" />
+                        <p:inputText id="usuario" value="#{auditoriaJoyaController.selected.usuario}" title="#{myBundle.EditAuditoriaJoyaTitle_usuario}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.EditAuditoriaJoyaLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{auditoriaJoyaController.selected.descripcion}" title="#{myBundle.EditAuditoriaJoyaTitle_descripcion}" size="120" maxlength="120"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{auditoriaJoyaController.save}" value="#{myBundle.Save}" update="display,:AuditoriaJoyaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AuditoriaJoyaEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('AuditoriaJoyaEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

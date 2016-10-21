@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="JoyaListForm">
+
+        <p:panel header="#{myBundle.ListJoyaTitle}">
+            <p:contextMenu id="JoyaDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('JoyaListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('JoyaListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('JoyaListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('JoyaListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.JoyaMenuItem_idDisenio}" icon="ui-icon-search"  actionListener="#{joyaController.prepareIdDisenio}" update=":DisenioViewForm" oncomplete="PF('DisenioViewDialog').show()" disabled="#{empty joyaController.selected.idDisenio}"/>  
+                <p:menuitem value="#{myBundle.JoyaMenuItem_idEstado}" icon="ui-icon-search"  actionListener="#{joyaController.prepareIdEstado}" update=":EstadoViewForm" oncomplete="PF('EstadoViewDialog').show()" disabled="#{empty joyaController.selected.idEstado}"/>  
+                <p:menuitem value="#{myBundle.JoyaMenuItem_idMaterial}" icon="ui-icon-search"  actionListener="#{joyaController.prepareIdMaterial}" update=":MaterialViewForm" oncomplete="PF('MaterialViewDialog').show()" disabled="#{empty joyaController.selected.idMaterial}"/>  
+                <p:menuitem value="#{myBundle.JoyaMenuItem_idOrden}" icon="ui-icon-search"  actionListener="#{joyaController.prepareIdOrden}" update=":OrdenViewForm" oncomplete="PF('OrdenViewDialog').show()" disabled="#{empty joyaController.selected.idOrden}"/>  
+                <p:menuitem value="#{myBundle.JoyaMenuItem_idTipo}" icon="ui-icon-search"  actionListener="#{joyaController.prepareIdTipo}" update=":TipoViewForm" oncomplete="PF('TipoViewDialog').show()" disabled="#{empty joyaController.selected.idTipo}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{joyaController.items}"
+                         lazy="false"
+                         rowKey="#{item.idJoya}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{joyaController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{joyaController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idJoya}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:JoyaDataTableContextMenu" listener="#{joyaController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:JoyaDataTableContextMenu" listener="#{joyaController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{joyaController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('JoyaListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idJoya}" filterBy="#{item.idJoya}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListJoyaTitle_idJoya}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idJoya}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.gramaje}" filterBy="#{item.gramaje}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListJoyaTitle_gramaje}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.gramaje}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.talla}" filterBy="#{item.talla}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListJoyaTitle_talla}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.talla}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.inscripcion}" filterBy="#{item.inscripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListJoyaTitle_inscripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.inscripcion}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.cantidad}" filterBy="#{item.cantidad}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListJoyaTitle_cantidad}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cantidad}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.valorUnitario}" filterBy="#{item.valorUnitario}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListJoyaTitle_valorUnitario}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.valorUnitario}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.valorTotal}" filterBy="#{item.valorTotal}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListJoyaTitle_valorTotal}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.valorTotal}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.estadoinfo}" filterBy="#{item.estadoinfo}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListJoyaTitle_estadoinfo}"/>
+                                        </f:facet>
+                                        <h:selectBooleanCheckbox id="estadoinfo" value="#{item.estadoinfo}" title="#{myBundle.EditJoyaTitle_estadoinfo}"  disabled="true"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.urlJoya}" filterBy="#{item.urlJoya}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListJoyaTitle_urlJoya}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.urlJoya}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idDisenio.descripcion}" filterBy="#{item.idDisenio.descripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListJoyaTitle_idDisenio}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idDisenio.descripcion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idEstado.descripcion}" filterBy="#{item.idEstado.descripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListJoyaTitle_idEstado}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idEstado.descripcion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idMaterial.descripcion}" filterBy="#{item.idMaterial.descripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListJoyaTitle_idMaterial}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idMaterial.descripcion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idOrden.idORDEN}" filterBy="#{item.idOrden.idORDEN}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListJoyaTitle_idOrden}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idOrden.idORDEN}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idTipo.descripcion}" filterBy="#{item.idTipo.descripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListJoyaTitle_idTipo}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idTipo.descripcion}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{joyaController.prepareCreate}" update=":JoyaCreateForm" oncomplete="PF('JoyaCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":JoyaViewForm" oncomplete="PF('JoyaViewDialog').show()" disabled="#{empty joyaController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":JoyaEditForm" oncomplete="PF('JoyaEditDialog').show()" disabled="#{empty joyaController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{joyaController.delete}" update=":growl,datalist" disabled="#{empty joyaController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/protegido/root/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

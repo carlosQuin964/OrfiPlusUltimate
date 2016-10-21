@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="PersonaEditDlg" widgetVar="PersonaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditPersonaTitle}" closeOnEscape="true">
+
+            <h:form id="PersonaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{personaController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditPersonaLabel_idPERSONAS}" for="idPERSONAS" />
+                        <h:outputText id="idPERSONAS" value="#{personaController.selected.idPERSONAS}" />
+
+                        <p:outputLabel value="#{myBundle.EditPersonaLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{personaController.selected.nombres}" title="#{myBundle.EditPersonaTitle_nombres}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditPersonaLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{personaController.selected.apellidos}" title="#{myBundle.EditPersonaTitle_apellidos}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditPersonaLabel_correoe}" for="correoe" />
+                        <p:inputText id="correoe" value="#{personaController.selected.correoe}" title="#{myBundle.EditPersonaTitle_correoe}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.EditPersonaLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{personaController.selected.password}" title="#{myBundle.EditPersonaTitle_password}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditPersonaLabel_telefonos}" for="telefonos" />
+                        <p:inputText id="telefonos" value="#{personaController.selected.telefonos}" title="#{myBundle.EditPersonaTitle_telefonos}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPersonaLabel_estadoinfo}" for="estadoinfo" />
+                        <p:selectBooleanCheckbox id="estadoinfo" value="#{personaController.selected.estadoinfo}" />
+
+                        <p:outputLabel value="#{myBundle.EditPersonaLabel_fechaCreacion}" for="fechaCreacion" />
+                        <p:calendar id="fechaCreacion" pattern="MM/dd/yyyy" value="#{personaController.selected.fechaCreacion}" title="#{myBundle.EditPersonaTitle_fechaCreacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditPersonaLabel_rolList}" for="rolList" />
+                        <p:selectManyMenu id="rolList" value="#{personaController.selected.rolList}"  converter="rolConverter">
+                            <f:selectItems value="#{rolController.items}"
+                                           var="rolListItem"
+                                           itemValue="#{rolListItem}"
+                                           itemLabel="#{rolListItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectManyMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{personaController.save}" value="#{myBundle.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PersonaEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('PersonaEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

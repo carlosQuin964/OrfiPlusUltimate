@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PermisoListForm">
+
+        <p:panel header="#{myBundle.ListPermisoTitle}">
+            <p:contextMenu id="PermisoDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('PermisoListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('PermisoListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('PermisoListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('PermisoListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.PermisoMenuItem_rolList}" icon="ui-icon-search"  action="#{permisoController.navigateRolList}" disabled="#{empty permisoController.selected.rolList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.PermisoMenuItem_permisoList}" icon="ui-icon-search"  action="#{permisoController.navigatePermisoList}" disabled="#{empty permisoController.selected.permisoList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.PermisoMenuItem_PERMISOSidPERMISOS}" icon="ui-icon-search"  actionListener="#{permisoController.preparePERMISOSidPERMISOS}" update=":PermisoViewForm" oncomplete="PF('PermisoViewDialog').show()" disabled="#{empty permisoController.selected.PERMISOSidPERMISOS}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{permisoController.items}"
+                         lazy="false"
+                         rowKey="#{item.idPERMISOS}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{permisoController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{permisoController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idPERMISOS}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:PermisoDataTableContextMenu" listener="#{permisoController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:PermisoDataTableContextMenu" listener="#{permisoController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{permisoController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PermisoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idPERMISOS}" filterBy="#{item.idPERMISOS}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPermisoTitle_idPERMISOS}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idPERMISOS}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.permiso}" filterBy="#{item.permiso}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPermisoTitle_permiso}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.permiso}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.descripcion}" filterBy="#{item.descripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPermisoTitle_descripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcion}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.urlPermisos}" filterBy="#{item.urlPermisos}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPermisoTitle_urlPermisos}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.urlPermisos}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.PERMISOSidPERMISOS.descripcion}" filterBy="#{item.PERMISOSidPERMISOS.descripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPermisoTitle_PERMISOSidPERMISOS}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.PERMISOSidPERMISOS.descripcion}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{permisoController.prepareCreate}" update=":PermisoCreateForm" oncomplete="PF('PermisoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":PermisoViewForm" oncomplete="PF('PermisoViewDialog').show()" disabled="#{empty permisoController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PermisoEditForm" oncomplete="PF('PermisoEditDialog').show()" disabled="#{empty permisoController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{permisoController.delete}" update=":growl,datalist" disabled="#{empty permisoController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/protegido/root/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

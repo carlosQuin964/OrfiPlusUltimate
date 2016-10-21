@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+         <link href="../../resources/css/inicioCliente.css" rel="stylesheet" type="text/css"/>
+         <script src="../../resources/js/jquery-1.12.0.min.js" type="text/javascript"></script>
+         <script src="../../resources/js/bootstrap.js" type="text/javascript"></script>
+    </h:head>
+    
+    
+   <script>
+        
+       $().ready(function(){
+            $('#nav li:nth-child(1)').addClass('active');
+        });
+    </script>
+    <body>
+        <ui:composition template="./../../WEB-INF/template/clientTemplate.xhtml">
+            <ui:define name="title">
+                Crea tu joya
+            </ui:define>
+            
+            <ui:define name="content">
+                
+          
+       
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+           
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                
+                <!-- panel 1 -->
+                <div class="panel panel-default">
+                    <!--wrap panel heading in span to trigger image change as well as collapse -->
+                    <span class="side-tab" data-target="#tab1" data-toggle="tab" role="tab" aria-expanded="false">
+                       <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            <h4 class="panel-title collapsed">Inicio</h4>
+                        </div>
+                    </span>
+                    
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                        <!-- Tab content goes here -->
+                       Bienvenido a orfi plus con esta cuenta podras ser parte de la familia de orfi y acceder a los numerosos benificios de ser parte de orfiPlus
+                        </div>
+                    </div>
+                </div> 
+                <!-- / panel 1 -->
+                
+                <!-- panel 2 -->
+                <div class="panel panel-default">
+                    <!--wrap panel heading in span to trigger image change as well as collapse -->
+                    <span class="side-tab" data-target="#tab2" data-toggle="tab" role="tab" aria-expanded="false">
+                        <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h4 class="panel-title collapsed">Solicitar Joyas</h4>
+                        </div>
+                    </span>
+
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                        <!-- Tab content goes here -->
+                       En orfiPlus podras reservar las joyas que estan en disponibilidad exclusiva para nuestros clientes web
+                        </div>
+                    </div>
+                </div>
+                <!-- / panel 2 -->
+                
+                <!--  panel 3 -->
+                <div class="panel panel-default">
+                    <!--wrap panel heading in span to trigger image change as well as collapse -->
+                    <span class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
+                      <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <h4 class="panel-title collapsed">Actualizar Datos</h4>  
+                   </div> </span>
+
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                          <div class="panel-body">
+                          <!-- tab content goes here -->
+                           Actualiza Tus Datos Personales y Mantiene tu informacion Actualizada 
+                          </div>
+                        </div>
+                      </div>
+            </div> <!-- / panel-group -->
+             
+        </div> <!-- /col-md-4 -->
+        
+        <div class="col-md-8">
+            <!-- begin macbook pro mockup -->
+            <div class="md-macbook-pro md-glare">
+                <div class="md-lid">
+                    <div class="md-camera"></div>
+                    <div class="md-screen">
+                    <!-- content goes here -->                
+                        <div class="tab-featured-image">
+                            <div class="tab-content">
+                                <div class="tab-pane  in active" id="tab1">
+                                    <img src="../../resources/images/mas1.jpg" alt="" class="img img-responsive" />
+                                </div>
+                                <div class="tab-pane " id="tab2">
+                                 
+                                    <img src="../../resources/images/mas2.jpg" alt="" class="img img-responsive" />
+                                    
+                                </div>
+                                <div class="tab-pane fade" id="tab3">
+                                  
+                                    <img src="../../resources/images/mas3.jpg" alt="" class="img img-responsive" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md-base"></div>
+            </div> <!-- end macbook pro mockup -->
+
+
+
+        </div> <!-- / .col-md-8 -->
+    </div> <!--/ .row -->
+</div> <!-- end sidetab container -->
+</ui:define>
+ </ui:composition>
+        
+        
+        
+    </body>
+    
+</html>

@@ -1,0 +1,62 @@
+
+#owl {
+	overflow: hidden;
+	z-index: 1;
+	position: relative;
+}
+
+#owl .owl-item {
+	float: left;
+	width: 100%;
+}
+
+#owl .item {
+	overflow: hidden;
+	position: relative;
+}
+
+#owl .item img {
+	width: 100%;
+}
+
+#owl .owl-wrapper-outer {
+	padding-top: 0;
+	overflow: hidden;
+}
+
+#owl .owl-prev, #owl .owl-next {
+	cursor: pointer;
+	position: absolute;
+	background: url(../images/prevnext1.png) 0 0 no-repeat;
+	display: block;
+	height: 65px;
+	width: 65px;
+	left: 79px;
+	top: 50%;
+	margin-top: -32px;
+	overflow: hidden;
+	text-indent: -999px;
+	transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+    -webkit-transition: 0.5s ease
+}
+
+#owl .owl-next {
+	right: 72px;
+	left: auto;
+	background-position: right bottom;
+}
+
+#owl .owl-next:hover,
+#owl .owl-prev:hover {
+	opacity: 0.8;
+}
+
+
+.owl-carousel .owl-wrapper{
+	display: none;
+	position: relative;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+	-webkit-perspective: 1000;
+}
+

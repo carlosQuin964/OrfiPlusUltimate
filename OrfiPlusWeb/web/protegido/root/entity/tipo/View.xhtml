@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoViewDlg" widgetVar="TipoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTipoTitle}" closeOnEscape="true">
+
+            <h:form id="TipoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{tipoController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTipoLabel_idTIPO}"/>
+                        <h:outputText value="#{tipoController.selected.idTIPO}" title="#{myBundle.ViewTipoTitle_idTIPO}"/>
+
+                        <h:outputText value="#{myBundle.ViewTipoLabel_tipo}"/>
+                        <h:outputText value="#{tipoController.selected.tipo}" title="#{myBundle.ViewTipoTitle_tipo}"/>
+
+                        <h:outputText value="#{myBundle.ViewTipoLabel_descripcion}"/>
+                        <h:outputText value="#{tipoController.selected.descripcion}" title="#{myBundle.ViewTipoTitle_descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewTipoLabel_estadoinfo}"/>
+                        <h:selectBooleanCheckbox id="estadoinfo" value="#{tipoController.selected.estadoinfo}" title="#{myBundle.EditTipoTitle_estadoinfo}"  disabled="true"/>
+
+                        <h:outputText value="#{myBundle.ViewTipoLabel_precioxtipo}"/>
+                        <h:outputText value="#{tipoController.selected.precioxtipo}" title="#{myBundle.ViewTipoTitle_precioxtipo}"/>
+
+                        <h:outputText value="#{myBundle.ViewTipoLabel_urlTipo}"/>
+                        <h:outputText value="#{tipoController.selected.urlTipo}" title="#{myBundle.ViewTipoTitle_urlTipo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TipoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

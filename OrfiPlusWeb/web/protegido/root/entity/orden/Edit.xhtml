@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="OrdenEditDlg" widgetVar="OrdenEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditOrdenTitle}" closeOnEscape="true">
+
+            <h:form id="OrdenEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{ordenController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditOrdenLabel_idORDEN}" for="idORDEN" />
+                        <h:outputText id="idORDEN" value="#{ordenController.selected.idORDEN}" />
+
+                        <p:outputLabel value="#{myBundle.EditOrdenLabel_fechaEntrega}" for="fechaEntrega" />
+                        <p:calendar id="fechaEntrega" pattern="MM/dd/yyyy" value="#{ordenController.selected.fechaEntrega}" title="#{myBundle.EditOrdenTitle_fechaEntrega}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditOrdenLabel_fechaOrden}" for="fechaOrden" />
+                        <p:calendar id="fechaOrden" pattern="MM/dd/yyyy" value="#{ordenController.selected.fechaOrden}" title="#{myBundle.EditOrdenTitle_fechaOrden}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditOrdenLabel_estadoinfo}" for="estadoinfo" />
+                        <p:selectBooleanCheckbox id="estadoinfo" value="#{ordenController.selected.estadoinfo}" />
+
+                        <p:outputLabel value="#{myBundle.EditOrdenLabel_valorTotal}" for="valorTotal" />
+                        <p:inputText id="valorTotal" value="#{ordenController.selected.valorTotal}" title="#{myBundle.EditOrdenTitle_valorTotal}"/>
+
+                        <p:outputLabel value="#{myBundle.EditOrdenLabel_personaList}" for="personaList" />
+                        <p:selectManyMenu id="personaList" value="#{ordenController.selected.personaList}"  converter="personaConverter">
+                            <f:selectItems value="#{personaController.items}"
+                                           var="personaListItem"
+                                           itemValue="#{personaListItem}"
+                                           itemLabel="#{personaListItem.idPERSONAS.toString()}"
+                                           />
+
+                        </p:selectManyMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ordenController.save}" value="#{myBundle.Save}" update="display,:OrdenListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('OrdenEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('OrdenEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

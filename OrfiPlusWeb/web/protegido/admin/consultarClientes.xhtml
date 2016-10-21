@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/adminTemplate.xhtml">
+
+            <ui:define name="title">
+                Consultar Clientes
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <div class="container">
+                        
+                    
+                    <h:form>
+                        <h1><h:outputText value="Usuarios"/></h1>
+                        <h:dataTable value="#{clienteController.verClientesController()}" var="item" class="tab-content table-bordered table table-hover table-responsive table-striped">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="IdPERSONAS"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idPERSONAS}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nombres"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombres}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Apellidos"/>
+                                </f:facet>
+                                <h:outputText value="#{item.apellidos}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Correoe"/>
+                                </f:facet>
+                                <h:outputText value="#{item.correoe}"/>
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Telefonos"/>
+                                </f:facet>
+                                <h:outputText value="#{item.telefonos}"/>
+                            </h:column>
+                           
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="FechaCreacion"/>
+                                </f:facet>
+                                <h:outputText value="#{item.fechaCreacion}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+       <h:form id="exportForm">
+           
+            <h:commandButton value="Reporte Usuarios" actionListener="#{reporteController.exportarPDF()}" class="btn btn-warning btn-lg" />
+        </h:form>
+                        </div>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

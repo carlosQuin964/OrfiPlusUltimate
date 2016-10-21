@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="bootstrap.css" library="css"/>
+        <h:outputStylesheet name="ageneral.css" library="css"/>
+        <h:outputStylesheet name="cmenu.css" library="css"/>
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"/>
+        
+        <link href="../../resources/css/table-filter.css" rel="stylesheet" type="text/css"/>
+        
+        <link href="../../resources/css/demo.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/style3.css" rel="stylesheet" type="text/css"/>
+        <h:outputScript name="jquery-1.12.0.min.js"  library="js" target="body"/>
+        <h:outputScript name="bootstrap.js"  library="js"/>
+        <script src="../../resources/js/table-filter.js" type="text/javascript"></script>
+        <title>Empleado - <ui:insert name="title"></ui:insert></title>
+    </h:head>
+    <style>.mover{margin-right: -120px;}</style>
+
+    <h:body>
+
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <div id="home" class="header">
+                    <div class="top-headerE">
+                        <div class="container">
+                            <div class="logo lobster letra">
+                                <h:graphicImage library="images" name="logom.png" alt="Orfi Plus Logo"/>
+                            </div>
+
+                            <nav class="top-nav">
+                                <ul class="top-nav">
+                                    <h:form>
+                                        
+                                   
+                                    <li><a href="index.xhtml">Inicio</a></li>
+                                    <li><a href="listOrden.xhtml">Ordenes</a></li>
+                                    <li><a href="joyas.xhtml">Joyas</a></li>
+                                    <li><a href="material.xhtml">Materiales</a></li>
+                                    <li><a href="diseño.xhtml">Diseños</a></li>
+                                    <li><a href="estado.xhtml">Estado</a></li>
+                                    <li><h:commandLink action="#{login.logout()}" value="Salir de Orfi"/></li>
+                                    <li class="active"><a>#{login.rolSeleccionado.rol}</a></li> 
+                                     </h:form>
+                                </ul>
+                                <h:link id="pull">
+                                    <h:graphicImage library="images" name="menu-icon.png" alt="Imagen Menu"/>
+                                </h:link>
+                            </nav>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-success">Bienvenido #{login.usuario.nombres}</div>
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+    </h:body>
+<script type="text/javascript">
+/**
+*   I don't recommend using this plugin on large tables, I just wrote it to make the demo useable. It will work fine for smaller tables 
+*   but will likely encounter performance issues on larger tables.
+*
+*		<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
+*		$(input-element).filterTable()
+*		
+*	The important attributes are 'data-action="filter"' and 'data-filters="#table-selector"'
+*/
+(function(){
+    'use strict';
+	var $ = jQuery;
+	$.fn.extend({
+		filterTable: function(){
+			return this.each(function(){
+				$(this).on('keyup', function(e){
+					$('.filterTable_no_results').remove();
+					var $this = $(this), 
+                        search = $this.val().toLowerCase(), 
+                        target = $this.attr('data-filters'), 
+                        $target = $(target), 
+                        $rows = $target.find('h:dataTable h:column ');
+                        
+					if(search == '') {
+						$rows.show(); 
+					} else {
+						$rows.each(function(){
+							var $this = $(this);
+							$this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+						})
+						if($target.find('h:dataTable tr:visible').size() === 0) {
+							var col_count = $target.find('h:column').first().find('f:facet').size();
+							var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">No results found</td></tr>')
+							$target.find('h:dataTable').append(no_results);
+						}
+					}
+				});
+			});
+		}
+	});
+	$('[data-action="filter"]').filterTable();
+})(jQuery);
+
+$(function(){
+    // attach table filter plugin to inputs
+	$('[data-action="filter"]').filterTable();
+	
+	$('.container').on('click', '.panel-heading span.filter', function(e){
+		var $this = $(this), 
+			$panel = $this.parents('.panel');
+		
+		$panel.find('.panel-body').slideToggle();
+		if($this.css('display') != 'none') {
+			$panel.find('.panel-body input').focus();
+		}
+	});
+	$('[data-toggle="tooltip"]').tooltip();
+})
+</script>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="PermisoEditDlg" widgetVar="PermisoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditPermisoTitle}" closeOnEscape="true">
+
+            <h:form id="PermisoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{permisoController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditPermisoLabel_idPERMISOS}" for="idPERMISOS" />
+                        <h:outputText id="idPERMISOS" value="#{permisoController.selected.idPERMISOS}" />
+
+                        <p:outputLabel value="#{myBundle.EditPermisoLabel_permiso}" for="permiso" />
+                        <p:inputText id="permiso" value="#{permisoController.selected.permiso}" title="#{myBundle.EditPermisoTitle_permiso}" required="true" requiredMessage="#{myBundle.EditPermisoRequiredMessage_permiso}" size="45" maxlength="45"/>
+
+                        <p:outputLabel value="#{myBundle.EditPermisoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{permisoController.selected.descripcion}" title="#{myBundle.EditPermisoTitle_descripcion}" required="true" requiredMessage="#{myBundle.EditPermisoRequiredMessage_descripcion}" size="60" maxlength="60"/>
+
+                        <p:outputLabel value="#{myBundle.EditPermisoLabel_urlPermisos}" for="urlPermisos" />
+                        <p:inputText id="urlPermisos" value="#{permisoController.selected.urlPermisos}" title="#{myBundle.EditPermisoTitle_urlPermisos}" size="90" maxlength="90"/>
+
+                        <p:outputLabel value="#{myBundle.EditPermisoLabel_rolList}" for="rolList" />
+                        <p:selectManyMenu id="rolList" value="#{permisoController.selected.rolList}"  converter="rolConverter">
+                            <f:selectItems value="#{rolController.items}"
+                                           var="rolListItem"
+                                           itemValue="#{rolListItem}"
+                                           itemLabel="#{rolListItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectManyMenu>
+
+                        <p:outputLabel value="#{myBundle.EditPermisoLabel_PERMISOSidPERMISOS}" for="PERMISOSidPERMISOS" />
+                        <p:selectOneMenu id="PERMISOSidPERMISOS" value="#{permisoController.selected.PERMISOSidPERMISOS}"  converter="permisoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{permisoController.items}"
+                                           var="PERMISOSidPERMISOSItem"
+                                           itemValue="#{PERMISOSidPERMISOSItem}"
+                                           itemLabel="#{PERMISOSidPERMISOSItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{permisoController.save}" value="#{myBundle.Save}" update="display,:PermisoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PermisoEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('PermisoEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

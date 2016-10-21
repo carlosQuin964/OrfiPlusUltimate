@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/clientTemplate.xhtml">
+
+            <ui:define name="title">
+                Joyas solicitadas
+            </ui:define>
+
+            <ui:define name="content">
+
+                <div class="container">
+                    <f:view>
+                        <h:form>
+                            <h1><h:outputText value="Joyas Solicitadas"/></h1>
+                            <p:dataTable value="#{crearJoyaController.verJoyasSolicitadas()}" var="item">
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Codigo Orden:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idOrden.idORDEN}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Codigo Joya:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idJoya}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Gramaje:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.gramaje}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Talla:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.talla}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Inscripcion:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.inscripcion}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Cantidad:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.cantidad}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ValorUnitario:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.valorUnitario}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ValorTotal:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.valorTotal}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Diseño de la Joya:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idDisenio.disenio}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Tipo Material:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idMaterial.material}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Tipo de joya:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idTipo.tipo}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Estado Fabricación:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idEstado.estadoJoya}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Imagen Joya:"/>
+                                    </f:facet>
+                                    <h:graphicImage value="#{item.urlJoya}" />
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </f:view>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

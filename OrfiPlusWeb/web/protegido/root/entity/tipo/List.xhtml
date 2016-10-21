@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TipoListForm">
+
+        <p:panel header="#{myBundle.ListTipoTitle}">
+            <p:contextMenu id="TipoDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TipoListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TipoListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TipoListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TipoListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.TipoMenuItem_joyaList}" icon="ui-icon-search"  action="#{tipoController.navigateJoyaList}" disabled="#{empty tipoController.selected.joyaList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{tipoController.items}"
+                         lazy="false"
+                         rowKey="#{item.idTIPO}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{tipoController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{tipoController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idTIPO}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TipoDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TipoDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TipoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idTIPO}" filterBy="#{item.idTIPO}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTipoTitle_idTIPO}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTIPO}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.tipo}" filterBy="#{item.tipo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTipoTitle_tipo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.descripcion}" filterBy="#{item.descripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTipoTitle_descripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcion}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.estadoinfo}" filterBy="#{item.estadoinfo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTipoTitle_estadoinfo}"/>
+                    </f:facet>
+                    <h:selectBooleanCheckbox id="estadoinfo" value="#{item.estadoinfo}" title="#{myBundle.EditTipoTitle_estadoinfo}"  disabled="true"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.precioxtipo}" filterBy="#{item.precioxtipo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTipoTitle_precioxtipo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.precioxtipo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.urlTipo}" filterBy="#{item.urlTipo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTipoTitle_urlTipo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.urlTipo}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{tipoController.prepareCreate}" update=":TipoCreateForm" oncomplete="PF('TipoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TipoViewForm" oncomplete="PF('TipoViewDialog').show()" disabled="#{empty tipoController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TipoEditForm" oncomplete="PF('TipoEditDialog').show()" disabled="#{empty tipoController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{tipoController.delete}" update=":growl,datalist" disabled="#{empty tipoController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/protegido/root/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

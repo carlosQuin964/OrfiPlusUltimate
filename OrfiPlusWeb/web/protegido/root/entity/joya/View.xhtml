@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="JoyaViewDlg" widgetVar="JoyaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewJoyaTitle}" closeOnEscape="true">
+
+            <h:form id="JoyaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{joyaController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_idJoya}"/>
+                        <h:outputText value="#{joyaController.selected.idJoya}" title="#{myBundle.ViewJoyaTitle_idJoya}"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_gramaje}"/>
+                        <h:outputText value="#{joyaController.selected.gramaje}" title="#{myBundle.ViewJoyaTitle_gramaje}"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_talla}"/>
+                        <h:outputText value="#{joyaController.selected.talla}" title="#{myBundle.ViewJoyaTitle_talla}"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_inscripcion}"/>
+                        <h:outputText value="#{joyaController.selected.inscripcion}" title="#{myBundle.ViewJoyaTitle_inscripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_cantidad}"/>
+                        <h:outputText value="#{joyaController.selected.cantidad}" title="#{myBundle.ViewJoyaTitle_cantidad}"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_valorUnitario}"/>
+                        <h:outputText value="#{joyaController.selected.valorUnitario}" title="#{myBundle.ViewJoyaTitle_valorUnitario}"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_valorTotal}"/>
+                        <h:outputText value="#{joyaController.selected.valorTotal}" title="#{myBundle.ViewJoyaTitle_valorTotal}"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_estadoinfo}"/>
+                        <h:selectBooleanCheckbox id="estadoinfo" value="#{joyaController.selected.estadoinfo}" title="#{myBundle.EditJoyaTitle_estadoinfo}"  disabled="true"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_urlJoya}"/>
+                        <h:outputText value="#{joyaController.selected.urlJoya}" title="#{myBundle.ViewJoyaTitle_urlJoya}"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_idDisenio}"/>
+                        <h:outputText value="#{joyaController.selected.idDisenio.descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_idEstado}"/>
+                        <h:outputText value="#{joyaController.selected.idEstado.descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_idMaterial}"/>
+                        <h:outputText value="#{joyaController.selected.idMaterial.descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_idOrden}"/>
+                        <h:outputText value="#{joyaController.selected.idOrden.idORDEN}"/>
+
+                        <h:outputText value="#{myBundle.ViewJoyaLabel_idTipo}"/>
+                        <h:outputText value="#{joyaController.selected.idTipo.descripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('JoyaViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

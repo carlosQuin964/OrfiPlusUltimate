@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="JoyaCreateDlg" widgetVar="JoyaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateJoyaTitle}" closeOnEscape="true">
+
+            <h:form id="JoyaCreateForm">
+
+                <h:panelGroup id="display" rendered="#{joyaController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_gramaje}" for="gramaje" />
+                        <p:inputText id="gramaje" value="#{joyaController.selected.gramaje}" title="#{myBundle.CreateJoyaTitle_gramaje}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_talla}" for="talla" />
+                        <p:inputText id="talla" value="#{joyaController.selected.talla}" title="#{myBundle.CreateJoyaTitle_talla}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_inscripcion}" for="inscripcion" />
+                        <p:inputText id="inscripcion" value="#{joyaController.selected.inscripcion}" title="#{myBundle.CreateJoyaTitle_inscripcion}" size="70" maxlength="70"/>
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{joyaController.selected.cantidad}" title="#{myBundle.CreateJoyaTitle_cantidad}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_valorUnitario}" for="valorUnitario" />
+                        <p:inputText id="valorUnitario" value="#{joyaController.selected.valorUnitario}" title="#{myBundle.CreateJoyaTitle_valorUnitario}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_valorTotal}" for="valorTotal" />
+                        <p:inputText id="valorTotal" value="#{joyaController.selected.valorTotal}" title="#{myBundle.CreateJoyaTitle_valorTotal}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_estadoinfo}" for="estadoinfo" />
+                        <p:selectBooleanCheckbox id="estadoinfo" value="#{joyaController.selected.estadoinfo}" />
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_urlJoya}" for="urlJoya" />
+                        <p:inputText id="urlJoya" value="#{joyaController.selected.urlJoya}" title="#{myBundle.CreateJoyaTitle_urlJoya}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_idDisenio}" for="idDisenio" />
+                        <p:selectOneMenu id="idDisenio" value="#{joyaController.selected.idDisenio}"  converter="disenioConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{disenioController.items}"
+                                           var="idDisenioItem"
+                                           itemValue="#{idDisenioItem}"
+                                           itemLabel="#{idDisenioItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_idEstado}" for="idEstado" />
+                        <p:selectOneMenu id="idEstado" value="#{joyaController.selected.idEstado}"  converter="estadoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estadoController.items}"
+                                           var="idEstadoItem"
+                                           itemValue="#{idEstadoItem}"
+                                           itemLabel="#{idEstadoItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_idMaterial}" for="idMaterial" />
+                        <p:selectOneMenu id="idMaterial" value="#{joyaController.selected.idMaterial}"  converter="materialConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{materialController.items}"
+                                           var="idMaterialItem"
+                                           itemValue="#{idMaterialItem}"
+                                           itemLabel="#{idMaterialItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_idOrden}" for="idOrden" />
+                        <p:selectOneMenu id="idOrden" value="#{joyaController.selected.idOrden}"  converter="ordenConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ordenController.items}"
+                                           var="idOrdenItem"
+                                           itemValue="#{idOrdenItem}"
+                                           itemLabel="#{idOrdenItem.idORDEN.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateJoyaLabel_idTipo}" for="idTipo" />
+                        <p:selectOneMenu id="idTipo" value="#{joyaController.selected.idTipo}"  converter="tipoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoController.items}"
+                                           var="idTipoItem"
+                                           itemValue="#{idTipoItem}"
+                                           itemLabel="#{idTipoItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{joyaController.saveNew}" value="#{myBundle.Save}" update="display,:JoyaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('JoyaCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('JoyaCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,56 @@
+body{
+
+}
+.arriba{
+	margin-top: -30px;
+	font-family: 'Lobster', cursive;
+}
+.azulmarino{
+	color: #0B0070;
+}
+.rojo{
+	color: #FF0000;
+}
+.verde{
+	color: #2CFF0D;
+}
+.azulclaro{
+	color: #02ECF2;
+}
+.negro{
+	color: #050800;
+}
+.negro{
+	background: #000000;
+	background-color: #000000;
+}
+.arreglo{
+	margin-top: 10px;
+	margin-right: -310px;
+}
+	
+
+
+
+
+
+
+
+
+.jack{
+	font-family: 'Lobster', cursive;
+}
+.centro{
+	text-align: center;
+}
+.linia{
+	background: #2BA20E;
+	width: 100%;
+	height: 15px;
+
+
+}
+.imgarriba{
+	margin-top: -399px;
+	margin-left: 33%;
+}

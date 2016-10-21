@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/adminTemplate.xhtml">
+
+            <ui:define name="title">
+                Nuevo Producto
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <div class="container">
+                        <h:form>
+                            <div class="form-group col-md-6">       
+                                <h:outputLabel value="Numero de Orden:"/>
+                                <h:selectOneMenu id="idOrden" class="form-control col-xs-8"
+                                                 value="#{ProductosController.joya.idOrden}"
+                                                 requiredMessage="ingrese un numero de Orden"
+                                                 required="true"
+                                                 >
+                                    <f:selectItem itemLabel="----- Selecciona -----" itemValue="" />
+                                    <f:selectItems value="#{OrdenesController.all}" var="tipo" itemLabel="#{tipo.idORDEN}" ></f:selectItems>
+                                </h:selectOneMenu>
+                                <h:message for="idOrden" style="color:blue"></h:message>
+                            </div>
+
+                            <div class="form-group col-md-6">       
+                                <h:outputLabel value="Material de elaboración:"/>         
+                                <h:selectOneMenu id="idMaterial" class="form-control col-xs-8"
+                                                 value="#{ProductosController.joya.idMaterial}"
+                                                 requiredMessage=" ingrese un material de elaboración"
+                                                 required="true"
+                                                 >
+                                    <f:selectItem itemLabel="----- Selecciona -----" itemValue="" />
+                                    <f:selectItems value="#{materialesVController.all}" var="material" itemLabel="#{material.material}" ></f:selectItems>
+                                </h:selectOneMenu>
+                                <h:message for="idMaterial" style="color:blue"></h:message>
+                            </div>  
+
+                            <div class="form-group col-md-6">       
+                                <h:outputLabel value="Diseño de la Joya::"/>         
+                                <h:selectOneMenu id="idDisenio" class="form-control col-xs-8"
+                                                 value="#{ProductosController.joya.idDisenio}"
+                                                 requiredMessage=" ingrese un diseño de Joya"
+                                                 required="true"
+                                                 >
+                                    <f:selectItem itemLabel="----- Selecciona -----" itemValue="" />
+                                    <f:selectItems value="#{ControllerDisenios.all}" var="diseno" itemLabel="#{diseno.disenio}" ></f:selectItems>
+                                </h:selectOneMenu>
+                                <h:message for="idDisenio" style="color:blue"></h:message>
+                            </div>   
+
+                            <div class="form-group col-md-6">       
+                                <h:outputLabel value="Tipo de Joya:"/>           
+                                <h:selectOneMenu id="idTipo" class="form-control col-xs-8"
+                                                 value="#{ProductosController.joya.idTipo}"
+                                                 requiredMessage="ingrese un tipo de joya"
+                                                 required="true"
+                                                 > 
+                                    <f:selectItem itemLabel="----- Selecciona -----" itemValue="" />
+                                    <f:selectItems value="#{ControllerTipo.all}" var="tipos" itemLabel="#{tipos.tipo}" ></f:selectItems>
+                                </h:selectOneMenu>
+                                <h:message for="idTipo" style="color:blue"></h:message>
+                            </div>
+
+                            <div class="form-group col-md-6" >       
+                                <h:outputLabel value="Estado de elaboración:"/>
+                                <h:selectOneMenu id="idEstado" class="form-control col-xs-8"
+                                                 value="#{ProductosController.joya.idEstado}"
+                                                 requiredMessage=" ingrese un estado"
+                                                 required="true"
+                                                 >
+                                    <f:selectItem itemLabel="----- Selecciona -----" itemValue="" />
+                                    <f:selectItems value="#{ControllerEstado.all}" var="estado" itemLabel="#{estado.descripcion}" ></f:selectItems>
+                                </h:selectOneMenu>
+                                <h:message for="idEstado" style="color:blue"></h:message>
+                            </div> 
+
+                            <div class="form-group col-md-6">
+                                <h:outputLabel value="Gramaje:"/>
+                                <h:selectOneMenu 
+                                    id="gramaje" 
+                                    value="#{ProductosController.joya.gramaje}" 
+                                    requiredMessage=" ingrese un Gramaje"
+                                    validatorMessage="ingresa un Gramaje valido"
+                                    required="true"
+                                    class="form-control"
+                                    >
+                                    <f:selectItem itemLabel="----- Selecciona -----" itemValue=""/>
+                                    <f:selectItem itemLabel="3 K" itemValue="3" />
+                                    <f:selectItem itemLabel="4 K" itemValue="4" />
+                                    <f:selectItem itemLabel="5 K" itemValue="5" />
+                                    <f:selectItem itemLabel="6 K" itemValue="6" />
+                                    <f:selectItem itemLabel="7 K" itemValue="7" />
+                                    <f:selectItem itemLabel="8 K" itemValue="8" />
+                                    <f:selectItem itemLabel="9 K" itemValue="9" />
+                                    <f:selectItem itemLabel="10 K" itemValue="10" />
+                                    <f:selectItem itemLabel="14 K" itemValue="14" />
+                                    <f:selectItem itemLabel="18 K" itemValue="18" />
+                                    <f:selectItem itemLabel="22 K" itemValue="22" />
+                                </h:selectOneMenu>
+                                <h:message for="gramaje" style="color:blue"></h:message>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <h:outputLabel value="Talla:"/>
+                                <h:inputText 
+                                    value="#{ProductosController.joya.talla}" 
+                                    requiredMessage=" ingrese una Talla"
+                                    validatorMessage="ingresa una Talla valida"
+                                    required="true"
+                                    maxlength="5"
+                                    class="form-control"
+                                    id="Talla"
+                                    />
+                                <h:message for="Talla" style="color:blue"></h:message>
+                            </div>
+
+                            <div class="form-group col-md-6" >
+                                <h:outputLabel value="Inscripción:"/>
+                                <h:inputText
+                                    requiredMessage=" ingrese una Inscripcion"
+                                    validatorMessage="ingresa una Inscripcion valida"
+                                    required="true"
+                                    id="Inscripcion" 
+                                    value="#{ProductosController.joya.inscripcion}" 
+                                    maxlength="50"
+                                    class="form-control">
+                                </h:inputText>
+                                <h:message for="Inscripcion" style="color:blue"></h:message>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <h:outputLabel value="Cantidad:"/>
+                                <h:inputText
+                                    requiredMessage=" ingrese una Cantidad"
+                                    validatorMessage="ingresa una Cantidad valida no puede adquirir mas de 3 productos"
+                                    required="true"
+                                    id="Cantidad" 
+                                    value="#{ProductosController.joya.cantidad}" 
+                                    title="Cantidad" 
+                                    maxlength="50"
+                                    class="form-control">
+                                    <f:validateLongRange minimum="1" maximum="3"></f:validateLongRange>
+                                </h:inputText>
+                                <h:message for="Cantidad" style="color:blue"></h:message>
+                            </div>
+
+                            <div class="form-group col-md-6"> 
+                                <h:outputLabel value="Valor:"/>
+                                <h:inputText 
+                                    required="true"
+                                    validatorMessage="ingresa un Valor valido"
+                                    requiredMessage=" ingrese un Valor"
+                                    id="Valor" 
+                                    value="#{ProductosController.joya.valorTotal}" 
+                                    title="Valor"
+                                    maxlength="30"
+                                    class="form-control"
+                                    >
+                                    <f:convertNumber integerOnly="true" minIntegerDigits="1"  />
+                                </h:inputText>
+                                <h:message for="Valor" style="color:blue"></h:message>
+                            </div>
+
+                            <h:commandButton 
+                                value="Crear Producto"
+                                class="btn btn-info"
+                                actionListener="#{ProductosController.registrarJoya()}"
+                                >
+                            </h:commandButton>
+                            <c:if test="#{ProductosController.estado==true}">
+                                <script language="JavaScript" type="text/javascript">
+                                    $(document).ready(function () {
+                                        swal({type: "success", title: "¡Producto Creado !",
+                                            confirmButtonText: "Aceptar",
+                                            showConfirmButton: true,
+                                            allowOutsideClick: true, time: 3000},
+                                                function () {
+                                                    window.location.href = "inicio.xhtml";
+                                                });
+                                    });
+                                </script> </c:if>
+                                #{ProductosController.cambiarEstado()}
+                        </h:form>
+                        <h:messages></h:messages>
+                    </div>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+
+

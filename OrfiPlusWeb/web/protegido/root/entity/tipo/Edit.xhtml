@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TipoEditDlg" widgetVar="TipoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTipoTitle}" closeOnEscape="true">
+
+            <h:form id="TipoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{tipoController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTipoLabel_idTIPO}" for="idTIPO" />
+                        <h:outputText id="idTIPO" value="#{tipoController.selected.idTIPO}" />
+
+                        <p:outputLabel value="#{myBundle.EditTipoLabel_tipo}" for="tipo" />
+                        <p:inputText id="tipo" value="#{tipoController.selected.tipo}" title="#{myBundle.EditTipoTitle_tipo}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditTipoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{tipoController.selected.descripcion}" title="#{myBundle.EditTipoTitle_descripcion}" size="60" maxlength="60"/>
+
+                        <p:outputLabel value="#{myBundle.EditTipoLabel_estadoinfo}" for="estadoinfo" />
+                        <p:selectBooleanCheckbox id="estadoinfo" value="#{tipoController.selected.estadoinfo}" />
+
+                        <p:outputLabel value="#{myBundle.EditTipoLabel_precioxtipo}" for="precioxtipo" />
+                        <p:inputText id="precioxtipo" value="#{tipoController.selected.precioxtipo}" title="#{myBundle.EditTipoTitle_precioxtipo}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTipoLabel_urlTipo}" for="urlTipo" />
+                        <p:inputText id="urlTipo" value="#{tipoController.selected.urlTipo}" title="#{myBundle.EditTipoTitle_urlTipo}" size="100" maxlength="100"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipoController.save}" value="#{myBundle.Save}" update="display,:TipoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TipoEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('TipoEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

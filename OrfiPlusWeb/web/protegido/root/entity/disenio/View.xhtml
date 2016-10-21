@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DisenioViewDlg" widgetVar="DisenioViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewDisenioTitle}" closeOnEscape="true">
+
+            <h:form id="DisenioViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{disenioController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewDisenioLabel_idDISENIO}"/>
+                        <h:outputText value="#{disenioController.selected.idDISENIO}" title="#{myBundle.ViewDisenioTitle_idDISENIO}"/>
+
+                        <h:outputText value="#{myBundle.ViewDisenioLabel_disenio}"/>
+                        <h:outputText value="#{disenioController.selected.disenio}" title="#{myBundle.ViewDisenioTitle_disenio}"/>
+
+                        <h:outputText value="#{myBundle.ViewDisenioLabel_descripcion}"/>
+                        <h:outputText value="#{disenioController.selected.descripcion}" title="#{myBundle.ViewDisenioTitle_descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewDisenioLabel_estadoinfo}"/>
+                        <h:selectBooleanCheckbox id="estadoinfo" value="#{disenioController.selected.estadoinfo}" title="#{myBundle.EditDisenioTitle_estadoinfo}"  disabled="true"/>
+
+                        <h:outputText value="#{myBundle.ViewDisenioLabel_precioxdisenio}"/>
+                        <h:outputText value="#{disenioController.selected.precioxdisenio}" title="#{myBundle.ViewDisenioTitle_precioxdisenio}"/>
+
+                        <h:outputText value="#{myBundle.ViewDisenioLabel_urlDisenio}"/>
+                        <h:outputText value="#{disenioController.selected.urlDisenio}" title="#{myBundle.ViewDisenioTitle_urlDisenio}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('DisenioViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Quiénes Somos</title>
+  <link rel="stylesheet" href="resources/css/css/style.css">
+  <link rel="stylesheet" href="resources/css/css/stuck.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="resources/css/index.css">
+  <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css">
+  <link rel='stylesheet' type='text/css' href="resources/css/cmenu.css" />
+  <link rel="icon" type="image/png" href="resources/img/favicon.ico" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<script>
+        $(document).ready(function(){
+            jQuery('#camera_wrap').camera({
+                loader: false,
+                pagination: false ,
+                minHeight: '200',
+                thumbnails: false,
+                height: '39,0625%',
+                caption: true,
+                navigation: true,
+                fx: 'mosaic'
+            });
+            var owl = $("#owl");
+            owl.owlCarousel({
+                items : 7, 
+                itemsDesktop : [995,5], 
+                itemsDesktopSmall : [767, 3], 
+                itemsTablet: [700, 3], 
+                itemsMobile : [479, 2], 
+                navigation : true,
+            });
+            $().UItoTop({ easingType: 'easeOutQuart' });
+            $('#stuck_container').tmStickUp({});
+            $('.gallery a.gal_item').touchTouch();
+        });
+    </script>
+</head>
+
+<body class="page1" id="top">
+    <header>
+        <div id="stuck_container">
+            <div class="container">
+                <div class="row">
+                    <div class="grid_12">
+                        <div class="logo lobster letra">
+                            <img src="resources/images/icons/logomm.png">
+                        </div>
+                        <div class="menu_block">
+                            <nav class="horizontal-nav full-width horizontalNav-notprocessed">
+                                <ul class="sf-menu">
+                                    <li><a href="index.html">Inicio</a></li>
+                                    <li class="current"><a href="quienes somos.html">Quienes Somos</a></li>
+                                    <li><a href="contactos.html">Contáctenos</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <body>
+    
+        <br><br><div class="container">
+            <div class="row">
+                <div class="col-xs-7 well">            
+                    <h3> Historia </h3>
+                    <h4> En la actualidad la joyeria lleva los procesos de ventas en papel, en donde se registran todos los movimientos realizados en el stock de ventas;además el proceso de fabricación requiere de toma de medidas de argollas y anillos que se lleva a cabo por medio de pruebas con el stock.</h4>
+                    <h4> En cuanto a diseño el cliente solo tiene la opción de escoger de acuerdo a los anillos o argollas disponibles en stock de modo que algunos diseños disponibles para fabricación quedan fuera del proceso de selección. </h4>
+                    <h4> Hasta el momento no se tiene un control de sobre la carga laboral de los trabajos realizados por cada vendedor, por lo cual puede ocurrir el incumplimiento de trabajos por de carga laboral poco equitativa y excesiva. </h4>
+                    <h4> Actualmente se evidencian sistemas de información para joyería, principalmente uno conocido como Onix el cual se desarrolló para analizar las variables y tendencias que influyen en las personas al momento de adquirir o comprar accesorios  de oro, plata, acero y fantasia en la ciudad de Ibagué, se implementó para aumentar  la participación en el mercado, por medio de módulos de domicilios totalmente gratis a los clientes que solicitaban el servicio y promociones a los clientes que utilizaban el sitio web.</h4>
+                </div>
+              
+                <div class="col-xs-5 well"> 
+                    <img class="izquierda" src="resources/images/historia.jpg" width="450" height="490">     
+                </div> 
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-7 well">
+                    
+                    <h3>Visión</h3>
+                    <h4> La joyería Orfi ubicada en el barrio San Cristóbal en Bogotá, se dedica a la fabricación y venta de joyas producidas en metales finos como son plata y oro; se destaca la fabricación de anillos, pulseras, cadenas, argollas y pendientes. Además de esto comercializa relojes de pulsera. </h4>
+                    <h4> En la actualidad la joyería carece de un control de producción respecto a materia prima y stock de productos. Una de las mayores dificultades evidenciadas, se presenta en la comunicación con el cliente en los trabajos por encargo, siendo ésta la venta más representativa, se requiere de un canal que facilite la comunicación y que arroje una proyección de tiempos de fabricación; permitiendo al cliente la toma de decisiones para realizar cambios con base en fechas de cierre de procesos para la aplicación de los mismos. </h4>
+                    <h4> En cuanto a los procesos administrativos el sistema de seguimiento de ventas se realiza de forma manual, de manera que se presentan inconsistencias, además de no contar con indicadores de ventas y productividad. </h4>
+                </div>
+            
+                <div class="col-xs-5 well">
+                    <img class="derecha" src="resources/images/vision.jpg" width="450" height="420">
+                </div>
+            </div>
+        </div>
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-7 well">
+                    <h3> Misión</h3>
+                    <h4> Desarrollar un sistema de información que permita la visualización, el diseño y parametrización de joyas por parte del cliente; que permita reservarlas y generar cotizaciones; que alerte sobre el estado del proceso y que gestione el estado de los productos en stock; apoyando el  seguimiento de producción de ventas y administración en general de la joyería Orfi. </h4>
+                </div>
+
+                <div class="col-xs-5 well">
+                    <img class= "derecha" src="resources/images/mision.jpg" width="450" height="226">
+                </div>
+           </div>
+        </div>
+ 
+    </body>
+</html>  

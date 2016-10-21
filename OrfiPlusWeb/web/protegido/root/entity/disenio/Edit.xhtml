@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="DisenioEditDlg" widgetVar="DisenioEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditDisenioTitle}" closeOnEscape="true">
+
+            <h:form id="DisenioEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{disenioController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditDisenioLabel_idDISENIO}" for="idDISENIO" />
+                        <h:outputText id="idDISENIO" value="#{disenioController.selected.idDISENIO}" />
+
+                        <p:outputLabel value="#{myBundle.EditDisenioLabel_disenio}" for="disenio" />
+                        <p:inputText id="disenio" value="#{disenioController.selected.disenio}" title="#{myBundle.EditDisenioTitle_disenio}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditDisenioLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{disenioController.selected.descripcion}" title="#{myBundle.EditDisenioTitle_descripcion}" size="60" maxlength="60"/>
+
+                        <p:outputLabel value="#{myBundle.EditDisenioLabel_estadoinfo}" for="estadoinfo" />
+                        <p:selectBooleanCheckbox id="estadoinfo" value="#{disenioController.selected.estadoinfo}" />
+
+                        <p:outputLabel value="#{myBundle.EditDisenioLabel_precioxdisenio}" for="precioxdisenio" />
+                        <p:inputText id="precioxdisenio" value="#{disenioController.selected.precioxdisenio}" title="#{myBundle.EditDisenioTitle_precioxdisenio}"/>
+
+                        <p:outputLabel value="#{myBundle.EditDisenioLabel_urlDisenio}" for="urlDisenio" />
+                        <p:inputText id="urlDisenio" value="#{disenioController.selected.urlDisenio}" title="#{myBundle.EditDisenioTitle_urlDisenio}" size="100" maxlength="100"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{disenioController.save}" value="#{myBundle.Save}" update="display,:DisenioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DisenioEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('DisenioEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="bootstrap.css" library="css"/>
+        <h:outputStylesheet name="ageneral.css" library="css"/>
+        <h:outputStylesheet name="cmenu.css" library="css"/>
+
+        <h:outputScript name="jquery-1.12.0.min.js"  library="js" target="body"/>
+        <h:outputScript name="bootstrap.js"  library="js"/>
+        <title><ui:insert name="title"></ui:insert></title>
+    </h:head>
+
+    <h:body>
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <div id="home" class="header">
+                    <div class="top-headerA">
+                        <div class="container">
+                            <div class="logo lobster letra">
+                                <h:link value="#" hreflang="#">
+                                <h:graphicImage library="images" name="logom.png" alt="Orfi Plus Logo"/>
+                                </h:link>
+                            </div>
+
+                            <nav class="top-nav">
+                                <ul class="top-nav">
+                                    <li><a href="admin/addEmploy.xhtml">Empleados</a>
+                                        <span class="caret"></span>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">HTML</a></li>
+                                            <li><a href="#">CSS</a></li>
+                                            <li><a href="#">JavaScript</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="admin/addEmploy.xhtml">Joyas Solicitadas</a></li>
+                                    <li><a href="admin/addEmploy.xhtml">Añadir Empleado</a></li>
+                                    <li><a href="admin/addEmploy.xhtml">Añadir Empleado</a></li>
+                                    <li><a>#{login.rolSeleccionado.rol}</a></li>                   
+                                </ul>
+                                <h:link id="pull">
+                                    <h:graphicImage library="images" name="menu-icon.png" alt="Imagen Menu"/>
+                                </h:link>
+                            </nav>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-success">Bienvenido #{login.usuario.nombres}</div>
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>
