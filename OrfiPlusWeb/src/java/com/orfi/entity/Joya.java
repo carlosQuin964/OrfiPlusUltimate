@@ -63,7 +63,7 @@ public class Joya implements Serializable {
     private Integer valorTotal;
     @Column(name = "estadoinfo")
     private Boolean estadoinfo;
-    @Size(max = 100)
+    @Size(max = 500)
     @Column(name = "urlJoya")
     private String urlJoya;
     @JoinColumn(name = "idDisenio", referencedColumnName = "idDISENIO")

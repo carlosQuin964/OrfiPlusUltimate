@@ -33,11 +33,6 @@
         <url-pattern>/protegido/*</url-pattern>
     </filter-mapping>
     
-    <error-page>
-        <location>/404.html</location>
-    </error-page>
-    <error-page>
-        <location>/500.html</location>
-    </error-page>
+
     
 </web-app>

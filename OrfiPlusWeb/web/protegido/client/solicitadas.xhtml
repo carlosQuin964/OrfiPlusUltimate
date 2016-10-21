@@ -15,7 +15,7 @@
             </ui:define>
 
             <ui:define name="content">
-
+                <div class="container">
                     <p:carousel 
                         value="#{crearJoyaController.verJoyasSolicitadas()}" 
                         headerText="Responsive" 
@@ -29,47 +29,48 @@
                             layout="grid" 
                             styleClass="ui-panelgrid-blank">
                             <f:facet name="header">
-                                <p:graphicImage name="car_img1.jpg" library="images"/> 
+                                <p:graphicImage name="http://i.imgur.com/KPCnLI3.jpg"  class="imagenJoyas"/> 
                             </f:facet>
 
                             <h:outputText value="Orden:" class="titulos"/>
                             <h:outputText value="#{item.idOrden}" />
-                            
-                            <h:outputText value="Codigo:" />
+
+                            <h:outputText value="Codigo:" class="titulos"/>
                             <h:outputText value="#{item.idJoya}" />
-                            
-                            <h:outputText value="Tipo Joya:" />
+
+                            <h:outputText value="Tipo Joya:" class="titulos"/>
                             <h:outputText value="#{item.idTipo}" />
-                            
-                            <h:outputText value="Material:" />
+
+                            <h:outputText value="Material:" class="titulos"/>
                             <h:outputText value="#{item.idMaterial}" />
-                            
-                            <h:outputText value="Gramaje" />
+
+                            <h:outputText value="Gramaje" class="titulos"/>
                             <h:outputText value="#{item.gramaje}" />
-                            
-                            <h:outputText value="Diseño" />
+
+                            <h:outputText value="Diseño" class="titulos"/>
                             <h:outputText value="#{item.idDisenio}" />
-                            
-                            <h:outputText value="Inscripcion:" />
+
+                            <h:outputText value="Inscripcion:" class="titulos"/>
                             <h:outputText value="#{item.inscripcion}" />
-                                                        
-                            <h:outputText value="Cantidad:" />
+
+                            <h:outputText value="Cantidad:" class="titulos"/>
                             <h:outputText value="#{item.cantidad}" />
-                                                        
-                            <h:outputText value="Valor:" />
+
+                            <h:outputText value="Valor:" class="titulos"/>
                             <h:outputText value="#{item.valorUnitario}" />
-                                                        
-                            <h:outputText value="Total:" />
+
+                            <h:outputText value="Total:" class="titulos"/>
                             <h:outputText value="#{item.valorTotal}" />
 
+                            
                         </p:panelGrid>
 
                         <f:facet name="footer">
-                            In total there are  cars.
+                            In total there are  cars. 
                         </f:facet>
                     </p:carousel>
 
-
+                </div>
             </ui:define>
 
         </ui:composition>
