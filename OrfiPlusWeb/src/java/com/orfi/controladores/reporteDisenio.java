@@ -12,22 +12,19 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import org.primefaces.model.chart.DonutChartModel;
-import org.primefaces.model.chart.PieChartModel;import java.util.LinkedHashMap;
-import java.util.Map;
-import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import org.primefaces.model.chart.DonutChartModel;
 import org.primefaces.model.chart.PieChartModel;
 
-@Named(value = "ChartView")
+/**
+ *
+ * @author USUARIO
+ */
+@Named(value = "reporteDisenio")
 @RequestScoped
-public class ChartView {
-
-    private DonutChartModel donutChartModel;
+public class reporteDisenio {
+     private DonutChartModel donutChartModel;
     private PieChartModel pieChartModel;
     private List<Joya> joyas;
 
@@ -85,43 +82,38 @@ public class ChartView {
         int contador3 = 0;
         int contador4 = 0;
         int contador5 = 0;
-        int contador6 = 0;
 
         for (Joya joyas1 : joyas) {
 
-           if (joyas1.getIdTipo().getTipo().equalsIgnoreCase("Anillo")) {
+           if (joyas1.getIdDisenio().getDisenio().equalsIgnoreCase("diseño plano")) {
                 contador1++;
-                pieChartModel.set("Anillo", contador1);
+                pieChartModel.set("diseño plano", contador1);
             }
-            if (joyas1.getIdTipo().getTipo().equalsIgnoreCase("Pulsera")) {
+            if (joyas1.getIdDisenio().getDisenio().equalsIgnoreCase("diseño mediacaña")) {
                 contador2++;
-                pieChartModel.set("Pulsera", contador2);
+                pieChartModel.set("diseño mediacaña", contador2);
             }
-            if (joyas1.getIdTipo().getTipo().equalsIgnoreCase("Cadena")) {
+             if (joyas1.getIdDisenio().getDisenio().equalsIgnoreCase("diseño3")) {
                 contador3++;
-                pieChartModel.set("Cadena", contador3);
+                pieChartModel.set("diseño3", contador3);
             }
-            if (joyas1.getIdTipo().getTipo().equalsIgnoreCase("Aretes")) {
+             if (joyas1.getIdDisenio().getDisenio().equalsIgnoreCase("diseño calada")) {
                 contador4++;
-                pieChartModel.set("Aretes", contador4);
+                pieChartModel.set("diseño calada", contador4);
             }
-            if (joyas1.getIdTipo().getTipo().equalsIgnoreCase("candongas")) {
+             if (joyas1.getIdDisenio().getDisenio().equalsIgnoreCase("diseño tejido basico")) {
                 contador5++;
-                pieChartModel.set("candongas", contador5);
+                pieChartModel.set("diseño tejido basico", contador5);
             }
-            if (joyas1.getIdTipo().getTipo().equalsIgnoreCase("manilla")) {
-                contador6++;
-                pieChartModel.set("manilla", contador6);
-            }
+          
+            
         }
 
-        pieChartModel.setTitle("Tipos de Joyas");
+        pieChartModel.setTitle("Reporte Diseño");
         pieChartModel.setLegendPosition("e");
         pieChartModel.setFill(false);
         pieChartModel.setShowDataLabels(true);
         pieChartModel.setDiameter(150);
 
     }
-
 }
-

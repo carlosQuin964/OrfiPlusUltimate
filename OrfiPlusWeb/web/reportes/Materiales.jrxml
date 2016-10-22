@@ -14,7 +14,7 @@
 		<band height="79" splitType="Stretch">
 			<image>
 				<reportElement x="10" y="10" width="134" height="60" uuid="4e405f31-e6a2-4cac-9358-dcbc5ae05911"/>
-				<imageExpression><![CDATA["C:\\Users\\USUARIO\\Documents\\NetBeansProjects\\compartido\\gitHub\\OrfiPlusWeb\\web\\reportes\\logo.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["../reportes\\logo.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement mode="Opaque" x="227" y="22" width="279" height="38" forecolor="#003333" backcolor="#FFFFFF" uuid="d560dd16-7d7c-4adc-a9d5-a1c48441adf9"/>

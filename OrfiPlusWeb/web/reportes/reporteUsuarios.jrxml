@@ -23,7 +23,7 @@
 			</staticText>
 			<image>
 				<reportElement x="28" y="6" width="134" height="60" uuid="a88defb7-3ff2-46c4-be84-90839d6f82ee"/>
-				<imageExpression><![CDATA["C:\\Users\\USUARIO\\Documents\\NetBeansProjects\\compartido\\gitHub\\OrfiPlusWeb\\web\\reportes\\logo.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["../reportes\\logo.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement mode="Opaque" x="417" y="43" width="70" height="28" forecolor="#003333" backcolor="#FFFFFF" uuid="be6c79c0-67f8-4dd7-a666-5568d379c4e1"/>

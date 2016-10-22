@@ -59,7 +59,8 @@
 
                             <div class="form-group col-md-6">       
                                 <h:outputLabel value="Tipo de Joya:"/>           
-                                <h:selectOneMenu id="idTipo" class="form-control col-xs-8"
+                                <h:selectOneMenu id="idTipo"
+                                                 class="form-control col-xs-8"
                                                  value="#{ProductosController.joya.idTipo}"
                                                  requiredMessage="ingrese un tipo de joya"
                                                  required="true"
@@ -190,7 +191,7 @@
                                 </script> </c:if>
                                 #{ProductosController.cambiarEstado()}
                         </h:form>
-                        <h:messages></h:messages>
+                      
                     </div>
                 </f:view>
             </ui:define>

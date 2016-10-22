@@ -34,6 +34,14 @@ public class materialesVController implements Serializable {
         return material;
     }
 
+    public MaterialFacade getMaterialFacate() {
+        return materialFacate;
+    }
+
+    public void setMaterialFacate(MaterialFacade materialFacate) {
+        this.materialFacate = materialFacate;
+    }
+
     public void setMaterial(Material material) {
         this.material = material;
     }

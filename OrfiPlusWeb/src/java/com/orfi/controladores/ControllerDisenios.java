@@ -28,6 +28,14 @@ public class ControllerDisenios implements Serializable {
       @EJB
     private DisenioFacade disenioFacade;
       private Disenio disenio;
+
+    public DisenioFacade getDisenioFacade() {
+        return disenioFacade;
+    }
+
+    public void setDisenioFacade(DisenioFacade disenioFacade) {
+        this.disenioFacade = disenioFacade;
+    }
       
         private boolean estado;
 

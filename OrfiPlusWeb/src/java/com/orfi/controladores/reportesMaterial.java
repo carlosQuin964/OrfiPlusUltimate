@@ -12,22 +12,19 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import org.primefaces.model.chart.DonutChartModel;
-import org.primefaces.model.chart.PieChartModel;import java.util.LinkedHashMap;
-import java.util.Map;
-import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import org.primefaces.model.chart.DonutChartModel;
 import org.primefaces.model.chart.PieChartModel;
 
-@Named(value = "ChartView")
+/**
+ *
+ * @author USUARIO
+ */
+@Named(value = "reportesMaterial")
 @RequestScoped
-public class ChartView {
-
-    private DonutChartModel donutChartModel;
+public class reportesMaterial {
+        private DonutChartModel donutChartModel;
     private PieChartModel pieChartModel;
     private List<Joya> joyas;
 
@@ -59,13 +56,36 @@ public class ChartView {
     public void generarReporte() {
 
         donutChartModel = new DonutChartModel();
-        Map<String, Number> circle1 = new LinkedHashMap<String, Number>();
-        
-        circle1.put("Daewo", 130);
-        circle1.put("Ferrari", 120);
-        circle1.put("BMW", 100);
-        circle1.put("otro", 100);
-        donutChartModel.addCircle(circle1);
+         Map<String, Number> circle1 = new LinkedHashMap<String, Number>();
+        joyas = joyaFacade.findAll();
+        int contador1 = 0;
+        int contador2 = 0;
+        int contador3 = 0;
+        int contador4 = 0;
+       
+
+        for (Joya joyas1 : joyas) {
+
+           if (joyas1.getIdMaterial().getMaterial().equalsIgnoreCase("Oro")) {
+                contador1++;
+                circle1.put("Oro", contador1);
+            }
+           if (joyas1.getIdMaterial().getMaterial().equalsIgnoreCase("Plata")) {
+                contador2++;
+                circle1.put("Plata", contador2);
+            }
+           if (joyas1.getIdMaterial().getMaterial().equalsIgnoreCase("Bañado en Oro")) {
+                contador3++;
+                circle1.put("Bañado en Oro", contador3);
+            }
+           if (joyas1.getIdMaterial().getMaterial().equalsIgnoreCase("Bañado en Plata")) {
+                contador4++;
+                circle1.put("Bañado en Plata", contador4);
+            }
+            
+        }
+
+       
 
         donutChartModel.setTitle("Autos en concesionario");
         donutChartModel.setLegendPosition("a");
@@ -84,44 +104,34 @@ public class ChartView {
         int contador2 = 0;
         int contador3 = 0;
         int contador4 = 0;
-        int contador5 = 0;
-        int contador6 = 0;
+       
 
         for (Joya joyas1 : joyas) {
 
-           if (joyas1.getIdTipo().getTipo().equalsIgnoreCase("Anillo")) {
+           if (joyas1.getIdMaterial().getMaterial().equalsIgnoreCase("Oro")) {
                 contador1++;
-                pieChartModel.set("Anillo", contador1);
+                pieChartModel.set("Oro", contador1);
             }
-            if (joyas1.getIdTipo().getTipo().equalsIgnoreCase("Pulsera")) {
+           if (joyas1.getIdMaterial().getMaterial().equalsIgnoreCase("Plata")) {
                 contador2++;
-                pieChartModel.set("Pulsera", contador2);
+                pieChartModel.set("Plata", contador2);
             }
-            if (joyas1.getIdTipo().getTipo().equalsIgnoreCase("Cadena")) {
+           if (joyas1.getIdMaterial().getMaterial().equalsIgnoreCase("Bañado en Oro")) {
                 contador3++;
-                pieChartModel.set("Cadena", contador3);
+                pieChartModel.set("Bañado en Oro", contador3);
             }
-            if (joyas1.getIdTipo().getTipo().equalsIgnoreCase("Aretes")) {
+           if (joyas1.getIdMaterial().getMaterial().equalsIgnoreCase("Bañado en Plata")) {
                 contador4++;
-                pieChartModel.set("Aretes", contador4);
+                pieChartModel.set("Bañado en Plata", contador4);
             }
-            if (joyas1.getIdTipo().getTipo().equalsIgnoreCase("candongas")) {
-                contador5++;
-                pieChartModel.set("candongas", contador5);
-            }
-            if (joyas1.getIdTipo().getTipo().equalsIgnoreCase("manilla")) {
-                contador6++;
-                pieChartModel.set("manilla", contador6);
-            }
+            
         }
 
-        pieChartModel.setTitle("Tipos de Joyas");
+        pieChartModel.setTitle("Material");
         pieChartModel.setLegendPosition("e");
         pieChartModel.setFill(false);
         pieChartModel.setShowDataLabels(true);
         pieChartModel.setDiameter(150);
 
     }
-
 }
-

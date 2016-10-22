@@ -4,55 +4,80 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-    <body>
+    <h:body>
         
             
 
         <ui:composition template="./../../WEB-INF/template/emplyTemplate.xhtml">
 
-            <ui:define name="title">
-                title
-            </ui:define>
+           
 
             <ui:define name="content">
-              <div class="correr112">
-            <ul class="ca-menu">
-
-            <li>
-                <a class="colorcajasE empleados" href="listOrden.xhtml">
-                   <span class="ca-iconE">O</span>
-                    <div class="ca-content">
-                        <h3 class="ca-main">Ordenes</h3>
-                
+            <div class="container">
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+    	 <div class="well profile">
+            <div class="col-sm-12">
+                <div class="col-xs-12 col-sm-8">
+                    <h2>#{login.usuario.nombres} #{login.usuario.apellidos}</h2>
+                    <p><strong>Cedula: </strong> #{login.usuario.idPERSONAS} </p>
+                    <p><strong>correo: </strong> #{login.usuario.correoe} </p>
+                    <p><strong>Se unio a Orfi el : </strong> #{login.usuario.fechaCreacion} </p>
+                </div>             
+                <div class="col-xs-12 col-sm-4 text-center">
+                    <figure>
+                        <img src="https://formapractica.files.wordpress.com/2015/02/carnet.jpg?w=62" alt="" class="img-circle img-responsive"/>
+                        <figcaption class="ratings">
+                            
+                            <a href="#">
+                                <span class="fa fa-star"></span>
+                            </a>
+                            <a href="#">
+                                <span class="fa fa-star"></span>
+                            </a>
+                            <a href="#">
+                                <span class="fa fa-star"></span>
+                            </a>
+                            <a href="#">
+                                <span class="fa fa-star"></span>
+                            </a>
+                            <a href="#">
+                                 <span class="fa fa-star-o"></span>
+                            </a> 
+                            
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>            
+            <div class="col-xs-12 divider text-center">
+                <div class="col-xs-12 col-sm-4 emphasis">
+                    <h2><strong>#{materialesVController.materialFacate.count()}</strong></h2>                    
+                    <p><small>Materiales</small></p>
+                    <a href="material.xhtml"><button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span>Materiales </button></a>
+                    
+                </div>
+                <div class="col-xs-12 col-sm-4 emphasis">
+                    <h2><strong>#{ControllerDisenios.disenioFacade.count()}</strong></h2>                    
+                    <p><small>Diseños</small></p>
+                     <a href="diseño.xhtml"><button class="btn btn-info btn-block"><span class="fa fa-plus-circle"></span>Diseño</button></a>
+                </div>
+                <div class="col-xs-12 col-sm-4 emphasis">
+                    <h2><strong>#{crearJoyaController.joyaFacade.count()}</strong></h2>                    
+                    <p><small>Joyas</small></p>
+                    <div class="btn-group dropup btn-block">
+                   <a href="joyas.xhtml"><button class="btn btn-primary btn-block"><span class="fa fa-plus-circle"></span>Joyas</button></a>
+                     
                     </div>
-                </a>
-            </li>
-
-            <li>
-                <a class="colorcajasE empleados" href="joyas.xhtml" >
-                    <span class="ca-iconE">J</span>
-                    <div class="ca-content">
-                        <h2 class="ca-main">Joyas</h2>
-                        
-                    </div>
-                </a>
-            </li>
-           
-            <li>
-                <a class="colorcajasE empleados" href="material.xhtml" >
-                    <span class="ca-iconE">M</span>
-                    <div class="ca-content">
-                        <h2 class="ca-main">Materiales</h2>
-                        
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
+                </div>
+            </div>
+    	 </div>                 
+		</div>
+	</div>
+</div>
 
             </ui:define>
 
-        </ui:composition>
+       </ui:composition>
 
-    </body>
+    </h:body>
 </html>
