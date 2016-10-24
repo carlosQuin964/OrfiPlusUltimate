@@ -1,15 +1,22 @@
 package com.orfi.controladores;
 
+import com.orfi.entity.Joya;
 import com.orfi.entity.Tipo;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.persistence.TypedQuery;
 
 @Named(value = "tipoController")
 @ViewScoped
 public class TipoController extends AbstractController<Tipo> {
 
+    @EJB
+    private Tipo tipoFacade;
+    
     public TipoController() {
         // Inform the Abstract parent controller of the concrete Tipo Entity
         super(Tipo.class);
@@ -27,5 +34,5 @@ public class TipoController extends AbstractController<Tipo> {
         }
         return "/protegido/pages/joya/index";
     }
-
+    
 }

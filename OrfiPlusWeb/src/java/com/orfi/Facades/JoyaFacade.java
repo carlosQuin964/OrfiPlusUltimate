@@ -6,11 +6,7 @@
 package com.orfi.Facades;
 
 import com.orfi.entity.Joya;
-import com.orfi.entity.Persona;
-import com.orfi.entity.Tipo;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -179,5 +175,5 @@ public class JoyaFacade extends AbstractFacade<Joya> {
     }
     
     */
-    
-}
+    }
+

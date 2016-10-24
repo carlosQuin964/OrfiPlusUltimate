@@ -29,13 +29,15 @@ public class CrearJoyaController implements Serializable {
     private Joya joya;
     private Disenio disenio;
     private List<Disenio> disenios;
+    private Orden orden;
+    private List<Joya> joyas ;
     
     @EJB
     private JoyaFacade joyaFacade;
+    @EJB
     private DisenioFacade facadeDisenio;
-    private Orden orden;
-
-    private List<Joya> joyas ;
+    
+    
     /**
      * Creates a new instance of CrearJoyaController
      */

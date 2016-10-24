@@ -6,9 +6,11 @@
 package com.orfi.Facades;
 
 import com.orfi.entity.Tipo;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,6 +29,20 @@ public class TipoFacade extends AbstractFacade<Tipo> {
 
     public TipoFacade() {
         super(Tipo.class);
+    }
+    
+    public List<Tipo> getTipos() {
+        List<Tipo> tipo = null;
+        try {
+            TypedQuery<Tipo> query = em.createNamedQuery("Tipo.findByTipo", Tipo.class);
+            tipo = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            System.out.println("Error en envio de datos");
+        }
+
+        return tipo;
     }
     
 }

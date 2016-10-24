@@ -4,28 +4,38 @@
  * and open the template in the editor.
  */
 package com.orfi.controladores;
+import com.orfi.Facades.JoyaFacade;
+import com.orfi.Facades.TipoFacade;
+import com.orfi.entity.Joya;
+import com.orfi.entity.Tipo;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Locale;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+
  
-@ManagedBean(name="dtFilterView")
+@ManagedBean(name="joyasFilterView")
 @ViewScoped
-public class FilterView implements Serializable {
+public class JoyaFilterView implements Serializable {
      
-    private List<Car> cars;
+    private List<Joya> joya;
+    private List<Joya> joyaFiltrada;
+    private Tipo tipo;
+    @ManagedProperty("#{joyafacade}")
+    private JoyaFacade joyaFacade;
+    @EJB
+    private TipoFacade tipoFacade;
      
-    private List<Car> filteredCars;
-     
-    @ManagedProperty("#{carService}")
-    private CarService service;
+   
  
     @PostConstruct
     public void init() {
-        cars = service.createCars(10);
+        joya = joyaFacade.consultarJoya();
+
     }
      
     public boolean filterByPrice(Object value, Object filter, Locale locale) {
@@ -41,27 +51,24 @@ public class FilterView implements Serializable {
         return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
     }
      
-    public List<String> getBrands() {
-        return service.getBrands();
-    }
-     
-    public List<String> getColors() {
-        return service.getColors();
-    }
-     
-    public List<Car> getCars() {
-        return cars;
+    public List<Joya> getJoyas() {
+        return joya;
     }
  
-    public List<Car> getFilteredCars() {
-        return filteredCars;
+    public List<Joya> getJoyasFiltradas() {
+        return joyaFiltrada;
     }
  
-    public void setFilteredCars(List<Car> filteredCars) {
-        this.filteredCars = filteredCars;
+    public void setJoyasFiltradas(List<Joya> joyaFiltrada) {
+        this.joyaFiltrada = joyaFiltrada;
     }
  
-    public void setService(CarService service) {
-        this.service = service;
+    public void setjoyaFacade(JoyaFacade joyaFacade) {
+        this.joyaFacade = joyaFacade;
     }
+    
+    public List<Tipo> getTipo() {
+        return tipoFacade.getTipos();
+    }
+    
 }
