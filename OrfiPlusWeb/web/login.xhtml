@@ -1,11 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Ingresa a Orfi Plus</title>
         <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
         <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="resources/css/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <script src="resources/js/jquery-1.12.0.min.js" type="text/javascript"></script>
+        <script src="resources/js/bootstrap.js" type="text/javascript"></script>
+        <script src="resources/js/sweetalert.min.js" type="text/javascript"></script>
         <style type="text/css">
             html, body { height: 100%; min-height: 10px; width: 100%; }
             .login-container {
@@ -69,13 +74,13 @@
                             <div class="row">
                                 <div class="form-box">
                                     <h:form>
-                                        <h:messages  />
+                                        
                                         <div class="form-group">
                                             <div id="nameError" class="alert" role="alert"></div>                
                                             <div class="input-group">
                                                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                                                 <h:inputText id="username" required="required" class="form-control" value="#{login.user}"></h:inputText>
-                                                <h:message for="username"></h:message>
+                                               
                                             </div>
 
                                             <div class="form-group">
@@ -89,6 +94,13 @@
                                         </div>
 
                                         <h:commandButton action="#{login.validateUsernamePassword}" class="btn btn-info" value="Login"></h:commandButton>
+                                        <c:if test="#{login.estado==false}">
+                                <script language="JavaScript" type="text/javascript">
+                                    $(document).ready(function () {
+                                        sweetAlert("Datos incorrectos...", "Correo o Contraseña incorrectos. Por favor verifique !", "error");
+                                    });
+                                </script> </c:if>
+                                #{login.cambiarEstado()}
                                     </h:form>
                                 </div>
                             </div>

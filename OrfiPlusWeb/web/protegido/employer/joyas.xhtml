@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">    <head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">    <head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -24,91 +25,51 @@ and open the template in the editor.
     
     <body>
 <ui:composition template="./../../WEB-INF/template/emplyTemplate.xhtml">
-    <ui:define name="title">
-                title
+    <ui:define name="title"></ui:define>
+    
+    <ui:define name="content">
+                title <style>.mueve{margin-left:  500px; margin-top: 20px;}</style>
+                <h:form>
+                    
+               
+                     <p:dataTable var="joy" value="#{ProductosController.verProductos()}">
+    <p:column headerText="Numero Joya">
+        <h:outputText value="#{joy.idJoya}" />
+    </p:column>
+ 
+    <p:column headerText="Gramaje">
+        <h:outputText value="#{joy.gramaje}" />
+    </p:column>
+ 
+    <p:column headerText="Talla">
+        <h:outputText value="#{joy.talla}" />
+    </p:column>
+ 
+    <p:column headerText="Inscripcion">
+        <h:outputText value="#{joy.inscripcion}" />
+    </p:column>
+                         
+    <p:column headerText="Cantidad">
+        <h:outputText value="#{joy.cantidad}" />
+    </p:column> 
+       
+       <p:column headerText="ValorTotal">
+           <h:outputText value="#{joy.valorTotal}" />
+    </p:column>                     
+                         
+</p:dataTable>
+                    <div class="mueve">
+                    
+               
+                   <h:commandButton value="Reporte Joyas" actionListener="#{ReportesJoyas.exportarPDF()}" class="btn btn-warning btn-lg" />  
+                </div>
+                     </h:form>
+                
+
             </ui:define>
 
-            <ui:define name="content">
-                <f:view>
-                    <h:form class="mover">
-                        
-                        <div class="container mover">
-    
-    	<div class="row">
-			<div class="col-md-6 ">
-				<div class="panel panel-danger ">
-					<div class="panel-heading">
-						<h3 class="panel-title">Productos </h3>
-						<div class="pull-right">
-							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-								<i class="glyphicon glyphicon-filter"></i>
-							</span>
-						</div>
-					</div>
-					<div class="panel-body">
-						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Ordenes" />
-					</div>
-                        <h:dataTable value="#{ProductosController.verProductos()}" var="item" class="table table-hover" id="dev-table">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="idJoya"/>
-                                </f:facet>
-                                <h:outputText value="#{item.idJoya}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="gramaje"/>
-                                </f:facet>
-                                <h:outputText value="#{item.gramaje}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="talla"/>
-                                </f:facet>
-                                <h:outputText value="#{item.talla}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="inscripcion"/>
-                                </f:facet>
-                                <h:outputText value="#{item.inscripcion}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="cantidad"/>
-                                </f:facet>
-                                <h:outputText value="#{item.cantidad}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="valorUnitario"/>
-                                </f:facet>
-                                <h:outputText value="#{item.valorUnitario}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="valorTotal"/>
-                                </f:facet>
-                                <h:outputText value="#{item.valorTotal}"/>
-                            </h:column>
-                           
-                           
-                           
-                            
-                           
-                            
-                        </h:dataTable>
-                                   
-                                          	</div>
-                             <h:commandButton value="Reporte Joyas" actionListener="#{ReportesJoyas.exportarPDF()}" class="btn btn-warning btn-lg" />
-			</div>
-		
-		</div>
-	</div>
-                    </h:form>
-              
-                </f:view>
-            </ui:define>
+            
+           
 </ui:composition>
     </body>
 </html>

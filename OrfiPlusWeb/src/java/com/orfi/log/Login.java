@@ -29,6 +29,7 @@ public class Login implements Serializable {
     private String msg;
     private String user;
     private Persona usuario;
+    private boolean estado = true;
 
     @Inject
     private PersonaFacade perFacade;
@@ -38,6 +39,15 @@ public class Login implements Serializable {
     public Login() {
         usuario = null;
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
 
     public String getPwd() {
         return pwd;
@@ -77,6 +87,9 @@ public class Login implements Serializable {
 
     public void setUsuario(Persona usuario) {
         this.usuario = usuario;
+    }
+    public void cambiarEstado() {
+        estado = true;
     }
 
     //validate login
@@ -133,8 +146,11 @@ public class Login implements Serializable {
             }
 
         } else {
+            
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Correo o Contraseña incorrectos. Por favor verifique"));
+            estado=false;
             url = "login";
+            
         }
         return url;
     }
