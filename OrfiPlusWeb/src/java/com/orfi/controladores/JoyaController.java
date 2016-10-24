@@ -1,6 +1,8 @@
 package com.orfi.controladores;
 
+import com.orfi.Facades.JoyaFacade;
 import com.orfi.entity.Joya;
+import java.util.List;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.event.ActionEvent;
@@ -10,6 +12,10 @@ import javax.inject.Inject;
 @ViewScoped
 public class JoyaController extends AbstractController<Joya> {
 
+    private JoyaFacade joyaFacade;
+    private List<Joya> joya;
+    private List<Joya> joyaFiltradas;
+       
     @Inject
     private DisenioController idDisenioController;
     @Inject
@@ -20,6 +26,31 @@ public class JoyaController extends AbstractController<Joya> {
     private OrdenController idOrdenController;
     @Inject
     private TipoController idTipoController;
+    
+    public List<Joya> getCodigo() {
+        return joyaFacade.consultarIdJoya();
+    }
+    public List<Joya> getGramaje() {
+        return joyaFacade.consultarGramaje();
+    }
+    public List<Joya> getTalla() {
+        return joyaFacade.consultarTalla();
+    }
+    public List<Joya> getInscripcion() {
+        return joyaFacade.consultarInscripcion();
+    }
+    public List<Joya> getCantidad() {
+        return joyaFacade.consultarCantidad();
+    }
+    public List<Joya> getValorUnitario() {
+        return joyaFacade.consultarValorUnitario();
+    }
+    public List<Joya> getValorTotal() {
+        return joyaFacade.consultarValorTotal();
+    }
+    public List<Joya> getUrl() {
+        return joyaFacade.consultarUrl();
+    }
 
     public JoyaController() {
         // Inform the Abstract parent controller of the concrete Joya Entity
@@ -95,5 +126,12 @@ public class JoyaController extends AbstractController<Joya> {
         if (this.getSelected() != null && idTipoController.getSelected() == null) {
             idTipoController.setSelected(this.getSelected().getIdTipo());
         }
+    }
+    
+    public List<Joya> getJoyas() {
+        return joya;
+    }
+    public List<Joya> getJoyasFiltradas() {
+        return joya;
     }
 }

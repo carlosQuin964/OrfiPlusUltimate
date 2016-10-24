@@ -49,6 +49,118 @@ public class JoyaFacade extends AbstractFacade<Joya> {
         return joya;
     }
     
+    public List<Joya> consultarIdJoya() {
+        List<Joya> joya = null;
+        try {
+            TypedQuery<Joya> query = em.createNamedQuery("Joya.findByIdJoya", Joya.class);
+            joya = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            System.out.println("Error en envio de datos");
+        }
+
+        return joya;
+    }
+    
+    public List<Joya> consultarGramaje() {
+        List<Joya> joya = null;
+        try {
+            TypedQuery<Joya> query = em.createNamedQuery("Joya.findByGramaje", Joya.class);
+            joya = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            System.out.println("Error en envio de datos");
+        }
+
+        return joya;
+    }
+    
+    public List<Joya> consultarTalla() {
+        List<Joya> joya = null;
+        try {
+            TypedQuery<Joya> query = em.createNamedQuery("Joya.findByTalla", Joya.class);
+            joya = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            System.out.println("Error en envio de datos");
+        }
+
+        return joya;
+    }
+    
+    public List<Joya> consultarInscripcion() {
+        List<Joya> joya = null;
+        try {
+            TypedQuery<Joya> query = em.createNamedQuery("Joya.findByInscripcion", Joya.class);
+            joya = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            System.out.println("Error en envio de datos");
+        }
+
+        return joya;
+    }
+    
+    public List<Joya> consultarCantidad() {
+        List<Joya> joya = null;
+        try {
+            TypedQuery<Joya> query = em.createNamedQuery("Joya.findByCantidad", Joya.class);
+            joya = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            System.out.println("Error en envio de datos");
+        }
+
+        return joya;
+    }
+    
+    public List<Joya> consultarValorUnitario() {
+        List<Joya> joya = null;
+        try {
+            TypedQuery<Joya> query = em.createNamedQuery("Joya.findByValorUnitario", Joya.class);
+            joya = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            System.out.println("Error en envio de datos");
+        }
+
+        return joya;
+    }
+    
+    public List<Joya> consultarValorTotal() {
+        List<Joya> joya = null;
+        try {
+            TypedQuery<Joya> query = em.createNamedQuery("Joya.findByValorTotal", Joya.class);
+            joya = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            System.out.println("Error en envio de datos");
+        }
+
+        return joya;
+    }
+    
+    public List<Joya> consultarUrl() {
+        List<Joya> joya = null;
+        try {
+            TypedQuery<Joya> query = em.createNamedQuery("Joya.findByUrlJoya", Joya.class);
+            joya = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            System.out.println("Error en envio de datos");
+        }
+
+        return joya;
+    }
+    
   /*  public String consultarTiposJoya(){
         Map<List<Tipo>,List<Joya>> joya = null;
         List<String> listaString = null;
