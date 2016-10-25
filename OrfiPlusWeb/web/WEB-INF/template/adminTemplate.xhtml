@@ -17,12 +17,13 @@
         <h:outputStylesheet name="sweetalert.css" library="css"/>
         <h:outputStylesheet name="font-awesome.css" library="css"/>
         <h:link hreflang="https://fonts.googleapis.com/css?family=Lobster"/>
+        <h:outputStylesheet name="joyasSolicitadas.css" library="css"/>
         <link href="../../resources/css/css/font-awesome.css" rel="stylesheet" type="text/css"/>
-        
+
         <h:outputScript name="bootstrap.min.js"  library="js" target="body"/>
         <h:outputScript name="sweetalert.min.js"  library="js" target="body"/>
-      <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
-<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+        <h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
         <title><ui:insert name="title"></ui:insert></title>
     </h:head>
 
@@ -39,44 +40,38 @@
 
                             <nav class="top-nav">
                                 <ul class="top-nav">
-                                     <h:form>
-                                    <li><a href="inicio.xhtml">Inicio</a></li>
-                                  
-                                    <li><a href="consultarClientes.xhtml">usuarios</a></li>
-                                    
-                                      <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Crear <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="addMaterial.xhtml">Material</a></li>
-                                <li><a href="addEmploy.xhtml">Nuevo Empleado</a></li>
-                               <li><a href="addDisenio.xhtml">Nuevo Diseño</a></li>
-                               <li><a href="nuevaJoya.xhtml">Nuevo Producto</a></li>
-                             
-                            
-                            </ul>
-                        </li>
-                                    
-                                   <li><a href="comunicacion.xhtml">E-mail</a></li>
-                                   
-                                     <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reportes <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="reporteMaterial.xhtml">Material</a></li>
-                                <li><a href="reporte.xhtml">Tipo</a></li>
-                               <li><a href="reporteDisenio.xhtml">Diseño</a></li>
-                               <li><a href="reporteEstado.xhtml">Estado</a></li>
-                            </ul>
-                        </li>
-                                  
-                                  
+                                    <h:form>
+                                        <li><a href="inicio.xhtml">Inicio</a></li>
 
-                                    
-                                   
-                                    <li><h:commandLink action="#{login.logout()}" value="Salir"/></li>
-                                    <li class="active"><a>#{login.rolSeleccionado.rol}</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consultar <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="consultarClientes.xhtml">Usuarios</a></li>
+                                                <li><a href="consultarJoyas.xhtml">Joyas</a></li>
+                                            </ul>
+                                        </li>
+                                        
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Crear <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="addMaterial.xhtml">Material</a></li>
+                                                <li><a href="addEmploy.xhtml">Nuevo Empleado</a></li>
+                                                <li><a href="addDisenio.xhtml">Nuevo Diseño</a></li>
+                                                <li><a href="nuevaJoya.xhtml">Nuevo Producto</a></li>
 
-                                     </h:form>
-                                    
+
+                                            </ul>
+                                        </li>
+
+                                        <li><a href="comunicacion.xhtml">E-mail</a></li>
+
+                                        <li><a href="Reportes.xhtml">Reportes</a></li>
+
+                                        <li><h:commandLink action="#{login.logout()}" value="Salir"/></li>
+                                        <li class="active"><a>#{login.rolSeleccionado.rol}</a></li>
+
+                                    </h:form>
+
                                 </ul>
                                 <h:link id="pull">
                                     <h:graphicImage library="images" name="menu-icon.png" alt="Imagen Menu"/>
@@ -86,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="alert alert-success">Bienvenido #{login.usuario.nombres}</div>
+
             </ui:insert>
         </div>
 

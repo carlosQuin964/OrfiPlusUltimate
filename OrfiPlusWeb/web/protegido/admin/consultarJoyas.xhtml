@@ -22,15 +22,16 @@
 
                         <h:form>
                             <h1><h:outputText value="Lista de Joyas"/></h1>
-                            <p:dataTable value="#{ProductosController.all}" 
+                            <p:dataTable value="#{joyaController.items}" 
                                          var="item"
+                                         lazy="false"
+                                         rowKey="#{item.idJoya}"
                                          widgetVar="resumenTable"
                                          emptyMessage="Ningun resultado coincide con el filtro" 
-                                         filteredValue="#{ProductosController.all}"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                          paginator="true" 
                                          rows="4" 
-                                         style="margin-bottom:20px"
+
                                          id="tbl"
                                          >
                                 <f:facet name="{Exporters}">
@@ -55,63 +56,94 @@
                                     </h:commandLink>
                                 </f:facet>
 
-                                <p:column  headerText="Numero Orden"  filterBy="#{item.idOrden}" filterMatchMode="lte">
-                                    <f:facet name="filter">
-                                        <p:spinner onchange="PF('resumenTable').filter()" styleClass="year-spinner">
-                                            <f:converter converterId="javax.faces.Integer" />
-                                        </p:spinner>
+                                <p:column sortBy="#{item.idOrden.idORDEN}" filterBy="#{item.idOrden.idORDEN}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Numero Orden"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idOrden}"/>
+                                    <h:outputText value="#{item.idOrden.idORDEN}"/>
                                 </p:column>
 
-                                <p:column headerText="Codigo Joya">
+                                <p:column sortBy="#{item.idJoya}" filterBy="#{item.idJoya}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Codigo Joya"/>
+                                    </f:facet>
                                     <h:outputText value="#{item.idJoya}"/>
                                 </p:column>
 
-                                <p:column headerText="Tipo de Joya">
+                                <p:column sortBy="#{item.idTipo.tipo}" filterBy="#{item.idTipo.tipo}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Tipo de Joya"/>
+                                    </f:facet>
                                     <h:outputText value="#{item.idTipo.tipo}"/>
                                 </p:column>
 
-                                <p:column headerText="Tipo de Diseño">
+                                <p:column sortBy="#{item.idDisenio.disenio}" filterBy="#{item.idDisenio.disenio}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Tipo de Diseño"/>
+                                    </f:facet>
                                     <h:outputText value="#{item.idDisenio.disenio}"/>
                                 </p:column>
 
-                                <p:column headerText="Material Usado">
+                                <p:column sortBy="#{item.idMaterial.material}" filterBy="#{item.idMaterial.material}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Material Usado"/>
+                                    </f:facet>
                                     <h:outputText value="#{item.idMaterial.material}"/>
                                 </p:column>
 
-                                <p:column headerText="Gramaje">
+                                <p:column sortBy="#{item.gramaje}" filterBy="#{item.gramaje}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Gramaje"/>
+                                    </f:facet>
                                     <h:outputText value="#{item.gramaje}"/>
                                 </p:column>
 
-                                <p:column headerText="Talla">
+                                <p:column sortBy="#{item.talla}" filterBy="#{item.talla}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Talla"/>
+                                    </f:facet>
                                     <h:outputText value="#{item.talla}"/>
                                 </p:column>
 
-                                <p:column headerText="Inscripcion">
+                                <p:column sortBy="#{item.inscripcion}" filterBy="#{item.inscripcion}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Inscripcion"/>
+                                    </f:facet>
                                     <h:outputText value="#{item.inscripcion}"/>
                                 </p:column>
 
-                                <p:column headerText="Cantidad">
+                                <p:column sortBy="#{item.cantidad}" filterBy="#{item.cantidad}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Cantidad"/>
+                                    </f:facet>
                                     <h:outputText value="#{item.cantidad}"/>
                                 </p:column>
 
-                                <p:column headerText="Valor Unitario">
+                                <p:column sortBy="#{item.valorUnitario}" filterBy="#{item.valorUnitario}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Valor Unitario"/>
+                                    </f:facet>
                                     <h:outputText value="#{item.valorUnitario}"/>
                                 </p:column>
 
-                                <p:column headerText="Valor Total">
+                                <p:column sortBy="#{item.valorTotal}" filterBy="#{item.valorTotal}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Valor Total"/>
+                                    </f:facet>
                                     <h:outputText value="#{item.valorTotal}"/>
                                 </p:column>
 
-                                <p:column headerText="Estado de Fabricacion">
+                                <p:column sortBy="#{item.idEstado.estadoJoya}" filterBy="#{item.idEstado.estadoJoya}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Estado de Fabricacion"/>
+                                    </f:facet>
                                     <h:outputText value="#{item.idEstado.estadoJoya}"/>
                                 </p:column>
 
                                 <p:column headerText="Foto">
                                     <p:commandButton type="button" value="Mostrar" onclick="PF('dlg#{item.idJoya}').show()" icon="ui-icon-extlink"/>
                                     <p:dialog widgetVar="dlg#{item.idJoya}" header="Imagen de la Joya"
-                                              draggable="false" resizable="false">
+                                              draggable="false" resizable="false" modal="true">
 
                                         <p:imageSwitch effect="fade">
                                             <ui:repeat value="#{item.urlJoya}" var="image">

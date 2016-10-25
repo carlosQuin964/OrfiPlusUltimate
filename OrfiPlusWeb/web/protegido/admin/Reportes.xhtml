@@ -5,8 +5,8 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-    <body>
 
+    <body>
         <ui:composition template="./../../WEB-INF/template/adminTemplate.xhtml">
 
             <ui:define name="title">
@@ -14,26 +14,55 @@
             </ui:define>
 
             <ui:define name="content">
-                <h:panelGrid columns="3" cellpadding="20">
-                    <p:commandButton value="Materiales" type="button" onclick="PF('dlg1').show();" />
-                    <p:commandButton value="Estados" type="button" onclick="PF('dlg2').show();" />
-                    <p:commandButton value="Diseños" type="button" onclick="PF('dlg3').show();" />
-                </h:panelGrid>
+                <div class="container text-center center_content">
 
-                <p:dialog header="Modal Dialog" widgetVar="dlg1" modal="true" height="100">
-                    <h:form>
-                        <p:chart type="pie" model="#{reportesMaterial.pieChartModel}" style="width:400px;height:300px"  responsive="true" rendered="#{ChartView.pieChartModel!=null}"/>
-                    </h:form>
-                </p:dialog> 
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center_content ">
+                        <h2>Selecciona un tema para el Informe Grafico:</h2>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 center_content">
+                        <p:commandButton value="Materiales" type="button" onclick="PF('dlg1').show();" />
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 center_content">
+                        <p:commandButton value="Estados" type="button" onclick="PF('dlg2').show();" />
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 center_content">
+                        <p:commandButton value="Diseños" type="button" onclick="PF('dlg3').show();" />
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 center_content">
+                        <p:commandButton value="Tipo" type="button" onclick="PF('dlg4').show();" />
+                    </div>
 
-                <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
-                    <h:outputText value="This is a Modal Dialog." />
-                </p:dialog> 
+                    <p:dialog  widgetVar="dlg1" modal="true" height="300">
+                        <h:form>
+                            <p:chart type="pie" model="#{reportesMaterial.pieChartModel}" style="width:400px;height:300px"  responsive="true" rendered="#{ChartView.pieChartModel!=null}"/>
+                        </h:form>
+                    </p:dialog> 
 
-                <p:dialog header="Modal Dialog" widgetVar="dlg3" modal="true" height="100">
-                    <h:outputText value="This is a Modal Dialog." />
-                </p:dialog> 
+                    <p:dialog  widgetVar="dlg2" modal="true" height="300">
+                        <h:form>
+                            <p:chart type="pie" model="#{reporteEstados.pieChartModel}" style="width:400px;height:300px" rendered="#{reporteEstados.pieChartModel!=null}"/>
+                        </h:form>
+                    </p:dialog> 
 
+                    <p:dialog  widgetVar="dlg3" modal="true" height="300">
+                        <h:form>
+                            <p:chart type="pie" model="#{reporteDisenio.pieChartModel}" style="width:400px;height:300px" rendered="#{reporteDisenio.pieChartModel!=null}"/>
+                        </h:form>
+                    </p:dialog> 
+
+                    <p:dialog  widgetVar="dlg4" modal="true" height="300">
+                        <h:form>
+                            <p:chart type="pie" model="#{ChartView.pieChartModel}" style="width:400px;height:300px" rendered="#{ChartView.pieChartModel!=null}"/>
+                        </h:form>
+                    </p:dialog> 
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center_content ">
+                        <h3>Al hacer click sobre cada boton se desplegará una ventana que mostrará 
+                            una grafica en forma de "torta", la cual se actualiza a medida se alimente el programa con mas 
+                            datos
+                        </h3>
+                    </div>
+                </div>
+                <h:graphicImage name="fondoReportes.jpg" library="images" style="width: 100%;height: 300px"/>
             </ui:define>
 
         </ui:composition>

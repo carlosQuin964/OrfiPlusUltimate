@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
@@ -14,64 +15,98 @@
             </ui:define>
 
             <ui:define name="content">
-                <f:view>
-                    <div class="container">
-                        
-                    
-                    <h:form>
-                        <h1><h:outputText value="Usuarios"/></h1>
-                        <h:dataTable value="#{clienteController.verClientesController()}" var="item" class="tab-content table-bordered table table-hover table-responsive table-striped">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="IdPERSONAS"/>
+                <div class="container">
+                    <f:view>
+                        <h:form>
+                            <h1><h:outputText value="Lista de Usuarios"/></h1>
+                            <p:dataTable 
+                                value="#{personaController.items}" 
+                                var="item"
+                                lazy="false"
+                                rowKey="#{item.idPERSONAS}"
+                                widgetVar="resumenTable"
+                                emptyMessage="Ningun resultado coincide con el filtro" 
+                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                paginator="true" 
+                                rows="9" 
+                                id="tbl"
+                                >
+                                <f:facet name="{Exporters}">
+                                    <h:commandLink>
+                                        <p:graphicImage name="excel.png" width="24" library="images"/>
+                                        <p:dataExporter type="xls" target="tbl" fileName="resumen" />
+                                    </h:commandLink>
+
+                                    <h:commandLink>
+                                        <p:graphicImage name="pdf.png" width="24" library="images"/>
+                                        <p:dataExporter type="pdf" target="tbl" fileName="resumen"/>
+                                    </h:commandLink>
+
+                                    <h:commandLink>
+                                        <p:graphicImage name="csv.png" width="24" library="images"/>
+                                        <p:dataExporter type="csv" target="tbl" fileName="resumen" />
+                                    </h:commandLink>
+
+                                    <h:commandLink>
+                                        <p:graphicImage name="xml.png" width="24" library="images"/>
+                                        <p:dataExporter type="xml" target="tbl" fileName="resumen" />
+                                    </h:commandLink>
                                 </f:facet>
-                                <h:outputText value="#{item.idPERSONAS}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Nombres"/>
-                                </f:facet>
-                                <h:outputText value="#{item.nombres}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Apellidos"/>
-                                </f:facet>
-                                <h:outputText value="#{item.apellidos}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Correoe"/>
-                                </f:facet>
-                                <h:outputText value="#{item.correoe}"/>
-                            </h:column>
-                            
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Telefonos"/>
-                                </f:facet>
-                                <h:outputText value="#{item.telefonos}"/>
-                            </h:column>
-                           
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="FechaCreacion"/>
-                                </f:facet>
-                                <h:outputText value="#{item.fechaCreacion}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                                </h:outputText>
-                            </h:column>
-                        </h:dataTable>
+                                
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Rol"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.rolList}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Documento Identidad"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idPERSONAS}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nombres"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nombres}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Apellidos"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.apellidos}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Correo E"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.correoe}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Telefonos"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.telefonos}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="FechaCreacion"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.fechaCreacion}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </f:view>
+                    <h:form id="exportForm">
+                        <h:commandButton value="Reporte Usuarios" actionListener="#{reporteController.exportarPDF()}" class="btn btn-warning btn-lg" />
                     </h:form>
-       <h:form id="exportForm">
-           
-            <h:commandButton value="Reporte Usuarios" actionListener="#{reporteController.exportarPDF()}" class="btn btn-warning btn-lg" />
-        </h:form>
-                        </div>
-                </f:view>
+                </div>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

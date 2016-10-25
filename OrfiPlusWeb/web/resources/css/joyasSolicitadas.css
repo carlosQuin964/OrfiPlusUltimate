@@ -13,6 +13,17 @@ and open the template in the editor.
 color: #003399;
 }
 
+.titulos2 {
+    margin-bottom: 100px;
+}
+
 .imagenJoyas{
     width: 50%;
+}
+
+.ui-datatable tbody td{
+    font-size: 12px;
+}
+.ui-datatable .ui-sortable-column{
+    font-size: 12px;
 }

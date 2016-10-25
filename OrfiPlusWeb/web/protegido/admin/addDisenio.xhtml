@@ -10,136 +10,138 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">    <head>
-        <title>Agregar Materia</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="resources/js/js/sweetalert.css" rel="stylesheet" type="text/css"/>
-        <link href="../../resources/css/sweetalert.css" rel="stylesheet" type="text/css"/>
-        <h:outputScript name="jquery-2.1.1.min.js" library="js" ></h:outputScript>
-        <h:outputScript name="jquery.validate.js" library="js" ></h:outputScript>
-        <h:outputScript name="validator.js" library="js" ></h:outputScript>
-        <script src="resources/js/bootstrap.js" type="text/javascript"></script>
-        <script src="resources/js/bootstrap.js" type="text/javascript"></script>
-        <script src="../../resources/css/sweetalert.min.js" type="text/javascript"></script>
-    </head>
-    
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"> 
+
     <body>
         <ui:composition template="./../../WEB-INF/template/adminTemplate.xhtml">
-             <ui:define name="title">
-                title
+            <ui:define name="title">
+                Agregar Material
             </ui:define>
-            
-                
-            
-            <ui:define name="content">
-                
-          <style type="text/css">.abajo{margin-top: 100px; margin-right:-280px; }</style>
-        
-        <f:view>
-            <div class="container abajo">
-                
-           
-        <h:form>
-                
-                
-                                      
-                    
-                    <div class="form-group col-md-5">  
-                        <h:outputLabel >Diseño</h:outputLabel>
-                    
-                        <h:inputText 
-                        required="true"
-                        requiredMessage=" ingrese un diseño"
-                        validatorMessage="ingresa un diseño valido"    
-                        id="material" 
-                        value="#{ControllerDisenios.disenio.disenio}" 
-                        title="material" 
-                        maxlength="30"
-                        class="form-control"
-                        >
-                        <f:validateLength for="material" minimum="3" maximum="25" />	
-                        </h:inputText>
-                       
-                   
-                    <h:message for="material" style="color:blue"></h:message>
-                    </div>
-                    
-                   <div class="form-group col-md-8">
-                       <h:outputLabel >Descripcion</h:outputLabel>
-                    
-                    
-                       <h:inputTextarea 
-                        required="true"
-                        requiredMessage=" ingrese una descripcion"
-                        validatorMessage="ingresa uns descripcion valida"   
-                        id="descripcion" 
-                        value="#{ControllerDisenios.disenio.descripcion}" 
-                        title="descripcion" 
-                     
-                        class="form-control"
-                        >
-                       <f:validateLength for="descripcion" minimum="5" maximum="30" />
-                       </h:inputTextarea >
-                       
-                    
-                    <h:message for="descripcion" style="color:blue"></h:message>
-                   </div> 
-                   
-                      <div class="form-group col-md-6"> 
-                          <h:outputLabel >ValorDiseño</h:outputLabel>
-                    
-                    
-                      <h:inputText 
-                           required="true"
-                        validatorMessage="ingresa un numero precio valido"
-                        requiredMessage=" ingrese un precio"
-                        id="valorDiseño" 
-                        value="#{ControllerDisenios.disenio.precioxdisenio}" 
-                        title="valorDiseño"
-                        maxlength="30"
-                        class="form-control"
-                       
-                        >
-                       <f:convertNumber integerOnly="true" minIntegerDigits="1"  />
-                      </h:inputText>
-                       
-                   
-                    <h:message for="valorDiseño" style="color:blue"></h:message>
-                    </div>
-           
 
-               
-                <div class="bajob col-md-8">
-                    
-                <h:commandButton 
-                    value="Agregar Diseño"
-                    class="btn btn-warning"
-                    actionListener="#{ControllerDisenios.registrarDisenio()}"
-                    
-                    id="evento"
-                    >
-                    
-                </h:commandButton>
-                    <c:if test="#{ControllerDisenios.estado==true}">
-                        <script language="JavaScript" type="text/javascript">
-                            $(document).ready(function () {
-                                swal({type: "success", title: "¡Diseño Agregado!", confirmButtonText: "Aceptar", showConfirmButton: true, allowOutsideClick: true, time: 3000}, function () {
-                                    window.location.href = "inicio.xhtml";
-                                });
-                            });
-                        </script> </c:if>
-  #{ControllerDisenios.cambiarEstado()}
-                    <h:message for="evento"></h:message>
-                 </div>
-            </h:form>
-                 </div>
-            </f:view>
-        
-                  </ui:define>
+
+
+            <ui:define name="content">
+
+
+
+                <f:view>
+                    <div class="container">
+
+
+                        <h:form>
+
+
+                            <div class="form-group col-lg-5 col-md-5 col-xs-5 col-sm-5 ">
+                                <h3>Inspiración</h3>
+                                <p:imageSwitch effect="turnDown">
+                                    <ui:repeat value="#{imagesView.images}" var="image">
+                                        <p:graphicImage name="#{image}" library="images" style="width: 400px"/>
+                                    </ui:repeat>
+                                </p:imageSwitch>
+                            </div>
+
+                            <div class="form-group col-lg-7 col-md-7 col-xs-7 col-sm-7 ">  
+                                <div class="form-group col-lg-12 col-md-12 col-xs-12 col-sm-12 ">
+                                    <h2>Ingresa los datos de tu nuevo diseño</h2>
+                                </div>  
+                                <div class="form-group col-lg-6 col-md-6 col-xs-6 col-sm-6 ">  
+                                    <h:outputLabel >Diseño</h:outputLabel>
+
+                                    <h:inputText 
+                                        required="true"
+                                        requiredMessage=" ingrese un diseño"
+                                        validatorMessage="ingresa un diseño valido"    
+                                        id="material" 
+                                        value="#{ControllerDisenios.disenio.disenio}" 
+                                        title="material" 
+                                        maxlength="30"
+                                        class="form-control"
+                                        >
+                                        <f:validateLength for="material" minimum="3" maximum="25" />	
+                                    </h:inputText>
+
+
+                                    <h:message for="material" style="color:blue"></h:message>
+                                </div>
+
+                                <div class="form-group col-lg-6 col-md-6 col-xs-6 col-sm-6"> 
+                                    <h:outputLabel >ValorDiseño</h:outputLabel>
+
+
+                                    <h:inputText 
+                                        required="true"
+                                        validatorMessage="ingresa un numero precio valido"
+                                        requiredMessage=" ingrese un precio"
+                                        id="valorDiseño" 
+                                        value="#{ControllerDisenios.disenio.precioxdisenio}" 
+                                        title="valorDiseño"
+                                        maxlength="30"
+                                        class="form-control"
+
+                                        >
+                                        <f:convertNumber integerOnly="true" minIntegerDigits="1"  />
+                                    </h:inputText>
+
+
+                                    <h:message for="valorDiseño" style="color:blue"></h:message>
+                                </div>
+
+                                <div class="form-group col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                                    <h:outputLabel >Descripcion</h:outputLabel>
+
+
+                                    <h:inputTextarea 
+                                        required="true"
+                                        requiredMessage=" ingrese una descripcion"
+                                        validatorMessage="ingresa uns descripcion valida"   
+                                        id="descripcion" 
+                                        value="#{ControllerDisenios.disenio.descripcion}" 
+                                        title="descripcion" 
+
+                                        class="form-control"
+                                        >
+                                        <f:validateLength for="descripcion" minimum="5" maximum="30" />
+                                    </h:inputTextarea >
+
+
+                                    <h:message for="descripcion" style="color:blue"></h:message>
+                                </div> 
+
+
+
+
+
+                                <div class="bajob col-md-8">
+
+                                    <h:commandButton 
+                                        value="Agregar Diseño"
+                                        class="btn btn-warning"
+                                        actionListener="#{ControllerDisenios.registrarDisenio()}"
+
+                                        id="evento"
+                                        >
+
+                                    </h:commandButton>
+                                    <c:if test="#{ControllerDisenios.estado==true}">
+                                        <script language="JavaScript" type="text/javascript">
+                                            $(document).ready(function () {
+                                                swal({type: "success", title: "¡Diseño Agregado!", confirmButtonText: "Aceptar", showConfirmButton: true, allowOutsideClick: true, time: 3000}, function () {
+                                                    window.location.href = "inicio.xhtml";
+                                                });
+                                            });
+                                        </script> </c:if>
+                                        #{ControllerDisenios.cambiarEstado()}
+                                    <h:message for="evento"></h:message>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </f:view>
+
+            </ui:define>
         </ui:composition>
     </body>
-   
+
 </html>
 
 
