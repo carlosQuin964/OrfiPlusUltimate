@@ -194,7 +194,7 @@
                                 </div>
                                 <div class="form-group col-md-6 col-lg-6 col-xs-6 col-sm-6 boton">
                                     <h:commandButton 
-                                        value="¿Cuanto Vale?"
+                                        value="¿Mostrar cuanto Vale?"
                                         class="btn btn-info"
                                         actionListener="#{ProductosController.calcularjoya()}"
                                         />
@@ -211,6 +211,25 @@
                                             });
                                         </script> </c:if>
                                         #{ProductosController.cambiarEstado()}
+                                    <h:commandButton 
+                                        value="¿Solicitar Joya?"
+                                        class="btn btn-info"
+                                        actionListener="#{ProductosController.registrarJoya()}"
+                                        />
+                                    <c:if test="#{ProductosController.estado==true}">
+                                        <script language="JavaScript" type="text/javascript">
+                                            $(document).ready(function () {
+                                                swal({type: "success", title: "¡Producto Creado !",
+                                                    confirmButtonText: "Aceptar",
+                                                    showConfirmButton: true,
+                                                    allowOutsideClick: true, time: 3000},
+                                                        function () {
+                                                            window.location.href = "inicio.xhtml";
+                                                        });
+                                            });
+                                        </script> </c:if>
+                                        #{ProductosController.cambiarEstado()}
+
                                 </div>
 
 
