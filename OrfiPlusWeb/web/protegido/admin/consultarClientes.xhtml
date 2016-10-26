@@ -20,7 +20,7 @@
                         <h:form>
                             <h1><h:outputText value="Lista de Usuarios"/></h1>
                             <p:dataTable 
-                                value="#{personaController.items}" 
+                                value="#{personaController.consultarPersonas()}" 
                                 var="item"
                                 lazy="false"
                                 rowKey="#{item.idPERSONAS}"
@@ -57,7 +57,7 @@
                                     <f:facet name="header">
                                         <h:outputText value="Rol"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.rolList}"/>
+                                    <h:outputText value="#{item.rolList.hashCode()}" />
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">

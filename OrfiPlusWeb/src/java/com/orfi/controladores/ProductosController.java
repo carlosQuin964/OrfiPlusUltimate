@@ -5,10 +5,14 @@
  */
 package com.orfi.controladores;
 
+import com.orfi.Facades.DisenioFacade;
 import com.orfi.Facades.JoyaFacade;
+import com.orfi.Facades.MaterialFacade;
+import com.orfi.Facades.TipoFacade;
 import com.orfi.entity.Joya;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Random;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -24,11 +28,19 @@ import javax.inject.Named;
 @RequestScoped
 public class ProductosController implements Serializable {
 
+    
+    private int valorJoya, valorMaterial, valorDisenio, valorTipo;
+    private Joya joya;
+    private boolean estado;
+
     @EJB
     private JoyaFacade joyaFacade;
-    private Joya joya;
-
-    private boolean estado;
+    @EJB
+    private TipoFacade tipoFacade;
+    @EJB
+    private MaterialFacade materialFacade;
+    @EJB
+    private DisenioFacade disenioFacade;
 
     @PostConstruct
     public void init() {
@@ -37,6 +49,38 @@ public class ProductosController implements Serializable {
     }
 
     public ProductosController() {
+    }
+
+    public int getValorJoya() {
+        return valorJoya;
+    }
+
+    public void setValorJoya(int valorJoya) {
+        this.valorJoya = valorJoya;
+    }
+
+    public int getValorMaterial() {
+        return valorMaterial;
+    }
+
+    public void setValorMaterial(int valorMaterial) {
+        this.valorMaterial = valorMaterial;
+    }
+
+    public int getValorDisenio() {
+        return valorDisenio;
+    }
+
+    public void setValorDisenio(int valorDisenio) {
+        this.valorDisenio = valorDisenio;
+    }
+
+    public int getValorTipo() {
+        return valorTipo;
+    }
+
+    public void setValorTipo(int valorTipo) {
+        this.valorTipo = valorTipo;
     }
 
     public JoyaFacade getJoyaFacade() {
@@ -82,6 +126,14 @@ public class ProductosController implements Serializable {
         }
     }
 
+    public void calcularjoya() {
+        valorDisenio = joya.getIdDisenio().getPrecioxdisenio();
+        System.out.println(valorDisenio);
+        valorTipo = joya.getIdTipo().getPrecioxtipo();
+        valorMaterial = joya.getIdMaterial().getPrecioxmaterial();
+        valorJoya = valorDisenio + valorMaterial + valorTipo;
+    }
+
     public void cambiarEstado() {
         estado = false;
     }
@@ -90,5 +142,6 @@ public class ProductosController implements Serializable {
         List<Joya> li = joyaFacade.findAll();
         return li;
     }
+
 
 }

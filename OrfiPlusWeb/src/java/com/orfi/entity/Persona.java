@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -73,7 +74,7 @@ public class Persona implements Serializable {
     @JoinTable(name = "rol_x_per", joinColumns = {
         @JoinColumn(name = "idpersonas", referencedColumnName = "idPERSONAS")}, inverseJoinColumns = {
         @JoinColumn(name = "idrol", referencedColumnName = "idROL")})
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Rol> rolList;
     @ManyToMany(mappedBy = "personaList")
     private List<Orden> ordenList;

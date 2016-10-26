@@ -5,10 +5,12 @@
  */
 package com.orfi.Facades;
 
+import com.orfi.entity.Persona;
 import com.orfi.entity.Rol;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -16,6 +18,8 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class RolFacade extends AbstractFacade<Rol> {
+    
+    private Rol rol;
 
     @PersistenceContext(unitName = "OrfiPlusWebPU")
     private EntityManager em;
@@ -28,5 +32,7 @@ public class RolFacade extends AbstractFacade<Rol> {
     public RolFacade() {
         super(Rol.class);
     }
+    
+   
     
 }
