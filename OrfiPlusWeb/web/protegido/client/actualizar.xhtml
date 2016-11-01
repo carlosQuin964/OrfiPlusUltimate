@@ -18,185 +18,184 @@ and open the template in the editor.
     </head>
     <body>
         <ui:composition template="./../../WEB-INF/template/clientTemplate.xhtml">
-            
-        
+
+
             <ui:define name="title">
                 Crea tu joya
             </ui:define>
-            
-             <ui:define name="content">
-                 
-                 
-                 <f:view>
-                     
-                     <div class="container">
-                         
-                     
-                     <h:form>
-                         
-                       <div class="form-group">          
-                    
 
-                    
-                    <div class="form-group">
-                        <h:inputHidden
-                            requiredMessage=" ingrese un documento"
-                        validatorMessage="ingresa un numero valido"
-                        required="true"
-                        id="idPERSONAS" 
-                        value="#{login.usuario.idPERSONAS}" 
-                       
-                        class="form-control"
-                        
-                        >
-                       
-                        </h:inputHidden>
-                        
-                       
-                    </div>
-          <h:message for="idPERSONAS" style="color:blue"></h:message>
+            <ui:define name="content">
+
+
+                <f:view>
+
+                    <div class="container">
+
+
+                        <h:form>
+
+                            <div class="form-group">
+                                <div class="form-group">          
+                                    <div class="form-group">          
+                                        <div class="form-group">
+                                            <h:inputHidden
+                                                requiredMessage=" ingrese un documento"
+                                                validatorMessage="ingresa un numero valido"
+                                                required="true"
+                                                id="idPERSONAS" 
+                                                value="#{login.usuario.idPERSONAS}" 
+
+                                                class="form-control"
+
+                                                >
+
+                                            </h:inputHidden>
+
+
+                                        </div>
+                                        <h:message for="idPERSONAS" style="color:blue"></h:message>
+
+                                    </div>
+
+
+
+                                    <div class="form-group">  
+                                        <label for="validate-text">Nombres</label>
+                                        <div class="form-group" >
+                                            <h:inputText 
+                                                required="true"
+                                                requiredMessage=" ingrese su nombre"
+                                                validatorMessage="ingresa un nombre valido"    
+                                                id="nombres" 
+                                                value="#{login.usuario.nombres}" 
+                                                title="Nombres" 
+                                                maxlength="30"
+                                                class="form-control"
+                                                >
+                                                <f:validateLength for="nombres" minimum="3" maximum="20" />	
+                                            </h:inputText>
+
+                                        </div>
+                                        <h:message for="nombres" style="color:blue"></h:message>
+                                    </div>
+
+                                    <div class="form-group">  
+                                        <label for="validate-text">Apellidos</label>
+                                        <div class="form-group" >
+                                            <h:inputText 
+                                                required="true"
+                                                requiredMessage=" ingrese sus Apellidos"
+                                                validatorMessage="ingresa un apellido valido"   
+                                                id="apellidos" 
+                                                value="#{login.usuario.apellidos}" 
+                                                title="Apellidos" 
+                                                maxlength="30"
+                                                class="form-control"
+                                                >
+                                                <f:validateLength for="nombres" minimum="2" maximum="30" />
+                                            </h:inputText>
+
+                                        </div>
+                                        <h:message for="apellidos" style="color:blue"></h:message>
+                                    </div>
+
+                                    <div class="form-group">  
+                                        <label for="validate-text">Correo</label>
+                                        <div class="form-group" >
+                                            <h:inputText 
+                                                required="true"
+                                                requiredMessage="Por Favor ingrese su correo"
+                                                validatorMessage="ingresa un correo valido"   
+                                                id="correoe" 
+                                                value="#{login.usuario.correoe}" 
+                                                title="Correoe" 
+                                                maxlength="200"
+                                                class="form-control"
+                                                >
+                                                <f:validateRegex	pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                            </h:inputText>
+
+                                        </div>
+                                        <h:message for="correoe" style="color:blue"></h:message>
+                                    </div>
+
+                                    <div class="form-group">  
+                                        <label for="validate-text">Contraseña</label>
+                                        <div class="form-group" >
+                                            <h:inputSecret
+                                                required="true"
+                                                requiredMessage=" ingrese una contraseña"
+                                                validatorMessage="ingresa un contraseña valida" 
+                                                id="password" 
+                                                value="#{login.usuario.password}" 
+                                                title="Password" 
+                                                label="Contraseña"
+                                                maxlength="20"
+                                                class="form-control"
+                                                >
+                                                <f:validateLength for="password" minimum="6" maximum="20" />
+                                            </h:inputSecret>
+
+                                        </div>
+                                        <h:message for="password" style="color:blue"></h:message>
+
+                                    </div>  
+
+
+
+
+                                    <div class="form-group">  
+                                        <label for="validate-text">Telefonos</label>
+                                        <div class="form-group" >
+                                            <h:inputText 
+                                                required="true"
+                                                validatorMessage="ingresa un numero valido"
+                                                requiredMessage=" ingrese un telefono"
+                                                id="telefonos" 
+                                                value="#{login.usuario.telefonos}" 
+                                                title="Telefonos" 
+                                                maxlength="30"
+                                                class="form-control"
+                                                >
+
+                                            </h:inputText>
+
+                                        </div>
+                                        <h:message for="telefonos" style="color:blue"></h:message>
+                                    </div>
+                                </div>           
+
+
+
+                                <h:commandButton 
+                                    value="Actualizar"
+                                    class="btn btn-warning"
+                                    actionListener="#{clienteController.editar()}"
+
+                                    >
+                                </h:commandButton>
+                                <c:if test="#{clienteController.estado==true}">
+                                    <script language="JavaScript" type="text/javascript">
+                                        $(document).ready(function () {
+                                            swal({type: "success", title: "¡Actualizacion Exitosa!", confirmButtonText: "Aceptar", showConfirmButton: true, allowOutsideClick: true, time: 3000}, function () {
+                                                window.location.href = "index.xhtml";
+                                            });
+                                        });
+                                    </script> </c:if>
+                                    #{clienteController.cambiarEstado()}
+
+
+
+
+
+
+                        </h:form>
 
                     </div>
 
-                    
-                    
-                    <div class="form-group">  
-                    <label for="validate-text">Nombres</label>
-                    <div class="form-group" >
-                        <h:inputText 
-                        required="true"
-                        requiredMessage=" ingrese su nombre"
-                        validatorMessage="ingresa un nombre valido"    
-                        id="nombres" 
-                        value="#{login.usuario.nombres}" 
-                        title="Nombres" 
-                        maxlength="30"
-                        class="form-control"
-                        >
-                        <f:validateLength for="nombres" minimum="3" maximum="20" />	
-                        </h:inputText>
-                       
-                    </div>
-                    <h:message for="nombres" style="color:blue"></h:message>
-                    </div>
-                    
-                   <div class="form-group">  
-                    <label for="validate-text">Apellidos</label>
-                    <div class="form-group" >
-                       <h:inputText 
-                        required="true"
-                        requiredMessage=" ingrese sus Apellidos"
-                        validatorMessage="ingresa un apellido valido"   
-                        id="apellidos" 
-                        value="#{login.usuario.apellidos}" 
-                        title="Apellidos" 
-                        maxlength="30"
-                        class="form-control"
-                        >
-                       <f:validateLength for="nombres" minimum="2" maximum="30" />
-                       </h:inputText>
-                       
-                    </div>
-                    <h:message for="apellidos" style="color:blue"></h:message>
-                   </div>
-                    
-                    <div class="form-group">  
-                    <label for="validate-text">Correo</label>
-                    <div class="form-group" >
-                       <h:inputText 
-                        required="true"
-                        requiredMessage="Por Favor ingrese su correo"
-                        validatorMessage="ingresa un correo valido"   
-                        id="correoe" 
-                        value="#{login.usuario.correoe}" 
-                        title="Correoe" 
-                        maxlength="200"
-                        class="form-control"
-                        >
-                       <f:validateRegex	pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                       </h:inputText>
-                       
-                    </div>
-                    <h:message for="correoe" style="color:blue"></h:message>
-                    </div>
-                    
-                   <div class="form-group">  
-                    <label for="validate-text">Contraseña</label>
-                    <div class="form-group" >
-                       <h:inputSecret
-                        required="true"
-                        requiredMessage=" ingrese una contraseña"
-                        validatorMessage="ingresa un contraseña valida" 
-                        id="password" 
-                        value="#{login.usuario.password}" 
-                        title="Password" 
-                        label="Contraseña"
-                        maxlength="20"
-                        class="form-control"
-                        >
-                       <f:validateLength for="password" minimum="6" maximum="20" />
-                       </h:inputSecret>
-                       
-                    </div>
-                        <h:message for="password" style="color:blue"></h:message>
+                </f:view>
 
-                   </div>  
-                    
-                    
-                    
-                    
-                    <div class="form-group">  
-                    <label for="validate-text">Telefonos</label>
-                    <div class="form-group" >
-                      <h:inputText 
-                           required="true"
-                        validatorMessage="ingresa un numero valido"
-                        requiredMessage=" ingrese un telefono"
-                        id="telefonos" 
-                        value="#{login.usuario.telefonos}" 
-                        title="Telefonos" 
-                        maxlength="30"
-                        class="form-control"
-                        >
-                     
-                      </h:inputText>
-                       
-                    </div>
-                    <h:message for="telefonos" style="color:blue"></h:message>
-                    </div>
-                   
-
-               
-                    
-                <h:commandButton 
-                    value="Actualizar"
-                    class="btn btn-warning"
-                    actionListener="#{clienteController.editar()}"
-                    
-                        >
-                </h:commandButton>
-                    <c:if test="#{clienteController.estado==true}">
-                        <script language="JavaScript" type="text/javascript">
-                            $(document).ready(function () {
-                                swal({type: "success", title: "¡Actualizacion Exitosa!", confirmButtonText: "Aceptar", showConfirmButton: true, allowOutsideClick: true, time: 3000}, function () {
-                                    window.location.href = "index.xhtml";
-                                });
-                            });
-                        </script> </c:if>
-  #{clienteController.cambiarEstado()}
-                       
-               
-                 
-                         
-                         
-                         
-                     </h:form>
-                     
-                     </div>
-                     
-                 </f:view>
-                 
-             </ui:define>
-            </ui:composition>
+            </ui:define>
+        </ui:composition>
     </body>
 </html>

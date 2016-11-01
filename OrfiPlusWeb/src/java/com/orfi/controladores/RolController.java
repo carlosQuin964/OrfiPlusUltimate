@@ -1,6 +1,8 @@
 package com.orfi.controladores;
 
+import com.orfi.Facades.RolFacade;
 import com.orfi.entity.Rol;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -9,6 +11,10 @@ import javax.inject.Inject;
 @Named(value = "rolController")
 @ViewScoped
 public class RolController extends AbstractController<Rol> {
+
+    private Rol rol;
+    @EJB
+    private RolFacade rolFacade;
 
     public RolController() {
         // Inform the Abstract parent controller of the concrete Rol Entity
@@ -40,5 +46,7 @@ public class RolController extends AbstractController<Rol> {
         }
         return "/protegido/pages/permiso/index";
     }
+
+   
 
 }
