@@ -76,7 +76,7 @@ public class Login implements Serializable {
     public Persona getUsuario() {
         return usuario;
     }
-
+    
     public Rol getRolSeleccionado() {
         return rolSeleccionado;
     }
@@ -168,5 +168,4 @@ public class Login implements Serializable {
         session.invalidate();
         return url;
     }
-  
 }
