@@ -1,6 +1,7 @@
 package com.orfi.Correos;
-
-import java.util.Properties; 
+ 
+import java.util.Properties;
+ 
 import javax.mail.Message;
 import javax.mail.Multipart;
 import javax.mail.Session;
@@ -9,9 +10,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-
-public class correoTexto {
-
+ 
+/**
+ * @author datojava.blogspot.com
+ */
+public class javamail {
+ 
  public void mandarCorreo() {
   // El correo gmail de envío
   String correoEnvia = "liliana.rosales.ga@gmail.com";
@@ -34,12 +38,13 @@ public class correoTexto {
    MimeMessage mimeMessage = new MimeMessage(session);
  
    // Agregar quien envía el correo
-   mimeMessage.setFrom(new InternetAddress(correoEnvia, "Dato Java"));
+   mimeMessage.setFrom(new InternetAddress(correoEnvia, "OrfiPlus"));
     
    // Los destinatarios
    InternetAddress[] internetAddresses = {
+     new InternetAddress("liliana.rosales.ga@gmail.com"),
      new InternetAddress("greicygalindo@gmail.com"),
-     new InternetAddress("liliana.rosales.ga@gmail.com")};
+     new InternetAddress("lmrosales0@misena.edu.com") };
  
    // Agregar los destinatarios al mensaje
    mimeMessage.setRecipients(Message.RecipientType.TO,
@@ -50,7 +55,7 @@ public class correoTexto {
  
    // Creo la parte del mensaje
    MimeBodyPart mimeBodyPart = new MimeBodyPart();
-   mimeBodyPart.setText("OrfiPlus");
+   mimeBodyPart.setText("Nuevas Promociones en joyas ... Mas informacion visita nuestra pagina www.orfiplus.comxa.com");
  
    // Crear el multipart para agregar la parte del mensaje anterior
    Multipart multipart = new MimeMultipart();
@@ -72,8 +77,7 @@ public class correoTexto {
  }
  
  public static void main(String[] args) {
-  correoTexto correoTextos = new correoTexto();
-  correoTextos.mandarCorreo();
-   
+  javamail correoTexto = new javamail();
+  correoTexto.mandarCorreo();
  }
 }
