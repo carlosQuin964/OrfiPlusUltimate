@@ -15,11 +15,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="../../resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="../../resources/css/css/table.css" rel="stylesheet" type="text/css"/>
-         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="../../resources/js/jquery-1.12.0.min.js" type="text/javascript"></script>
-        <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
-    
-        <script src="../../resources/js/table.js" type="text/javascript"></script>
+       
     </head>
     <style type="text/css">.panel-danger{color: #000000;}</style>
     
@@ -28,42 +24,148 @@ and open the template in the editor.
     <ui:define name="title"></ui:define>
     
     <ui:define name="content">
-                title <style>.mueve{margin-left:  500px; margin-top: 20px;}</style>
-                <h:form>
+                
+              <h:form>
+                            <h1><h:outputText value="Lista de Joyas"/></h1>
+                            <p:dataTable value="#{joyaController.items}" 
+                                         var="item"
+                                         lazy="false"
+                                         rowKey="#{item.idJoya}"
+                                         widgetVar="resumenTable"
+                                         emptyMessage="Ningun resultado coincide con el filtro" 
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                         paginator="true" 
+                                         rows="4" 
+
+                                         id="tbl"
+                                         >
+                                <f:facet name="{Exporters}">
+                                    <h:commandLink>
+                                        <p:graphicImage name="excel.png" width="24" library="images"/>
+                                        <p:dataExporter type="xls" target="tbl" fileName="resumen" />
+                                    </h:commandLink>
+
+                                    <h:commandLink>
+                                        <p:graphicImage name="pdf.png" width="24" library="images"/>
+                                        <p:dataExporter type="pdf" target="tbl" fileName="resumen"/>
+                                    </h:commandLink>
+
+                                    <h:commandLink>
+                                        <p:graphicImage name="csv.png" width="24" library="images"/>
+                                        <p:dataExporter type="csv" target="tbl" fileName="resumen" />
+                                    </h:commandLink>
+
+                                    <h:commandLink>
+                                        <p:graphicImage name="xml.png" width="24" library="images"/>
+                                        <p:dataExporter type="xml" target="tbl" fileName="resumen" />
+                                    </h:commandLink>
+                                </f:facet>
+
+                                <p:column sortBy="#{item.idOrden.idORDEN}" filterBy="#{item.idOrden.idORDEN}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Numero Orden"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idOrden.idORDEN}"/>
+                                </p:column>
+
+                                <p:column sortBy="#{item.idJoya}" filterBy="#{item.idJoya}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Codigo Joya"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idJoya}"/>
+                                </p:column>
+
+                                <p:column sortBy="#{item.idTipo.tipo}" filterBy="#{item.idTipo.tipo}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Tipo de Joya"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idTipo.tipo}"/>
+                                </p:column>
+
+                                <p:column sortBy="#{item.idDisenio.disenio}" filterBy="#{item.idDisenio.disenio}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Tipo de Diseño"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idDisenio.disenio}"/>
+                                </p:column>
+
+                                <p:column sortBy="#{item.idMaterial.material}" filterBy="#{item.idMaterial.material}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Material Usado"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idMaterial.material}"/>
+                                </p:column>
+
+                                <p:column sortBy="#{item.gramaje}" filterBy="#{item.gramaje}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Gramaje"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.gramaje}"/>
+                                </p:column>
+
+                                <p:column sortBy="#{item.talla}" filterBy="#{item.talla}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Talla"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.talla}"/>
+                                </p:column>
+
+                                <p:column sortBy="#{item.inscripcion}" filterBy="#{item.inscripcion}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Inscripcion"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.inscripcion}"/>
+                                </p:column>
+
+                                <p:column sortBy="#{item.cantidad}" filterBy="#{item.cantidad}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Cantidad"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.cantidad}"/>
+                                </p:column>
+
+                                <p:column sortBy="#{item.valorUnitario}" filterBy="#{item.valorUnitario}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Valor Unitario"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.valorUnitario}"/>
+                                </p:column>
+
+                                <p:column sortBy="#{item.valorTotal}" filterBy="#{item.valorTotal}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Valor Total"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.valorTotal}"/>
+                                </p:column>
+
+                                <p:column sortBy="#{item.idEstado.estadoJoya}" filterBy="#{item.idEstado.estadoJoya}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Estado de Fabricacion"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idEstado.estadoJoya}"/>
+                                </p:column>
+
+                                <p:column headerText="Foto">
+                                    <p:commandButton type="button" value="Mostrar" onclick="PF('dlg#{item.idJoya}').show()" icon="ui-icon-extlink"/>
+                                    <p:dialog widgetVar="dlg#{item.idJoya}" header="Imagen de la Joya"
+                                              draggable="false" resizable="false" modal="true">
+
+                                        <p:imageSwitch effect="fade">
+                                            <ui:repeat value="#{item.urlJoya}" var="image">
+                                                <h:graphicImage  value="#{image}"/>
+                                            </ui:repeat>
+                                        </p:imageSwitch>
+                                    </p:dialog>
+                                </p:column>
+
+
+                            </p:dataTable>
+                            <h:commandButton value="Reporte Joyas" actionListener="#{ReportesJoyas.exportarPDF()}" class="btn btn-warning btn-lg" />  
+                        </h:form>
                     
                
-                     <p:dataTable var="joy" value="#{ProductosController.verProductos()}">
-    <p:column headerText="Numero Joya">
-        <h:outputText value="#{joy.idJoya}" />
-    </p:column>
- 
-    <p:column headerText="Gramaje">
-        <h:outputText value="#{joy.gramaje}" />
-    </p:column>
- 
-    <p:column headerText="Talla">
-        <h:outputText value="#{joy.talla}" />
-    </p:column>
- 
-    <p:column headerText="Inscripcion">
-        <h:outputText value="#{joy.inscripcion}" />
-    </p:column>
-                         
-    <p:column headerText="Cantidad">
-        <h:outputText value="#{joy.cantidad}" />
-    </p:column> 
-       
-       <p:column headerText="ValorTotal">
-           <h:outputText value="#{joy.valorTotal}" />
-    </p:column>                     
-                         
-</p:dataTable>
-                    <div class="mueve">
-                    
-               
-                   <h:commandButton value="Reporte Joyas" actionListener="#{ReportesJoyas.exportarPDF()}" class="btn btn-warning btn-lg" />  
-                </div>
-                     </h:form>
+                   
+                
                 
 
             </ui:define>

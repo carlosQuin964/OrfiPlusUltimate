@@ -24,7 +24,7 @@ and open the template in the editor.
             <ui:define name="content">
                
                 <h:form>
-                    <p:dataTable value="#{estadovController.verEstado()}" var="item" paginator="true" rows="5" lazy="true" paginatorPosition="botton">
+                    <p:dataTable value="#{estadovController.verEstado()}" var="item" paginator="true" rowKey="#{item.idESTADO}" rows="5" lazy="true" paginatorPosition="botton">
 		<p:column>
 			
                     <h:outputText value="#{item.idESTADO}"></h:outputText>
