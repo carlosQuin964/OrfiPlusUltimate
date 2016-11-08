@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+    
+    <head>
+        <title>Correos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script src="resources/js/jquery-1.12.0.min.js" type="text/javascript"></script>
+        <script src="resources/js/bootstrap.js" type="text/javascript"></script>
+    </head>
+    <h:body>
+        <a href="../../WEB-INF/template/template/adminTemplate.xhtml"></a>
+        <div style="margin-left: 350px">
+            <div class="container">
+                <div style="margin: 5%; margin-right: 500px; background: #fcd04b">
+                    <form id="form1" name="form1" method="post" action="enviar.php">
+                        <div style="margin-left: 40px">
+                            <br/><h2 style="margin-left: 250px">Correo </h2> 
+                            <hr/>Destinario(s): <input type="email" id="para" name="para" placeholder="correo@gmail.com;nuevocorreo@misena.deu.co" style="width: 420px"/><br/>
+                            <br/>Asunto: <input type="text" id="asunto" name="asunto" style="width: 420px; margin-left: 38px" /><br/>
+                            <br/><textarea id="texto" name="texto" cols="70" rows="5" placeholder="Escribe tu mensaje aqui..."></textarea>
+                        </div>
+                        <br/><form action="archivo.php" method="post"><br/>
+                            <input type="file" name="foto"  style="margin-left: 40px" />
+                        </form>
+                        <div>
+                            <br/><hr/><input type="submit" class="btn-default" name="enviar" id="enviar" value="Enviar" style="margin-left: 40px" /> <br/>
+                            <br/></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
