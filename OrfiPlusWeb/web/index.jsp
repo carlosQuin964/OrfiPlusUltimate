@@ -75,6 +75,7 @@
 									<li class="current"><a href="index.jsp">Inicio</a></li>
 									<li><a href="quienessomos.jsp">Quienes Somos</a></li>
 									<li><a href="contactos.jsp">Contactenos</a></li>
+                                                                        <li><a href="preguntas.jsp">Preguntas Frecuentes</a></li>
 								</ul>
 							</nav>
 							<div class="clear"></div>
