@@ -13,6 +13,7 @@
         <title>Preguntas</title>
 	<meta charset="utf-8">
 	<meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="resources/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="resources/css/font-awesome.css">
 	<link rel="icon" type="image/png" href="resources/images/favicon.ico" />
 	<link rel="stylesheet" href="resources/css/css/stuck.css">
@@ -23,7 +24,8 @@
 	<link rel="stylesheet" href="resources/css/css/style.css">
         <link href="resources/css/inicioCliente.css" rel="stylesheet" type="text/css"/>
         <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"/>
-	<script src="resources/js/js/jquery.js"></script>
+    <script src="resources/js/js/jquery.js"></script>
+        <script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/js/jquery-migrate-1.1.1.js"></script>
 	<script src="resources/js/js/script.js"></script>
 	<script src="resources/js/js/superfish.js"></script>
@@ -36,34 +38,40 @@
 	<script src="resources/js/js/owl.carousel.js"></script>
 	<script src="resources/js/js/sForm.js"></script>
 	<script src="resources/js/js/camera.js"></script>
+    <style type="text/css">
+        .menuc{margin-top: -10px;} .contenc{ height: 500px; width:100%; background-color: #fff;} .intro{margin-top: 100px; margin-left: 350px;};
+    </style>
 
     </head>
     <body>
+    <header class="menuc">
+        
         <div id="stuck_container">
-			<div class="container">
-				<div class="row">
-					<div class="grid_12">
+            <div class="container">
+                <div class="row">
+                    <div class="grid_12">
                         
                           <img class="ima" src="resources/images/logos.png" alt="Your Happy Family">
                         
-						</h1>
-						<div class="menu_block">
-							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
-								<ul class="sf-menu">
-									<li class="current"><a href="index.jsp">Inicio</a></li>
-									<li><a href="quienessomos.jsp">Quienes Somos</a></li>
-									<li><a href="contactos.jsp">Contactenos</a></li>
-                                                                        <li><a href="preguntas.jsp">Preguntas Frecuentes</a></li>
-								</ul>
-							</nav>
-							<div class="clear"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-        <div class="container">
-    <div class="row">
+                        </h1>
+                        <div class="menu_block">
+                            <nav class="horizontal-nav full-width horizontalNav-notprocessed">
+                                <ul class="sf-menu">
+                                    <li ><a href="index.jsp">Inicio</a></li>
+                                    <li><a href="quienessomos.jsp">Quienes Somos</a></li>
+                                    <li><a href="contactos.jsp">Contactenos</a></li>
+                                    <li class="current"><a href="preguntas.jsp">Preguntas Frecuentes</a></li>
+                                </ul>
+                            </nav>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+        <div class="container contenc">
+    <div class="row intro">
         <div class="col-md-4">
            
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -105,20 +113,21 @@
                 <!-- / panel 2 -->
                 
                 <!--  panel 3 -->
-                <div class="panel panel-default">
+              <div class="panel panel-default">
                     <!--wrap panel heading in span to trigger image change as well as collapse -->
                     <span class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
-                      <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <h4 class="panel-title collapsed">Se me olvido la contraseña que puedo hacer ? </h4>  
-                   </div> </span>
-
-                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                          <div class="panel-body">
-                          <!-- tab content goes here -->
-                           
-                          </div>
+                        <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwot" aria-expanded="false" aria-controls="collapseTwo">
+                            <h4 class="panel-title collapsed">Donde puedo recojer mi producto ? </h4>
                         </div>
-                      </div>
+                    </span>
+
+                    <div id="collapseTwot" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                        <!-- Tab content goes here -->
+                       En el menu superior encontraras la pestaña contactos al hacer click en esa opcion encontraras as dirrecion el telefono y el mapa de la joyeria 
+                        </div>
+                    </div>
+                </div>
             </div> <!-- / panel-group -->
              
         </div> <!-- /col-md-4 -->
@@ -133,16 +142,16 @@
                         <div class="tab-featured-image">
                             <div class="tab-content">
                                 <div class="tab-pane  in active" id="tab1">
-                                    <img src="../../resources/images/mas1.jpg" alt="" class="img img-responsive" />
+                                    <img src="resources/images/ask1.JPG" alt="" class="img img-responsive" />
                                 </div>
                                 <div class="tab-pane " id="tab2">
                                  
-                                    <img src="../../resources/images/mas2.jpg" alt="" class="img img-responsive" />
+                                    <img src="resources/images/ask2.JPG" alt="" class="img img-responsive" />
                                     
                                 </div>
                                 <div class="tab-pane fade" id="tab3">
                                   
-                                    <img src="../../resources/images/mas3.jpg" alt="" class="img img-responsive" />
+                                    <img src="resources/images/ask3.JPG" alt="" class="img img-responsive" />
                                 </div>
                             </div>
                         </div>
