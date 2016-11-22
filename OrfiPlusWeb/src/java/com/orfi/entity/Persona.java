@@ -65,7 +65,7 @@ public class Persona implements Serializable {
     @Column(name = "password")
     private String password;
     @Column(name = "telefonos")
-    private Integer telefonos;
+    private String telefonos;
     @Column(name = "estadoinfo")
     private Boolean estadoinfo;
     @Column(name = "fechaCreacion")
@@ -126,11 +126,11 @@ public class Persona implements Serializable {
         this.password = password;
     }
 
-    public Integer getTelefonos() {
+    public String getTelefonos() {
         return telefonos;
     }
 
-    public void setTelefonos(Integer telefonos) {
+    public void setTelefonos(String telefonos) {
         this.telefonos = telefonos;
     }
 

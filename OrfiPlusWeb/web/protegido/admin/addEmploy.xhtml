@@ -36,6 +36,7 @@
                                         validatorMessage="ingresa un numero valido"
                                         required="true"
                                         id="Documento" 
+                                        onkeypress="return valida(event)"
                                         value="#{clienteController.persona.idPERSONAS}" 
                                         title="Documento" 
                                         maxlength="30"
@@ -146,6 +147,7 @@
                                         validatorMessage="ingresa un numero valido"
                                         requiredMessage=" ingrese un telefono"
                                         id="telefonos" 
+                                        onkeypress="return valida(event)"
                                         value="#{clienteController.persona.telefonos}" 
                                         title="Telefonos" 
                                         maxlength="30"
@@ -182,6 +184,21 @@
                                         });
                                     </script> </c:if>
                                     #{clienteController.cambiarEstado()}
+   <script>
+function valida(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla==8){
+        return true;
+    }
+        
+    // Patron de entrada, en este caso solo acepta numeros
+    patron =/[0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+</script>
                             </div>
                             <p:growl id="mensaje" autoUpdate="false" severity="info,fatal,warn" showSummary="true" showDetail="true"/>
                         </h:form>
