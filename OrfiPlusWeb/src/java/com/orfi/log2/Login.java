@@ -1,4 +1,4 @@
-package com.orfi.log;
+package com.orfi.log2;
 
 import com.orfi.entity.Persona;
 import com.orfi.Facades.PersonaFacade;

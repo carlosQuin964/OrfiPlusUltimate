@@ -66,7 +66,16 @@
 
                                         <li><a href="comunicacion.xhtml">E-mail</a></li>
 
-                                        <li><a href="Reportes.xhtml">Reportes</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Otros <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="Reportes.xhtml">Reportes</a></li>
+                                                <li><a href="CargueDeDatos.xhtml">Cargue masivo de Datos</a></li>
+
+                                            </ul>
+                                        </li>
+                                        
+                                        
 
                                         <li><h:commandLink action="#{login.logout()}" value="Salir"/></li>
                                         <li class="active"><a>#{login.rolSeleccionado.rol}</a></li>

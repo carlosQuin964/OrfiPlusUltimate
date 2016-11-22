@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.orfi.log;
+package com.orfi.log2;
 
 import com.orfi.entity.Persona;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -53,11 +50,14 @@ public class LoginFilter implements Filter {
         HttpServletRequest reqt = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession ses = reqt.getSession(false);
-        
-        Persona p = (Persona) ses.getAttribute("usuario");
+        if (ses != null) {
+            Persona p = (Persona) ses.getAttribute("usuario");
 
-        if (p != null) {
-            chain.doFilter(request, response);
+            if (p != null) {
+                chain.doFilter(request, response);
+            } else {
+                resp.sendRedirect(reqt.getContextPath() + "/faces/login.xhtml");
+            }
         } else {
             resp.sendRedirect(reqt.getContextPath() + "/faces/login.xhtml");
         }

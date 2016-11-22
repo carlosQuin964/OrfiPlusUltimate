@@ -23,16 +23,6 @@
         <welcome-file>faces/index.jsp</welcome-file>
     </welcome-file-list>
     
-    <filter>
-        <filter-name>LoginFilter</filter-name>
-        <filter-class>com.orfi.log</filter-class>
-    </filter>
-    
-    <filter-mapping>
-        <filter-name>LoginFilter</filter-name>
-        <url-pattern>/protegido/*</url-pattern>
-    </filter-mapping>
-    
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/errorpages/404.html</location>
