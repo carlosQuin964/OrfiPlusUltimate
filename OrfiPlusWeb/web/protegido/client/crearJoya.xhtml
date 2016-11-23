@@ -19,10 +19,36 @@
                 <f:view>
                     <div class="container">
                         <h:form>
+                            
                             <div class="form-group col-md-4 col-lg-4 col-xs-4 col-sm-4">
                                 <div class="form-group col-md-12 col-lg-12 col-xs-12 col-sm-12">          
-                                    <h3 style="margin-top:0">Tipo de Joya:</h3>       
+                                    <h3 style="margin-top:0">Tipo de Joya:</h3>
+                                   
+                                     
                                     <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                                      
+                                            
+                                        
+                                         <h:selectOneMenu id="idOrden" class="form-control col-xs-8 hidden"
+                                                 value="#{ProductosController.joya.idOrden}"
+                                                 requiredMessage="ingrese un numero de Orden"
+                                                 required="true"
+                                                 
+                                                 >
+                                    
+                                    <f:selectItems value="#{OrdenesController.all}" var="tipo" itemLabel="#{tipo.idORDEN}" ></f:selectItems>
+                                </h:selectOneMenu>
+                                        
+                                        <h:selectOneMenu id="idEstado" class="form-control col-xs-8 hidden"
+                                                 value="#{ProductosController.joya.idEstado}"
+                                                 requiredMessage=" ingrese un estado"
+                                                 required="true"
+                                                 >
+                                    
+                                    <f:selectItems value="#{ControllerEstado.all}" var="estado" itemLabel="#{estado.descripcion}" ></f:selectItems>
+                                </h:selectOneMenu>
+                                           
+                                        
                                         <p:selectOneRadio  
                                             id="idTipo"
                                             value="#{ProductosController.joya.idTipo}" 
@@ -166,6 +192,7 @@
                                     </h:inputText>
                                     <h:message for="Inscripcion" style="color:blue"></h:message>
                                 </div>
+                               
 
                                 <div class="form-group col-md-12 col-lg-12 col-xs-12 col-sm-12">          
                                     <h:outputLabel value="Cantidad:"/>
@@ -198,33 +225,22 @@
                                         class="btn btn-info"
                                         actionListener="#{ProductosController.calcularjoya()}"
                                         />
-                                    <c:if test="#{ProductosController.estado==true}">
-                                        <script language="JavaScript" type="text/javascript">
-                                            $(document).ready(function () {
-                                                swal({type: "success", title: "¡Producto Creado !",
-                                                    confirmButtonText: "Aceptar",
-                                                    showConfirmButton: true,
-                                                    allowOutsideClick: true, time: 3000},
-                                                        function () {
-                                                            window.location.href = "inicio.xhtml";
-                                                        });
-                                            });
-                                        </script> </c:if>
-                                        #{ProductosController.cambiarEstado()}
+                                   
+                                     
                                     <h:commandButton 
                                         value="¿Solicitar Joya?"
                                         class="btn btn-info"
-                                        actionListener="#{ProductosController.registrarJoya()}"
+                                        actionListener="#{ProductosController.clienteregistrarJoya()}"
                                         />
                                     <c:if test="#{ProductosController.estado==true}">
                                         <script language="JavaScript" type="text/javascript">
                                             $(document).ready(function () {
-                                                swal({type: "success", title: "¡Producto Creado !",
+                                                swal({type: "success", title: "¡Producto Solicitado!",
                                                     confirmButtonText: "Aceptar",
                                                     showConfirmButton: true,
                                                     allowOutsideClick: true, time: 3000},
                                                         function () {
-                                                            window.location.href = "inicio.xhtml";
+                                                            window.location.href = "index.xhtml";
                                                         });
                                             });
                                         </script> </c:if>
@@ -265,6 +281,7 @@
 
 
                             </div>
+                           
                         </h:form>
                     </div>
                 </f:view>

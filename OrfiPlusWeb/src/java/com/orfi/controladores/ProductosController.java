@@ -8,8 +8,10 @@ package com.orfi.controladores;
 import com.orfi.Facades.DisenioFacade;
 import com.orfi.Facades.JoyaFacade;
 import com.orfi.Facades.MaterialFacade;
+import com.orfi.Facades.OrdenFacade;
 import com.orfi.Facades.TipoFacade;
 import com.orfi.entity.Joya;
+import com.orfi.entity.Orden;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
@@ -29,7 +31,7 @@ import javax.inject.Named;
 public class ProductosController implements Serializable {
 
     
-    private int valorJoya, valorMaterial, valorDisenio, valorTipo;
+    private int valorJoya, valorMaterial, valorDisenio, valorTipo,valorTootal;
     private Joya joya;
     private boolean estado;
 
@@ -37,6 +39,7 @@ public class ProductosController implements Serializable {
     private JoyaFacade joyaFacade;
     @EJB
     private TipoFacade tipoFacade;
+     private OrdenFacade OrdenFacade;
     @EJB
     private MaterialFacade materialFacade;
     @EJB
@@ -114,7 +117,22 @@ public class ProductosController implements Serializable {
 
     public void registrarJoya() {
         try {
-
+            
+            joyaFacade.create(joya);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Creaciòn", "Se ha registrado corectamente la joya"));
+            estado = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("Error en envio de datos");
+        }
+    }
+    
+    public void clienteregistrarJoya() {
+        try {
+            
+            joya.setValorTotal(valorTootal);
             joyaFacade.create(joya);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Creaciòn", "Se ha registrado corectamente la joya"));
@@ -127,11 +145,15 @@ public class ProductosController implements Serializable {
     }
 
     public void calcularjoya() {
+        joya.setIdJoya(100003);
         valorDisenio = joya.getIdDisenio().getPrecioxdisenio();
         System.out.println(valorDisenio);
         valorTipo = joya.getIdTipo().getPrecioxtipo();
         valorMaterial = joya.getIdMaterial().getPrecioxmaterial();
         valorJoya = valorDisenio + valorMaterial + valorTipo;
+        valorTootal = valorJoya;
+       
+        
     }
 
     public void cambiarEstado() {
