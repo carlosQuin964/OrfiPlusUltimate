@@ -2,15 +2,18 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Materiales" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="30d2e633-cd76-49d0-8ee2-21b9a2517599">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="9"/>
 	<queryString>
-		<![CDATA[select count(*)
-from materiales]]>
+		<![CDATA[SELECT count(joyas.idMaterial),materiales.material
+FROM joyas
+inner join materiales
+on joyas.idmaterial = materiales.idmaterial
+Group BY joyas.idMaterial]]>
 	</queryString>
-	<field name="idMATERIAL" class="java.lang.Integer"/>
-	<field name="material" class="java.lang.String"/>
-	<field name="descripcion" class="java.lang.String"/>
-	<field name="precioxmaterial" class="java.lang.Integer"/>
+	<field name="count(joyas.idMaterial)" class="java.lang.Long"/>
+	<field name="material" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -18,14 +21,14 @@ from materiales]]>
 		<band height="79" splitType="Stretch">
 			<image>
 				<reportElement x="10" y="10" width="134" height="60" uuid="4e405f31-e6a2-4cac-9358-dcbc5ae05911"/>
-				<imageExpression><![CDATA["../reportes\\logo.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\USUARIO\\Documents\\NetBeansProjects\\compartido\\gitHub\\OrfiPlusWeb\\web\\reportes\\logo.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement mode="Opaque" x="227" y="22" width="279" height="38" forecolor="#003333" backcolor="#FFFFFF" uuid="d560dd16-7d7c-4adc-a9d5-a1c48441adf9"/>
 				<textElement>
 					<font fontName="Verdana" size="24" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Reporte De Material]]></text>
+				<text><![CDATA[Reporte De Usuarios]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement x="300" y="57" width="139" height="22" uuid="2f55af18-9891-4bc6-a51c-4c0af116fadb"/>
@@ -37,67 +40,38 @@ from materiales]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="7" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="25" splitType="Stretch">
-			<staticText>
-				<reportElement mode="Opaque" x="207" y="5" width="122" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="04bd7f4b-cf59-40da-a84d-361e2ee3d176"/>
-				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[material]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="139" y="5" width="68" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="0e66a447-b93b-4bfb-a8db-e4144dbdc52f"/>
-				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[numero]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="329" y="5" width="96" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="b2d9dffa-cdd5-4aec-9a60-4157563d165b"/>
-				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[descripcion]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="425" y="5" width="108" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="7d86aa78-d81f-4521-a135-bacdc373141b"/>
-				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[valorTotal]]></text>
-			</staticText>
-		</band>
+		<band height="24" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="22" splitType="Stretch">
-			<textField>
-				<reportElement x="139" y="0" width="100" height="20" uuid="eff0109e-d098-4e0d-b611-4afe40cd0dcb"/>
-				<textFieldExpression><![CDATA[$F{idMATERIAL}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="239" y="0" width="100" height="20" uuid="5ff6512a-fc5f-47a3-8725-bb9cc0cbe950"/>
-				<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="456" y="0" width="100" height="20" uuid="ef020a4d-e28b-4d81-8d39-18a95c344dec"/>
-				<textFieldExpression><![CDATA[$F{precioxmaterial}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="339" y="0" width="100" height="20" uuid="898d08db-5369-4c4f-ab88-d16a693a0eba"/>
-				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
-			</textField>
-		</band>
+		<band splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="181" splitType="Stretch"/>
+		<band height="255" splitType="Stretch">
+			<pieChart>
+				<chart>
+					<reportElement x="45" y="16" width="513" height="225" uuid="634a7f36-e0fd-4a68-a0ff-6933c7735e5e"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{material}]]></keyExpression>
+					<valueExpression><![CDATA[$F{count(joyas.idMaterial)}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
 	</summary>
 </jasperReport>

@@ -3,17 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/registro.xhtml</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/contactosNuevo.html</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/quienes%20somos.html</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/preguntas.jsp</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/admin/addDisenio.xhtml</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/admin/addMaterial.xhtml</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/index.jsp</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/admin/addEmploy.xhtml</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/employer/joyas.xhtml</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/admin/nuevaJoya.xhtml</file>
+            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/reportes/reporteUsuarios.jrxml</file>
+            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/src/java/com/orfi/controladores/reporteController.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/login.xhtml</file>
+            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/src/java/com/orfi/controladores/ReporteMaterial.java</file>
             <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/employer/material.xhtml</file>
+            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/admin/consultarClientes.xhtml</file>
         </group>
     </open-files>
 </project-private>
