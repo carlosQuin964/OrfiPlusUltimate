@@ -5,11 +5,15 @@
  */
 package com.orfi.controladores;
 
+import com.orfi.Facades.PersonaFacade;
 import com.orfi.entity.Persona;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import util.Email;
 
@@ -20,14 +24,10 @@ import util.Email;
 @Named(value = "controladorEmail")
 @RequestScoped
 public class ControladorEmail {
+    @EJB
+    private PersonaFacade personaFacade;
     private Email email;
-       
-    
-    
-   
-    
-   
-    private Persona user;
+    private String user;
     private String asunto;
     private String contenido;
     
@@ -60,32 +60,41 @@ public class ControladorEmail {
     }
     
      public String enviarMensaje(){
+         List<String>correos=new ArrayList<>();
+        int i=0;
+         for (Persona persona : personaFacade.findAll()) {
+             correos.add(i,persona.getCorreoe());
+             i++;
+         }
+        
          email.setEmailRemitente("orfiplus@gmail.com");
          email.setPassRemitente("Cl4v3123");
-         email.setEmailDestinatario(user.getCorreoe());
          email.setAsunto(asunto);
          email.setContenido(contenido);
          email.setRemitente("orfiplus@gmail.com");
-         email.setDestinatario(user.getCorreoe());        
+                
          
+       
          
-         
-        if(email.enviar(asunto, contenido)){
-            return "inicio";
+        if( email.envioCorreosMasivos(correos, asunto, contenido)){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Envio Correo","Se ha enviado exitosamente el mensaje"));
           
         } else{
-            return "inicio";
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Envio Correo","No se ha enviado exitosamente el mensaje"));
            
         }
+         return "";
     }
-   
 
-    public Persona getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(Persona user) {
+    public void setUser(String user) {
         this.user = user;
     }
+   
+
+    
     
 }

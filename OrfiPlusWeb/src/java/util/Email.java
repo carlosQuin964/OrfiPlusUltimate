@@ -6,11 +6,13 @@
 package util;
 
 import java.io.File;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
+import javax.mail.Address;
 import javax.mail.Authenticator;
 import javax.mail.BodyPart;
 import javax.mail.Message;
@@ -28,34 +30,27 @@ import javax.mail.internet.MimeMultipart;
  * @author Ismael
  */
 public class Email {
-    
+
     public final static String HOST_EMAIL_GMAIL = "smtp.gmail.com";
-    
+
     private String emailRemitente;
     private String passRemitente;
     private String emailDestinatario;
     private String emailAsunto;
     private String emailContenido;
-   
-    
+
     private Session session;
     private MimeMessage mimeMessage;
-    
-       private Integer idEmail;
-   
-    private String remitente;
- 
-    private String destinatario;
-  
-    private String asunto;
-   
-    private String contenido;
-    
-   
-  
- 
 
- 
+    private Integer idEmail;
+
+    private String remitente;
+
+    private String destinatario;
+
+    private String asunto;
+
+    private String contenido;
 
     public Integer getIdEmail() {
         return idEmail;
@@ -88,6 +83,7 @@ public class Email {
     public void setAsunto(String asunto) {
         this.asunto = asunto;
     }
+
     public void setContenido(String asunto) {
         this.contenido = contenido;
     }
@@ -95,7 +91,6 @@ public class Email {
     public String getContenido() {
         return contenido;
     }
-    
 
     public Email() {
     }
@@ -104,36 +99,36 @@ public class Email {
         this.emailRemitente = emailRemitente;
         this.passRemitente = passRemitente;
         this.emailDestinatario = emailDestinatario;
-        this.emailAsunto= emailAsunto;
-        this.emailContenido= emailContenido;
+        this.emailAsunto = emailAsunto;
+        this.emailContenido = emailContenido;
     }
-    
-    private void init(){
+
+    private void init() {
         try {
             Properties propiedades = new Properties();
-            
+
             propiedades.setProperty("mail.smtp.host", HOST_EMAIL_GMAIL);
             propiedades.setProperty("mail.smtp.starttls.enable", "true");
-            propiedades.setProperty("mail.smtp.port", "25");//587
+            propiedades.setProperty("mail.smtp.port", "587");//587
             propiedades.setProperty("mail.smtp.ssl.trust", "smtp.gmail.com");
             propiedades.setProperty("mail.smtp.user", this.emailRemitente);
             propiedades.setProperty("mail.smtp.auth", "true");
-            
+
             session = Session.getDefaultInstance(propiedades);
             mimeMessage = new MimeMessage(session);
             mimeMessage.setFrom(new InternetAddress(emailRemitente));
-            mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(emailDestinatario));
+            //mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(emailDestinatario));
         } catch (MessagingException ex) {
             Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public boolean enviar(String asunto, String contenido){
+
+    public boolean enviar(String asunto, String contenido) {
         try {
             init();
             mimeMessage.setSubject(asunto);
             mimeMessage.setText(contenido);
-           
+
             Transport transport = session.getTransport("smtp");
             transport.connect(emailRemitente, passRemitente);
             transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
@@ -144,9 +139,29 @@ public class Email {
             return false;
         }
     }
-     
-    
-    
+
+    public boolean envioCorreosMasivos(List<String> correos, String asunto, String contenido) { //pasar lista de correos
+        try {
+            init();
+            mimeMessage.setSubject(asunto);
+            mimeMessage.setText(contenido);
+            Transport transport = session.getTransport("smtp");
+            transport.connect(emailRemitente, passRemitente);
+            for (String correo : correos) {
+                mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(correo)); //envia el correo
+                transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
+
+                }
+            transport.close();
+
+            return true;
+
+        } catch (MessagingException ex) {
+            Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
     public String getEmailRemitente() {
         return emailRemitente;
     }
@@ -172,25 +187,19 @@ public class Email {
     }
 
     public void setEmailAsunto(String emailAsunto) {
-       this.emailAsunto = emailAsunto;
+        this.emailAsunto = emailAsunto;
     }
-      public String getEmailAsunto() {
+
+    public String getEmailAsunto() {
         return emailAsunto;
     }
 
-    
-      public String getEmailContenido() {
+    public String getEmailContenido() {
         return emailContenido;
     }
 
     public void setEmailContenido(String emailContenido) {
-         this.emailContenido = emailContenido;
+        this.emailContenido = emailContenido;
     }
-    
-    
-    
-    
-    
-    
-    
+
 }
