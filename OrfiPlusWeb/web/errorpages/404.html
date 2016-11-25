@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"> 
+    <title>OrfiPlus Error404</title>
+    <link href="resources/css/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="resources/css/stuck.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="resources/css/index.css" rel="stylesheet" type="text/css"/>
+    <link rel="icon" type="image/png" href="resources/images/favicon.ico" />
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="resources/css/cmenu.css" rel="stylesheet" type="text/css"/>
+    <link href="resources/css/general.css" rel="stylesheet" type="text/css"/>
+</head>
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            jQuery('#camera_wrap').camera({
+                loader: false,
+                pagination: false ,
+                minHeight: '200',
+                thumbnails: false,
+                height: '39,0625%',
+                caption: true,
+                navigation: true,
+                fx: 'mosaic'
+            });
+            var owl = $("#owl");
+            owl.owlCarousel({
+                items : 7, 
+                itemsDesktop : [995,5], 
+                itemsDesktopSmall : [767, 3], 
+                itemsTablet: [700, 3], 
+                itemsMobile : [479, 2], 
+                navigation : true,
+            });
+            $().UItoTop({ easingType: 'easeOutQuart' });
+            $('#stuck_container').tmStickUp({});
+            $('.gallery a.gal_item').touchTouch();
+        });
+    </script>
+</head>
+
+<body class="page1" id="top">
+   <header class="menuc">
+        
+        <div id="stuck_container">
+            <div class="container">
+                <div class="row">
+                    <div class="grid_12">
+                        
+                          <img class="ima" src="resources/images/logos.png" alt="Your Happy Family">
+                        
+                        </h1>
+                        <div class="menu_block">
+                            <nav class="horizontal-nav full-width horizontalNav-notprocessed">
+                                <ul class="sf-menu">
+                                    <li ><a href="index.jsp">Inicio</a></li>
+                                    <li><a href="quienessomos.jsp">Quienes Somos</a></li>
+                                    <li><a href="contactos.jsp">Contactenos</a></li>
+                                    <li class="current"><a href="preguntas.jsp">Preguntas Frecuentes</a></li>
+                                </ul>
+                            </nav>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <body>
+      
+      <div class="container ">
+        <div class="row" >
+            <div class="col-lg-12 centro">
+                <img src="resources/images/404.gif" alt=""/>
+            </div>
+        </div>
+      </div>
+
+    </body>
+</html>

@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author USUARIO
  */
-@WebFilter(filterName = "LoginFilter", urlPatterns = {"/faces/protegido/*"})
+@WebFilter(filterName = "LoginFilter", urlPatterns = {"/faces/protegido/*","/faces/errorpages/*","/faces/reportes"})
 public class LoginFilter implements Filter {
 
     private static final boolean debug = true;
