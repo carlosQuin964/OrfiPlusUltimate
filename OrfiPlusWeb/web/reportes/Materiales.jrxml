@@ -3,6 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select count(*)
+from materiales]]>
+	</queryString>
 	<field name="idMATERIAL" class="java.lang.Integer"/>
 	<field name="material" class="java.lang.String"/>
 	<field name="descripcion" class="java.lang.String"/>
@@ -94,6 +98,6 @@
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="181" splitType="Stretch"/>
 	</summary>
 </jasperReport>

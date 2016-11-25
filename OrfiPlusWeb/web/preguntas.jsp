@@ -56,12 +56,12 @@
                         </h1>
                         <div class="menu_block">
                             <nav class="horizontal-nav full-width horizontalNav-notprocessed">
-                                <ul class="sf-menu">
-                                    <li ><a href="index.jsp">Inicio</a></li>
-                                    <li><a href="quienessomos.jsp">Quienes Somos</a></li>
-                                    <li><a href="contactos.jsp">Contactenos</a></li>
-                                    <li class="current"><a href="preguntas.jsp">Preguntas Frecuentes</a></li>
-                                </ul>
+                               <ul class="sf-menu">
+									<li><a href="index.jsp">Inicio</a></li>
+									<li><a href="quienes somos.html">Quienes Somos</a></li>
+									<li ><a href="contactosNuevo.html">Contactenos</a></li>
+                                                                        <li class="current"><a href="preguntas.jsp">Preguntas Frecuentes</a></li>
+			       </ul>
                             </nav>
                             <div class="clear"></div>
                         </div>

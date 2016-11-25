@@ -73,7 +73,7 @@
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 								<ul class="sf-menu">
 									<li class="current"><a href="index.jsp">Inicio</a></li>
-									<li><a href="quienessomos.jsp">Quienes Somos</a></li>
+									<li><a href="quienes somos.html">Quienes Somos</a></li>
 									<li><a href="contactosNuevo.html">Contactenos</a></li>
                                                                         <li><a href="preguntas.jsp">Preguntas Frecuentes</a></li>
 								</ul>
@@ -125,7 +125,7 @@
 								<p>
 									Crea una cuenta en orfi plus y podras reservar y conecer mas de  nuestros productos
 								</p>
-								<a href="#" class="btn bt__1"> Disponibles</a>
+								<a href="faces/registro.xhtml" class="btn bt__1"> Registrarse</a>
 							</div>
 						</div>
 					</div>
@@ -208,7 +208,7 @@
 						<p>Todos sobre nuestros productos tanto disponibles como en desarrollo.</p>
 						<p> <span class="color1"><a href="http://www.templatemonster.com/properties/topic/design-photography/" rel="nofollow"></a></span> escoger el producto que sea de su preferencia para poder reservarlo desde la web .</p>
 						realizar seguimientos a los productos que están por entregar y los que acabo de reservar a su medida<br>
-						<a href="ingresoini.jsp" class="btn bt__2">Ingresar</a>
+						<a href="faces/login.xhtml" class="btn bt__2">Ingresar</a>
 					</div>
 					<div class="grid_4">
 						<h3>Reservar Productos</h3>

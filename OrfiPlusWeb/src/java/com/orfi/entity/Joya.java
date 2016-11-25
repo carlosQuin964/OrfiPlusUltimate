@@ -225,5 +225,9 @@ public class Joya implements Serializable {
     public String toString() {
         return "com.orfi.entity.Joya[ idJoya=" + idJoya + " ]";
     }
+
+    public void setIdOrden(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

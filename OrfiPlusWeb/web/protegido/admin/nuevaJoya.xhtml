@@ -118,6 +118,7 @@
                                     requiredMessage=" ingrese una Talla"
                                     validatorMessage="ingresa una Talla valida"
                                     required="true"
+                                    onkeypress="return valida(event)"
                                     maxlength="5"
                                     class="form-control"
                                     id="Talla"
@@ -146,6 +147,7 @@
                                     validatorMessage="ingresa una Cantidad valida no puede adquirir mas de 3 productos"
                                     required="true"
                                     id="Cantidad" 
+                                    onkeypress="return valida(event)"
                                     value="#{ProductosController.joya.cantidad}" 
                                     title="Cantidad" 
                                     maxlength="50"
@@ -162,6 +164,7 @@
                                     validatorMessage="ingresa un Valor valido"
                                     requiredMessage=" ingrese un Valor"
                                     id="Valor" 
+                                    onkeypress="return valida(event)"
                                     value="#{ProductosController.joya.valorTotal}" 
                                     title="Valor"
                                     maxlength="30"
@@ -174,7 +177,7 @@
 
                             <h:commandButton 
                                 value="Crear Producto"
-                                class="btn btn-info"
+                                class="btn btn-success"
                                 actionListener="#{ProductosController.registrarJoya()}"
                                 >
                             </h:commandButton>
@@ -191,6 +194,21 @@
                                     });
                                 </script> </c:if>
                                 #{ProductosController.cambiarEstado()}
+ <script>
+function valida(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla==8){
+        return true;
+    }
+        
+    // Patron de entrada, en este caso solo acepta numeros
+    patron =/[0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+</script>
                         </h:form>
 
                     </div>

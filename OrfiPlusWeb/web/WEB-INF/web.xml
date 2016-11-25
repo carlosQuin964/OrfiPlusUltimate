@@ -29,7 +29,7 @@
     </error-page>
     <error-page>
         <error-code>500</error-code>
-        <location>/WEB-INF/errorpages/faces/500.html</location>
+        <location>/WEB-INF/errorpages/500.html</location>
     </error-page>
     
 </web-app>
