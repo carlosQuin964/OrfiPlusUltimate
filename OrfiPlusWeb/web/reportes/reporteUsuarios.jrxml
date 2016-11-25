@@ -2,13 +2,19 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporeUsuarios" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77361d3b-5651-44d2-bd01-6753953bd809">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="60"/>
 	<parameter name="generadoPor" class="java.lang.String" isForPrompting="false"/>
-	<field name="idPERSONAS" class="java.lang.Integer"/>
-	<field name="nombres" class="java.lang.String"/>
-	<field name="apellidos" class="java.lang.String"/>
-	<field name="correoe" class="java.lang.String"/>
-	<field name="telefonos" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select count(rol_x_per.idrol),roles.rol
+from rol_x_per
+inner join roles 
+on roles.idrol = rol_x_per.idrol
+group by roles.rol]]>
+	</queryString>
+	<field name="count(rol_x_per.idrol)" class="java.lang.Long"/>
+	<field name="rol" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -44,17 +50,6 @@
 	</title>
 	<pageHeader>
 		<band height="22" splitType="Stretch">
-			<staticText>
-				<reportElement x="11" y="2" width="100" height="20" uuid="62198656-83e6-4caf-b56a-990faf3ab0a2"/>
-				<textElement>
-					<font fontName="Verdana" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Generado Por:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="136" y="2" width="100" height="20" uuid="d1107b56-4c84-4bf2-8ccf-1cf7c408444a"/>
-				<textFieldExpression><![CDATA[$P{generadoPor}]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement x="458" y="2" width="100" height="20" uuid="7645f502-b653-4dbc-b3e7-1f2d0a53a1d1"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
@@ -62,75 +57,42 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="22" splitType="Stretch">
-			<staticText>
-				<reportElement mode="Opaque" x="0" y="2" width="100" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="8c2b10b6-a7fd-4591-8752-70fae19febc4"/>
-				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Documento]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="100" y="2" width="145" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="33ed3c8b-fafd-4bfc-9285-34824221258d"/>
-				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Nombres]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="245" y="2" width="113" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="6f17e6cb-8ad8-48ad-abdd-e836dfdee917"/>
-				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Apellidos]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="358" y="2" width="100" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="5218f806-f209-47ab-ad84-b1eca0b43495"/>
-				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Correo]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="458" y="2" width="114" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="6dc20d06-a1bc-4f85-bc8a-fb38a17237e9"/>
-				<textElement textAlignment="Center">
-					<font fontName="Verdana" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Telefonos]]></text>
-			</staticText>
-		</band>
+		<band height="22" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="27" splitType="Stretch">
-			<textField>
-				<reportElement x="373" y="0" width="100" height="20" uuid="4bcf144b-f248-4e97-93b2-fd4b6817581c"/>
-				<textFieldExpression><![CDATA[$F{correoe}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="487" y="0" width="100" height="20" uuid="204ba349-da55-404f-ae9d-a610de0c0ce7"/>
-				<textFieldExpression><![CDATA[$F{telefonos}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="273" y="0" width="100" height="20" uuid="e8b6ebc9-32e4-4bcc-97d2-1d5d8b0321de"/>
-				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="145" y="0" width="100" height="20" uuid="42a82d48-5f4e-4e9b-b70b-bc9462fd976b"/>
-				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="11" y="0" width="100" height="20" uuid="e333f1c1-70a8-4a26-8b04-1a43b3f5da1d"/>
-				<textFieldExpression><![CDATA[$F{idPERSONAS}]]></textFieldExpression>
-			</textField>
-		</band>
+		<band splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="328" splitType="Stretch">
+			<pie3DChart>
+				<chart>
+					<reportElement x="84" y="14" width="403" height="182" uuid="6bd2816b-dd40-4c66-99ef-fe8894807b71"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{rol}]]></keyExpression>
+					<valueExpression><![CDATA[$F{count(rol_x_per.idrol)}]]></valueExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+			<staticText>
+				<reportElement mode="Opaque" x="72" y="227" width="474" height="71" forecolor="#003333" backcolor="#FFFFFF" uuid="40f07691-777e-483b-b50b-59c4349e10fe"/>
+				<textElement>
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[En esta grafica se puede visualizar la distribución de usuarios que se encuentran en el sistema]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>

@@ -9,6 +9,9 @@ import com.orfi.Facades.PersonaFacade;
 import com.orfi.entity.Persona;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -45,21 +48,34 @@ public class reporteController {
         usuarios = usuarioFacade.findAll();
     }
 
-   public void exportarPDF() throws JRException, IOException {
-        //Exportacion a PDF
+   public void exportarPDF() throws JRException, IOException, ClassNotFoundException, SQLException {
+       //Exportacion a PDF
+        Connection con = null;
+        Class.forName("com.mysql.jdbc.Driver");
+        con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/orfiplusdb", "Admin", "AdminAdmin");
+   
         FacesContext fc = FacesContext.getCurrentInstance();
-        Map<String,Object>parametros=new HashMap<>();
-        parametros.put("generadoPor", "AdministradorOrfiPlus");
+        Map<String, Object> parametros = new HashMap<>();
+
         String path = fc.getExternalContext().getRealPath("./reportes/reporteUsuarios.jasper");
-        File archivo=new File(path);
-        JasperPrint jasper=JasperFillManager.fillReport(archivo.getPath(),parametros, new JRBeanCollectionDataSource(usuarios));
-        HttpServletResponse response=(HttpServletResponse) fc.getExternalContext().getResponse();
-        response.setHeader("Content-disposition","attachment;filename=reportedeusuario-"+new Date()+".pdf");
-        ServletOutputStream stream=response.getOutputStream();
-        JasperExportManager.exportReportToPdfStream(jasper, stream);
+        File archivo = new File(path);
+        JasperPrint jasper = JasperFillManager.fillReport(archivo.getPath(), parametros, con);
+        HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
+        response.setHeader("Content-disposition", "attachment;filename=reporteUusuarios-" + new Date() + ".pdf");
+        ServletOutputStream stream = response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasper, stream);//Se comenta esta linea si no es para PDF
+
+        /*Excell
+        JRXlsExporter exporter=new JRXlsExporter(); .xls
+         JRPptxExporter exporter=new JRPptxExporter(); Power Point .ppt
+        JRDocxExporter exporter=new JRDocxExporter(); Word .doc
+        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasper);
+        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM,stream);
+        exporter.exportReport();*/
         stream.flush();
         stream.close();
         fc.responseComplete();
+
         
     }
     
