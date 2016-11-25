@@ -30,8 +30,8 @@ import javax.inject.Named;
 @RequestScoped
 public class ProductosController implements Serializable {
 
-    
-    private int valorJoya, valorMaterial, valorDisenio, valorTipo,valorTootal;
+    private int valorJoya, valorMaterial, valorDisenio, valorTipo, valorTootal, idtipo, idmaterial, iddisenio;
+    private String rutaImagen="000.jpg" ;
     private Joya joya;
     private boolean estado;
 
@@ -39,7 +39,7 @@ public class ProductosController implements Serializable {
     private JoyaFacade joyaFacade;
     @EJB
     private TipoFacade tipoFacade;
-     private OrdenFacade OrdenFacade;
+    private OrdenFacade OrdenFacade;
     @EJB
     private MaterialFacade materialFacade;
     @EJB
@@ -115,9 +115,19 @@ public class ProductosController implements Serializable {
         return per;
     }
 
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+    
+    
+
     public void registrarJoya() {
         try {
-            
+
             joyaFacade.create(joya);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Creaciòn", "Se ha registrado corectamente la joya"));
@@ -128,10 +138,10 @@ public class ProductosController implements Serializable {
             System.out.println("Error en envio de datos");
         }
     }
-    
+
     public void clienteregistrarJoya() {
         try {
-            
+
             joya.setValorTotal(valorTootal);
             joyaFacade.create(joya);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -147,13 +157,160 @@ public class ProductosController implements Serializable {
     public void calcularjoya() {
         joya.setIdJoya(100003);
         valorDisenio = joya.getIdDisenio().getPrecioxdisenio();
-        System.out.println(valorDisenio);
         valorTipo = joya.getIdTipo().getPrecioxtipo();
         valorMaterial = joya.getIdMaterial().getPrecioxmaterial();
         valorJoya = valorDisenio + valorMaterial + valorTipo;
         valorTootal = valorJoya;
-       
+
+        idtipo = joya.getIdTipo().getIdTIPO();
+        idmaterial = joya.getIdMaterial().getIdMATERIAL();
+        iddisenio = joya.getIdDisenio().getIdDISENIO();
+
+        switch (idtipo) {
+            case 401010:
+                rutaImagen = "1";
+                switch (idmaterial) {
+                    case 201010:
+                        rutaImagen += "1";
+                        switch (iddisenio) {
+                            case 30101:
+                                rutaImagen += "1.jpg";
+                                break;
+                            case 30102:
+                                rutaImagen += "2.jpg";
+                                break;
+                            case 30104:
+                                rutaImagen += "3.jpg";
+                                break;
+                        }
+                        break;
+                    case 201011:
+                        rutaImagen += "2";
+                        switch (iddisenio) {
+                            case 30101:
+                                rutaImagen += "1.jpg";
+                                break;
+                            case 30102:
+                                rutaImagen += "2.jpg";
+                                break;
+                            case 30104:
+                                rutaImagen += "3.jpg";
+                                break;
+                        }
+                        break;
+                    case 201012:
+                        rutaImagen += "3";
+                        switch (iddisenio) {
+                            case 30101:
+                                rutaImagen += "1.jpg";
+                                break;
+                            case 30102:
+                                rutaImagen += "2.jpg";
+                                break;
+                            case 30104:
+                                rutaImagen += "3.jpg";
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 401012:
+                rutaImagen = "2";
+                switch (idmaterial) {
+                    case 201010:
+                        rutaImagen += "1";
+                        switch (iddisenio) {
+                            case 30101:
+                                rutaImagen += "1.jpg";
+                                break;
+                            case 30102:
+                                rutaImagen += "2.jpg";
+                                break;
+                            case 30104:
+                                rutaImagen += "3.jpg";
+                                break;
+                        }
+                        break;
+                    case 201011:
+                        rutaImagen += "2";
+                        switch (iddisenio) {
+                            case 30101:
+                                rutaImagen += "1.jpg";
+                                break;
+                            case 30102:
+                                rutaImagen += "2.jpg";
+                                break;
+                            case 30104:
+                                rutaImagen += "3.jpg";
+                                break;
+                        }
+                        break;
+                    case 201012:
+                        rutaImagen += "3";
+                        switch (iddisenio) {
+                            case 30101:
+                                rutaImagen += "1.jpg";
+                                break;
+                            case 30102:
+                                rutaImagen += "2.jpg";
+                                break;
+                            case 30104:
+                                rutaImagen += "3.jpg";
+                                break;
+                        }
+                        break;
+                }
+                break;
+            case 401013:
+                rutaImagen = "3";
+                switch (idmaterial) {
+                    case 201010:
+                        rutaImagen += "1";
+                        switch (iddisenio) {
+                            case 30101:
+                                rutaImagen += "1.JPG";
+                                break;
+                            case 30102:
+                                rutaImagen += "2.jpg";
+                                break;
+                            case 30104:
+                                rutaImagen += "3.jpg";
+                                break;
+                        }
+                        break;
+                    case 201011:
+                        rutaImagen += "2";
+                        switch (iddisenio) {
+                            case 30101:
+                                rutaImagen += "1.jpg";
+                                break;
+                            case 30102:
+                                rutaImagen += "2.jpg";
+                                break;
+                            case 30104:
+                                rutaImagen += "3.jpg";
+                                break;
+                        }
+                        break;
+                    case 201012:
+                        rutaImagen += "3";
+                        switch (iddisenio) {
+                            case 30101:
+                                rutaImagen += "1.jpg";
+                                break;
+                            case 30102:
+                                rutaImagen += "2.jpg";
+                                break;
+                            case 30104:
+                                rutaImagen += "3.jpg";
+                                break;
+                        }
+                        break;
+                }
+                break;
+        }
         
+
     }
 
     public void cambiarEstado() {
@@ -164,6 +321,5 @@ public class ProductosController implements Serializable {
         List<Joya> li = joyaFacade.findAll();
         return li;
     }
-
 
 }

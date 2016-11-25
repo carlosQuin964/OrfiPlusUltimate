@@ -35,7 +35,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
  */
 @Named(value = "ReporteMaterial")
 @RequestScoped
-public class ReporteMaterial1 {
+public class ReporteMaterial {
     @EJB
     private MaterialFacade MaterialFacade;
     private List<Material> material;

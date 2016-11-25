@@ -65,7 +65,7 @@
                                                 value="#{materialesVController.all}" 
                                                 var="material" 
                                                 itemLabel="#{material.material}" 
-                                                class="radiobutons"
+                                                
                                                 />
                                         </p:selectOneButton>
                                         <h:message for="idMaterial" style="color:blue"></h:message>
@@ -161,8 +161,6 @@
                                     <h:outputLabel value="Inscripción:"/>
                                     <h:inputText
                                         requiredMessage=" ingrese una Inscripcion"
-                                        validatorMessage="ingresa una Inscripcion valida"
-                                        required="true"
                                         id="Inscripcion" 
                                         value="#{ProductosController.joya.inscripcion}" 
                                         maxlength="50"
@@ -233,31 +231,15 @@
                                             });
                                         </script> </c:if>
                                         #{ProductosController.cambiarEstado()}
-
                                 </div>
-
-
                                 <div class="form-group col-md-6 col-lg-6 col-xs-6 col-sm-6 ">
                                     <h:graphicImage 
-                                        value=""
+                                        name="#{ProductosController.rutaImagen}"
                                         style="width: 100%"
-                                        
-                                        
+                                        library="joyas"
+                                        />
                                 </div>
-                                <div class="form-group col-md-6 col-lg-6 col-xs-6 col-sm-6 ">
-                                    
-                                </div>
-                                <div class="form-group col-md-6 col-lg-6 col-xs-6 col-sm-6 ">
-                                   
-                                </div>
-
-                                <div class="form-group col-md-6 col-lg-6 col-xs-6 col-sm-6 ">
-                                   
-                                </div>
-
-
                             </div>
-
                         </h:form>
                     </div>
                 </f:view>
