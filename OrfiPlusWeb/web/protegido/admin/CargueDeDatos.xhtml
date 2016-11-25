@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
@@ -17,17 +18,20 @@
             <ui:define name="content">
                 <div class="container">
                 <h3>Cargar datos masivamente</h3>
-                <h4>Selecciona un archivo BLABLABLABLAB instrucciones pendientes</h4>
+                <h4>Selecciona un archivo para realizar  el cargue de datos</h4>
 
                     <h:form enctype="multipart/form-data">
                         <div class="ui-g-12">
                             <p:outputLabel 
                                 for="cargue" 
                                 value="Selecciona el tema a cargar:" 
+                                
                                 />
                             <h:selectOneMenu 
                                 id="cargue" 
                                 value="#{fileUploadView.clase}" 
+                                class="form-control"
+                                
                                 >
                                 <f:selectItem 
                                     itemLabel="Diseño" 
@@ -66,12 +70,28 @@
                                 showDetail="true" 
                                 />
                             </div>
-                            <div class="ui-g-12">
+                            <div class="ui-g-12" required="true">
                             <p:fileUpload 
                                 value="#{fileUploadView.file}" 
                                 mode="simple" 
-                                skinSimple="true"/>
+                                skinSimple="true"
+                                required="true"
+                               
+                                />
 </div>
+                         <label for="validate-text">Descripcion</label>
+                        <h:inputText
+                            requiredMessage="ingrese una descripcion para el cargue"
+                       
+                        required="true"
+                        id="idPERSONAS"
+                        
+                        
+                        title="IdPERSONAS" 
+                        maxlength="10"
+                        class="form-control">
+                       
+                        </h:inputText>
                             <div class="ui-g-12">
                             <p:commandButton 
                                 value="Submit"      
@@ -79,6 +99,7 @@
                                 actionListener="#{fileUploadView.upload}" 
                                 />
                         </div>
+                        
                     </h:form>
                 </div>
             </ui:define>

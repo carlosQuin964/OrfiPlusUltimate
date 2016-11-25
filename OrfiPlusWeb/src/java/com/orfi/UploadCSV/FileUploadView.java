@@ -51,7 +51,7 @@ public class FileUploadView {
     
     private String[] nombreTablas;
     private int[] codigoTablas;
-
+    public boolean  esta=true;
     private Disenio disenioEntity;
     private Estado estadoEntity;
     private Joya joyaEntity;
@@ -119,12 +119,20 @@ public class FileUploadView {
         nombreTablas = new String[] {"Diseño","Joya","Material","Orden","Persona","Tipo"};
         codigoTablas = new int[] {1,2,3,4,5,6};
     }
+
+    public boolean isEsta() {
+        return esta;
+    }
+
+  
+    
     
     public void upload() throws IOException {
         System.out.println("valida si el archivo es nullo "+ file.getFileName());
         if (file != null) {
             ruta += "\\"+file.getFileName();
             System.out.println("lee la ruta del archivo "+ruta);
+            
             try {
             System.out.println("crear objeto lector");
             csvReader = new CSVReader(new FileReader(ruta), ',', '"', 1);

@@ -53,7 +53,7 @@ public class ReporteMaterial {
         FacesContext fc = FacesContext.getCurrentInstance();
         Map<String, Object> parametros = new HashMap<>();
 
-        String path = fc.getExternalContext().getRealPath("./reportes/Materiales.jasper");
+        String path = fc.getExternalContext().getRealPath("./reportes/empleado.jasper");
         File archivo = new File(path);
         JasperPrint jasper = JasperFillManager.fillReport(archivo.getPath(), parametros, con);
         HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
