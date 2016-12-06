@@ -5,7 +5,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <link href="../../resources/css/sweetalert.css" rel="stylesheet" type="text/css"/>
         <script src="../../resources/js/jquery-1.12.0.min.js" type="text/javascript"></script>
@@ -35,11 +36,12 @@
                                         requiredMessage=" ingrese un documento"
                                         validatorMessage="ingresa un numero valido"
                                         required="true"
-                                        id="Documento" 
+                                        id="Documento"
+                                        a:placeholder="1020821744"
                                         onkeypress="return valida(event)"
                                         value="#{clienteController.persona.idPERSONAS}" 
                                         title="Documento" 
-                                        maxlength="30"
+                                        maxlength="10"
                                         class="form-control"
 
                                         >
@@ -59,15 +61,17 @@
                                 <div class="form-group" >
                                     <h:inputText 
                                         required="true"
+                                        a:placeholder="Ingrese un nombre"
                                         requiredMessage=" ingrese su nombre"
                                         validatorMessage="ingresa un nombre valido"    
-                                        id="nombres" 
+                                        id="nombres"
+                                        onkeypress="return soloLetras(event)"
                                         value="#{clienteController.persona.nombres}" 
                                         title="Nombres" 
                                         maxlength="30"
                                         class="form-control"
                                         >
-                                        <f:validateLength for="nombres" minimum="3" maximum="20" />	
+                                        	
                                     </h:inputText>
 
                                 </div>
@@ -81,13 +85,15 @@
                                         required="true"
                                         requiredMessage=" ingrese sus Apellidos"
                                         validatorMessage="ingresa un apellido valido"   
-                                        id="apellidos" 
-                                        value="#{clienteController.persona.apellidos}" 
+                                        id="apellidos"
+                                        onkeypress="return soloLetras(event)"
+                                        value="#{clienteController.persona.apellidos}"
+                                        a:placeholder="ingrese su apellido"
                                         title="Apellidos" 
-                                        maxlength="30"
+                                        maxlength="40"
                                         class="form-control"
                                         >
-                                        <f:validateLength for="nombres" minimum="2" maximum="30" />
+                                        <f:validateLength for="nombres" minimum="2" maximum="40" />
                                     </h:inputText>
 
                                 </div>
@@ -100,11 +106,12 @@
                                     <h:inputText 
                                         required="true"
                                         requiredMessage="Por Favor ingrese su correo"
-                                        validatorMessage="ingresa un correo valido"   
+                                        validatorMessage="ingresa un correo valido"
+                                        a:placeholder="ejemplo@hotmail.com"
                                         id="correoe" 
                                         value="#{clienteController.persona.correoe}" 
                                         title="Correoe" 
-                                        maxlength="200"
+                                        maxlength="35"
                                         class="form-control"
                                         >
                                         <f:validateRegex	pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -123,7 +130,8 @@
                                         validatorMessage="ingresa un contraseña valida minimo 6 caracteres maximo 20" 
                                         id="password" 
                                         value="#{clienteController.persona.password}" 
-                                        title="Password" 
+                                        title="Password"
+                                        a:placeholder="contraseña"
                                         label="Contraseña"
                                         maxlength="20"
                                         class="form-control"
@@ -149,8 +157,9 @@
                                         id="telefonos" 
                                         onkeypress="return valida(event)"
                                         value="#{clienteController.persona.telefonos}" 
-                                        title="Telefonos" 
-                                        maxlength="30"
+                                        title="Telefonos"
+                                        a:placeholder="6794812"
+                                        maxlength="13"
                                         class="form-control"
                                         >
 
@@ -197,6 +206,27 @@ function valida(e){
     patron =/[0-9]/;
     tecla_final = String.fromCharCode(tecla);
     return patron.test(tecla_final);
+}
+</script>
+   <script>
+   function soloLetras(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toString();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ";//Se define todo el abecedario que se quiere que se muestre.
+    especiales = [8, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+
+    tecla_especial = false
+    for(var i in especiales) {
+        if(key==especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if(letras.indexOf(tecla)== -1  &amp; !tecla_especial){
+alert('No se puedo introducir numeros en este campo');
+        return false;
+      }
 }
 </script>
                             </div>

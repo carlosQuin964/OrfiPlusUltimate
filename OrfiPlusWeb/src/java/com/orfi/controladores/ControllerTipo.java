@@ -69,6 +69,25 @@ public class ControllerTipo implements Serializable {
           public Tipo getTipo(java.lang.Integer id) {
        return tipoFacade.find(id);
    }
+          
+           public void editar(){
+        try {
+           tipoFacade.edit(tipo);
+        } catch (Exception e) {
+            
+        }
+    }
+          
+           public void eliminar(){
+        try {
+           tipoFacade.remove(tipo);
+        } catch (Exception e) {
+            
+        }
+    }
+          
+          
+          
        @FacesConverter(forClass = Tipo.class)
        
    public static class DisenioConverter implements Converter {

@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         
         <link rel="icon" type="image/png" href="../../resources/images/favicon.ico" />
@@ -64,7 +66,14 @@
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
                         <!-- Tab content goes here -->
-                       En orfiPlus podras reservar las joyas que estan en disponibilidad exclusiva para nuestros clientes web
+                      
+                        En orfiPlus podras reservar las joyas que estan en disponibilidad exclusiva para nuestros clientes web
+                        <br></br>
+                        
+                        <a href="crearJoya.xhtml">
+                            
+                          <button class="btn btn-success">Solicitar</button>  
+                        </a>  
                         </div>
                     </div>
                 </div>
@@ -74,7 +83,7 @@
                 <div class="panel panel-default">
                     <!--wrap panel heading in span to trigger image change as well as collapse -->
                     <span class="side-tab" data-target="#tab3" data-toggle="tab" role="tab" aria-expanded="false">
-                      <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                         <h4 class="panel-title collapsed">Actualizar Datos</h4>  
                    </div> </span>
 
@@ -82,10 +91,44 @@
                           <div class="panel-body">
                           <!-- tab content goes here -->
                            Actualiza Tus Datos Personales y Mantiene tu informacion Actualizada 
+                            <br></br>
+                        
+                        <a href="actualizar.xhtml">
+                            
+                          <button class="btn btn-warning">Solicitar</button>  
+                        </a> 
+                          
                           </div>
                         </div>
                       </div>
             </div> <!-- / panel-group -->
+            <div class="container">
+    <div class="row">
+		<div class="col-sm-4 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">                
+                    <h:form>
+                        <h:inputTextarea required="true" value="#{login.econtenido}" class="form-control counted"  a:placeholder="Escriba su mensaje para el administrador" rows="5" style="margin-bottom:10px;"></h:inputTextarea>
+                        <h6 class="pull-right" id="counter">320 characters remaining</h6>
+                       
+                        
+                        <h:commandButton id="singlebutton" class="btn btn-info" action="#{login.enviarMensaje()}" value="Enviar"></h:commandButton>
+                        <c:if test="#{login.estadoe==true}">
+                        <script language="JavaScript" type="text/javascript">
+                            $(document).ready(function () {
+                                swal({type: "success", title: "¡Correo enviado al Administrador!", confirmButtonText: "Aceptar", showConfirmButton: true, allowOutsideClick: true, time: 3000}, function () {
+                                    window.location.href = "index.xhtml";
+                                });
+                            });
+                        </script> </c:if>
+                        #{login.cambiarEstado()}
+                    </h:form>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+            
              
         </div> <!-- /col-md-4 -->
         
@@ -98,7 +141,7 @@
                     <!-- content goes here -->                
                         <div class="tab-featured-image">
                             <div class="tab-content">
-                                <div class="tab-pane  in active" id="tab1">
+                                <div class="tab-pane  in " id="tab1">
                                     <img src="../../resources/images/mas1.jpg" alt="" class="img img-responsive" />
                                 </div>
                                 <div class="tab-pane " id="tab2">

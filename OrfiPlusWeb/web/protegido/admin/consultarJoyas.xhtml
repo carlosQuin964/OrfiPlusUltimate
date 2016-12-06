@@ -15,13 +15,20 @@
             </ui:define>
 
             <ui:define name="content">
+                <style>.centrar{margin-left: 550px; margin-top: 10px;} .cor{margin-left: 10px;} .mas{margin-top: -40px;}</style>
                 <div class="container">
 
                     <f:view>
 
 
-                        <h:form>
-                            <h1><h:outputText value="Lista de Joyas"/></h1>
+                        <h:form class="mas">
+                            <div class="panel panel-info">
+                             <div class="panel-body ">
+                              
+                                <h4>Lista de Joyas</h4> 
+                             </div>
+                             </div>
+                          
                             <p:dataTable value="#{joyaController.items}" 
                                          var="item"
                                          lazy="false"
@@ -56,42 +63,42 @@
                                     </h:commandLink>
                                 </f:facet>
 
-                                <p:column sortBy="#{item.idOrden.idORDEN}" filterBy="#{item.idOrden.idORDEN}">
+                                <p:column sortBy="#{item.idOrden.idORDEN}" filterMatchMode="contains" filterBy="#{item.idOrden.idORDEN}">
                                     <f:facet name="header">
                                         <h:outputText value="Numero Orden"/>
                                     </f:facet>
                                     <h:outputText value="#{item.idOrden.idORDEN}"/>
                                 </p:column>
 
-                                <p:column sortBy="#{item.idJoya}" filterBy="#{item.idJoya}">
+                                <p:column sortBy="#{item.idJoya}" filterMatchMode="contains" filterBy="#{item.idJoya}">
                                     <f:facet name="header">
                                         <h:outputText value="Codigo Joya"/>
                                     </f:facet>
                                     <h:outputText value="#{item.idJoya}"/>
                                 </p:column>
 
-                                <p:column sortBy="#{item.idTipo.tipo}" filterBy="#{item.idTipo.tipo}">
+                                <p:column sortBy="#{item.idTipo.tipo}" filterBy="#{item.idTipo.tipo}" filterMatchMode="contains">
                                     <f:facet name="header">
                                         <h:outputText value="Tipo de Joya"/>
                                     </f:facet>
                                     <h:outputText value="#{item.idTipo.tipo}"/>
                                 </p:column>
 
-                                <p:column sortBy="#{item.idDisenio.disenio}" filterBy="#{item.idDisenio.disenio}">
+                                <p:column sortBy="#{item.idDisenio.disenio}" filterBy="#{item.idDisenio.disenio}" filterMatchMode="contains">
                                     <f:facet name="header">
                                         <h:outputText value="Tipo de Diseño"/>
                                     </f:facet>
                                     <h:outputText value="#{item.idDisenio.disenio}"/>
                                 </p:column>
 
-                                <p:column sortBy="#{item.idMaterial.material}" filterBy="#{item.idMaterial.material}">
+                                <p:column sortBy="#{item.idMaterial.material}" filterBy="#{item.idMaterial.material}" filterMatchMode="contains">
                                     <f:facet name="header">
                                         <h:outputText value="Material Usado"/>
                                     </f:facet>
                                     <h:outputText value="#{item.idMaterial.material}"/>
                                 </p:column>
 
-                                <p:column sortBy="#{item.gramaje}" filterBy="#{item.gramaje}">
+                                <p:column sortBy="#{item.gramaje}" filterBy="#{item.gramaje}" filterMatchMode="contains">
                                     <f:facet name="header">
                                         <h:outputText value="Gramaje"/>
                                     </f:facet>
@@ -105,42 +112,46 @@
                                     <h:outputText value="#{item.talla}"/>
                                 </p:column>
 
-                                <p:column sortBy="#{item.inscripcion}" filterBy="#{item.inscripcion}">
+                                <p:column sortBy="#{item.inscripcion}" filterBy="#{item.inscripcion}"  filterMatchMode="contains">
                                     <f:facet name="header">
                                         <h:outputText value="Inscripcion"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.inscripcion}"/>
+                                    <h:outputText value="#{item.inscripcion}" />
                                 </p:column>
 
-                                <p:column sortBy="#{item.cantidad}" filterBy="#{item.cantidad}">
+                                <p:column sortBy="#{item.cantidad}" filterBy="#{item.cantidad}" filterMatchMode="contains">
                                     <f:facet name="header">
                                         <h:outputText value="Cantidad"/>
                                     </f:facet>
                                     <h:outputText value="#{item.cantidad}"/>
                                 </p:column>
 
-                                <p:column sortBy="#{item.valorUnitario}" filterBy="#{item.valorUnitario}">
+                             <!--   <p:column sortBy="#{item.valorUnitario}" filterBy="#{item.valorUnitario}" filterMatchMode="contains">
                                     <f:facet name="header">
                                         <h:outputText value="Valor Unitario"/>
                                     </f:facet>
                                     <h:outputText value="#{item.valorUnitario}"/>
                                 </p:column>
-
-                                <p:column sortBy="#{item.valorTotal}" filterBy="#{item.valorTotal}">
+                             -->
+                                <p:column sortBy="#{item.valorTotal}" filterBy="#{item.valorTotal}" filterMatchMode="contains">
                                     <f:facet name="header">
                                         <h:outputText value="Valor Total"/>
                                     </f:facet>
                                     <h:outputText value="#{item.valorTotal}"/>
                                 </p:column>
 
-                                <p:column sortBy="#{item.idEstado.estadoJoya}" filterBy="#{item.idEstado.estadoJoya}">
-                                    <f:facet name="header">
-                                        <h:outputText value="Estado de Fabricacion"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.idEstado.estadoJoya}"/>
-                                </p:column>
+                    
+            <p:column headerText="Estado Fabricacion" filterBy="#{item.idEstado.estadoJoya}" sortBy="#{item.idEstado.estadoJoya}" filterMatchMode="exact">
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('carsTable').filter()" style="width:100px;" >
+                    <f:selectItem itemLabel="#{estado.estadoJoya}" itemValue="#{item.idEstado.estadoJoya}" noSelectionOption="true" />
+                    <f:selectItems value="#{ControllerEstado.all}" var="estado" itemLabel="#{estado.estadoJoya}" />
+                </p:selectOneMenu>
+            </f:facet>
+            <h:outputText value="#{item.idEstado.estadoJoya}" />
+        </p:column>
 
-                                <p:column headerText="Foto">
+                     <!--           <p:column headerText="Foto">
                                     <p:commandButton type="button" value="Mostrar" onclick="PF('dlg#{item.idJoya}').show()" icon="ui-icon-extlink"/>
                                     <p:dialog widgetVar="dlg#{item.idJoya}" header="Imagen de la Joya"
                                               draggable="false" resizable="false" modal="true">
@@ -152,14 +163,22 @@
                                         </p:imageSwitch>
                                     </p:dialog>
                                 </p:column>
-
+-->
 
                             </p:dataTable>
                         </h:form>
                     </f:view>
                 </div>
-            </ui:define>
+                
+                 
+            <h:form id="exportForm" class="centrar">
+                        
+                <h:commandButton value="Grafico Joyas" actionListener="#{ReportesJoyas.exportarPDFG()}" class="btn btn-warning btn-lg" />
+               <h:commandButton value="Reporte Joyas" actionListener="#{ReportesJoyas.exportarPDF()}" class="btn btn-info btn-lg cor" />
 
+                    </h:form>
+            </ui:define>
+            
         </ui:composition>
 
     </body>

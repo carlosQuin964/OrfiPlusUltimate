@@ -16,9 +16,17 @@
 
             <ui:define name="content">
                 <div class="container">
+                    <style>.centrar{margin-left: 400px; margin-top: 10px;} .cor{margin-left: 10px;} .mas{margin-top: -40px;}</style>
                     <f:view>
-                        <h:form>
-                            <h1><h:outputText value="Lista de Usuarios"/></h1>
+                        <h:form class="mas">
+                            
+                            
+                            <div class="panel panel-info">
+                             <div class="panel-body ">
+                                 <h4>Lista de Usuarios</h4> 
+                             </div>
+                             </div>
+                            
                             <p:dataTable 
                                 value="#{personaController.consultarPersonas()}" 
                                 var="item"
@@ -102,9 +110,14 @@
                             </p:dataTable>
                         </h:form>
                     </f:view>
-                    <h:form id="exportForm">
-                        <h:commandButton value="Reporte Usuarios" actionListener="#{reporteController.exportarPDF()}" class="btn btn-warning btn-lg" />
+                    
+                    <h:form id="exportForm" class="centrar">
+                        
+                        <h:commandButton value="Grafico Usuarios" actionListener="#{reporteController.exportarPDF()}" class="btn btn-warning btn-lg" />
+                        <h:commandButton value="Reporte Usuarios" actionListener="#{reporteController.exportarUPDF()}" class="btn btn-info btn-lg cor" />
+
                     </h:form>
+                    
                 </div>
             </ui:define>
         </ui:composition>

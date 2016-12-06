@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -44,5 +45,27 @@ public class OrdenFacade extends AbstractFacade<Orden> {
         return orden;
     }
     
+    public Orden buscarOrden(){
+        Orden orden=null;
+        
+        Query query=em.createQuery("SELECT MAX(o.idORDEN) FROM Orden o");
+        orden=(Orden) query.getSingleResult();
+        
+        return orden;
+            
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
 }
 

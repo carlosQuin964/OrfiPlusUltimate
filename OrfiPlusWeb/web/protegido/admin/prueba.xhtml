@@ -40,6 +40,19 @@ and open the template in the editor. ../../
                             <br/>Mensaje: <h:inputTextarea value="#{controladorEmail.contenido}" required="true" style=" width: 350px; height: 100px "/>
                         </h:panelGrid>
                         <br/><h:commandButton style="" value="Envia" onclick="alert('Su mensaje sera enviado');" action="#{controladorEmail.enviarMensaje()}"/><br/>
+                        <c:if test="#{controladorEmail.estado==true}">
+                                    <script language="JavaScript" type="text/javascript">
+                                        $(document).ready(function () {
+                                            swal({type: "success", title: "¡Correo enviado!",
+                                                confirmButtonText: "Aceptar",
+                                                showConfirmButton: true,
+                                                allowOutsideClick: true, time: 3000},
+                                                    function () {
+                                                        window.location.href = "inicio.xhtml";
+                                                    });
+                                        });
+                                    </script> </c:if>
+                        
                         <br/></h:form><br/>
                 </div>
             </center>

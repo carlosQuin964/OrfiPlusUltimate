@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporeUsuarios" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="77361d3b-5651-44d2-bd01-6753953bd809">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="generadoPor" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[select count(joyas.idTipo),tipos.tipo
+from joyas
+inner join tipos
+on tipos.idTipo = joyas.idTipo
+group by tipos.Tipo]]>
+	</queryString>
+	<field name="count(joyas.idTipo)" class="java.lang.Long"/>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="245" y="18" width="279" height="38" forecolor="#003333" backcolor="#FFFFFF" uuid="e03215e7-224e-4454-bcd4-dd12822c0a50"/>
+				<textElement>
+					<font fontName="Verdana" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte De Joyas]]></text>
+			</staticText>
+			<image>
+				<reportElement x="28" y="6" width="134" height="60" uuid="a88defb7-3ff2-46c4-be84-90839d6f82ee"/>
+				<imageExpression><![CDATA["../reportes\\logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="417" y="43" width="70" height="28" forecolor="#003333" backcolor="#FFFFFF" uuid="be6c79c0-67f8-4dd7-a666-5568d379c4e1"/>
+				<textElement>
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paginas]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="286" y="46" width="100" height="20" uuid="76b42fc9-3208-4ad5-9f4e-f680d4587d36"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="472" y="43" width="100" height="20" uuid="5586a7a8-8446-411a-b29f-79daa59de3bc"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="458" y="2" width="100" height="20" uuid="7645f502-b653-4dbc-b3e7-1f2d0a53a1d1"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="328" splitType="Stretch">
+			<pie3DChart>
+				<chart>
+					<reportElement x="84" y="14" width="403" height="182" uuid="6bd2816b-dd40-4c66-99ef-fe8894807b71"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{tipo}]]></keyExpression>
+					<valueExpression><![CDATA[$F{count(joyas.idTipo)}]]></valueExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+			<staticText>
+				<reportElement mode="Opaque" x="72" y="227" width="474" height="71" forecolor="#003333" backcolor="#FFFFFF" uuid="40f07691-777e-483b-b50b-59c4349e10fe"/>
+				<textElement>
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[En este gráfico podemos visualizar los tipos de joyas más solicitados ]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

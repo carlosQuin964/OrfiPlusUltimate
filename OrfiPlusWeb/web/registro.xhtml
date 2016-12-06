@@ -9,7 +9,8 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <head>
         <title>Registrarse en OrfiPlus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -118,6 +119,7 @@ and open the template in the editor.
                         <h:inputText
                             requiredMessage="ingrese un documento"
                         validatorMessage="ingresa un numero valido"
+                        a:placeholder="1020821749"
                         required="true"
                         id="idPERSONAS"
                         onkeypress="return valida(event)"
@@ -135,10 +137,12 @@ and open the template in the editor.
                         <h:inputText 
                         required="true"
                         requiredMessage=" ingrese su nombre"
-                        validatorMessage="ingresa un nombre valido"    
+                        validatorMessage="ingresa un nombre valido"
+                        a:placeholder="su nombre"
                         id="nombres" 
                         value="#{clienteController.persona.nombres}" 
-                        title="Nombres" 
+                        title="Nombres"
+                        
                         onkeypress="return soloLetras(event)"
                         maxlength="30"
                         class="form-control letras"
@@ -156,10 +160,12 @@ and open the template in the editor.
                        <h:inputText 
                         required="true"
                         requiredMessage=" ingrese sus Apellidos"
+                        a:placeholder="su apellido"
                         validatorMessage="ingresa un apellido valido"   
                         id="apellidos" 
                         value="#{clienteController.persona.apellidos}" 
-                        title="Apellidos" 
+                        title="Apellidos"
+                        onkeypress="return soloLetras(event)"
                         maxlength="30"
                         class="form-control"
                         >
@@ -176,10 +182,12 @@ and open the template in the editor.
                         required="true"
                         requiredMessage="Por Favor ingrese su correo"
                         validatorMessage="ingresa un correo valido"   
-                        id="correoe" 
+                        id="correoe"
+                        a:placeholder="ejemplo@hotmail.com"
                         value="#{clienteController.persona.correoe}" 
                         title="Correoe" 
                         maxlength="200"
+                       
                         class="form-control"
                         >
                        <f:validateRegex	pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -196,7 +204,8 @@ and open the template in the editor.
                         required="true"
                         requiredMessage=" ingrese una contraseña"
                         validatorMessage="ingresa un contraseña valida" 
-                        id="password" 
+                        id="password"
+                        a:placeholder="contraseña"
                         value="#{clienteController.persona.password}" 
                         title="Password" 
                         label="Contraseña"
@@ -221,6 +230,7 @@ and open the template in the editor.
                            
                         validatorMessage="ingresa un numero valido"
                         requiredMessage=" ingrese un telefono"
+                        a:placeholder="6794578"
                         id="Telefonos"
                         onkeypress="return valida(event)"
                         value="#{clienteController.persona.telefonos}" 
@@ -286,10 +296,33 @@ function valida(e){
     return patron.test(tecla_final);
 }
 </script>
+             <script>
+   function soloLetras(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toString();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ";//Se define todo el abecedario que se quiere que se muestre.
+    especiales = [8, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+
+    tecla_especial = false
+    for(var i in especiales) {
+        if(key==especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if(letras.indexOf(tecla)== -1  &amp; !tecla_especial){
+alert('No se puedo introducir numeros en este campo');
+        return false;
+      }
+}
+</script>
          
         </div>
     </div>
         </div>
     </body>
+    
+    
     
 </html>

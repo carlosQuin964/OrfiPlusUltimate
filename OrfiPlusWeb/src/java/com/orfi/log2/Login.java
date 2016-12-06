@@ -14,9 +14,11 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.inject.Named;
+import util.Emailu;
 
 @ManagedBean
 @Named(value = "login")
@@ -27,18 +29,67 @@ public class Login implements Serializable {
 
     private String pwd;
     private String msg;
-    private String user;
+    private Integer user;
     private Persona usuario;
+    private Emailu email;
+    private String contenido="";
+    private String icontenido;
+    private String econtenido;
+    private String asunto="";
     private boolean estado = true;
+    private boolean oestado=false;
+    private boolean estadoe=false;
 
     @Inject
     private PersonaFacade perFacade;
     private Rol rolSeleccionado;
  
 
+    
+    
     public Login() {
         usuario = null;
     }
+
+    public Emailu getEmail() {
+        return email;
+    }
+
+    public void setEmail(Emailu email) {
+        this.email = email;
+    }
+
+    public Login(Emailu email) {
+        this.email = email;
+    }
+    
+     @PostConstruct
+    public void init() {
+       email = new Emailu();
+
+    }
+
+    public boolean isEstadoe() {
+        return estadoe;
+    }
+
+    public void setEstadoe(boolean estadoe) {
+        this.estadoe = estadoe;
+    }
+
+    public String getEcontenido() {
+        return econtenido;
+    }
+
+    public void setEcontenido(String econtenido) {
+        this.econtenido = econtenido;
+    }
+    
+   
+    
+   
+   
+   
 
     public boolean isEstado() {
         return estado;
@@ -65,11 +116,11 @@ public class Login implements Serializable {
         this.msg = msg;
     }
 
-    public String getUser() {
+    public Integer getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(Integer user) {
         this.user = user;
     }
 
@@ -90,7 +141,28 @@ public class Login implements Serializable {
     }
     public void cambiarEstado() {
         estado = true;
+        estadoe = false;
     }
+
+    public boolean isOestado() {
+        return oestado;
+    }
+
+    public void setOestado(boolean oestado) {
+        this.oestado = oestado;
+    }
+
+    public String getIcontenido() {
+        return icontenido;
+    }
+
+    public void setIcontenido(String icontenido) {
+        this.icontenido = icontenido;
+    }
+    
+    
+    
+    
 
     //validate login
     public String validateUsernamePassword() {
@@ -158,7 +230,7 @@ public class Login implements Serializable {
     //Para cerrar la sesion efectivamente necesita eliminar todo dato cargado en las variables
     public String logout() {
         String url="/faces/login.xhtml?faces-redirect=true";
-        user = "";
+        user = 0;
         pwd = "";
         rolSeleccionado = null;
         msg = "";
@@ -167,5 +239,67 @@ public class Login implements Serializable {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         return url;
+    }
+      public void editar(){
+        try {
+           
+           perFacade.edit(usuario);
+          email.setEmailRemitente("orfiplus@gmail.com");
+         email.setPassRemitente("Cl4v3123");
+         email.setEmailDestinatario(usuario.getCorreoe());
+         email.setEmailAsunto(asunto="Actualizacion de datos");
+         email.setContenido(contenido="se le informa que usted acaba de actualizar los datos en nuestro"
+        + " sistema de información OrfiPlus"
+                 + " Nombres : "+usuario.getNombres()+ ""
+                 + " Apellidos : "+usuario.getApellidos()+""
+                 + " correo :"+usuario.getCorreoe()+""
+                 + " telefono : "+usuario.getTelefonos()+"");
+ 
+         email.setRemitente("orfiplus@gmail.com");
+         email.setDestinatario(usuario.getCorreoe());
+          if(email.enviar(asunto, contenido)){
+            
+          estado = true;
+            
+        
+        } else{
+           
+           estado = false;
+        }
+           
+           FacesContext.getCurrentInstance().addMessage(null, new
+         FacesMessage(FacesMessage.SEVERITY_INFO,
+          "Actualizacion", "Se ha Actualizado correctamente"));
+           oestado = true;
+        } catch (Exception e) {
+            
+        }
+    }
+      public void ccambiarEstado() {
+        oestado = false;
+    }
+      
+      public String enviarMensaje(){
+         email.setEmailRemitente("orfiplus@gmail.com");
+         email.setPassRemitente("Cl4v3123");
+         email.setEmailDestinatario("aminorfiplus@gmail.com");
+         email.setAsunto(asunto="Mensaje de : "+usuario.getNombres()+"");
+         email.setContenido(icontenido = econtenido+" -----------------------------"
+                 + " : este mensaje fue enviado por el usuario :    "
+                 + ""+usuario.getNombres()+" "+usuario.getApellidos()+" con el correo registrado  : "+usuario.getCorreoe()+"");
+         email.setRemitente("orfiplus@gmail.com");
+         email.setDestinatario("aminorfiplus@gmail.com");
+         
+         
+        if(email.enviar(asunto, icontenido)){
+            
+          estadoe = true;
+            
+        
+        } else{
+           
+           estadoe = false;
+        }
+        return "";
     }
 }

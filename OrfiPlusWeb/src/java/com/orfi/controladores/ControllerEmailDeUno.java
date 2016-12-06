@@ -5,43 +5,42 @@
  */
 package com.orfi.controladores;
 
-import com.orfi.Facades.PersonaFacade;
 import com.orfi.entity.Persona;
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import util.Email;
+import util.Emailu;
 
 /**
  *
  * @author USUARIO
  */
-@Named(value = "controladorEmail")
+
+@Named(value = "ControllerEmailDeUno")
 @RequestScoped
-public class ControladorEmail {
-    @EJB
-    private PersonaFacade personaFacade;
-    private Email email;
-    private String user;
+public class ControllerEmailDeUno {
+        private Emailu email;
+       
+    
+    
+   
+    
+   
+    private Persona user;
     private String asunto;
     private String contenido;
     private boolean estado;
     
-    public ControladorEmail() {
-         email = new Email();
+    public ControllerEmailDeUno() {
+         email = new Emailu();
     }
    
-    public Email getEmail() {
+    public Emailu getEmailu() {
         return email;
     }
 
-    public void setEmail(Email email) {
-        this.email = email;
+    public void setEmailu(Emailu emailu) {
+        this.email = emailu;
     }
 
     public String getAsunto() {
@@ -70,41 +69,34 @@ public class ControladorEmail {
     
     
      public String enviarMensaje(){
-         List<String>correos=new ArrayList<>();
-        int i=0;
-         for (Persona persona : personaFacade.findAll()) {
-             correos.add(i,persona.getCorreoe());
-             i++;
-         }
-        
          email.setEmailRemitente("orfiplus@gmail.com");
          email.setPassRemitente("Cl4v3123");
+         email.setEmailDestinatario(user.getCorreoe());
          email.setAsunto(asunto);
          email.setContenido(contenido);
          email.setRemitente("orfiplus@gmail.com");
-                
+         email.setDestinatario(user.getCorreoe());        
          
-       
          
-        if( email.envioCorreosMasivos(correos, asunto, contenido)){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Envio Correo","Se ha enviado exitosamente el mensaje"));
-            estado = true;
+         
+        if(email.enviar(asunto, contenido)){
+            
+          estado = true;
+            
+        
         } else{
-             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Envio Correo","No se ha enviado exitosamente el mensaje"));
            
+           estado = false;
         }
-         return "";
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
+        return "";
     }
    
 
-    
-    
+    public Persona getUser() {
+        return user;
+    }
+
+    public void setUser(Persona user) {
+        this.user = user;
+    }
 }

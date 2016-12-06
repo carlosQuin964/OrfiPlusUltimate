@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div class="container">
+           
+            <h:form>
+                    <table class="table table-hover">
+                        <tr>
+                            <td>Nombre</td>
+                            <td>Apellido</td>
+                            <td>Correo</td>
+                            <td>Contrasena</td>
+                            <td>Eliminar o Editar</td>
+
+                        </tr>
+                        <c:forEach items="#{ControllerTipo.all}" var="v">
+                            <tr>
+                                <td>#{v.idTIPO}</td>
+                                <td>#{v.tipo}</td>
+                                <td>#{v.descripcion}</td>
+                                <td>#{v.precioxtipo}</td>
+                                <td>
+
+                                    <h:commandLink onclick="modalEliminar()">
+                                        <h:graphicImage value="../Img/delete.png"  height="32px" width="32px" />
+                                        
+                                        <f:ajax render="fomVentanas:misValoresEliminar"
+                                                listener="#{ControllerTipo.setTipo(v)}">
+                                        </f:ajax>
+                                    </h:commandLink> 
+                                    <h:commandLink onclick="modalEditar()">
+                                        <h:graphicImage value="../Img/Find.png"   height="32px" width="32px" />
+                                        <!--El render es el id que se le da h:panelGroup sirve para pasar los valores que se quieren enlistar-->
+                                        
+                                        <f:ajax render="fomVentanas:editar defaultForm"
+                                                listener="#{ControllerTipo.setTipo(v)}">
+                                        </f:ajax>
+                                    </h:commandLink></td>
+                            </tr>
+                        </c:forEach>
+
+                      
+                    </table>
+                        
+                      
+                        <!-- /.modal -->
+                    
+                         </h:form> 
+                
+           
+       
+        <h:form id="fomVentanas">
+            <div class="modal fade" tabindex="-1" role="dialog"
+                             id="myModalEliminar">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title">Desea Eliminar El usuario?</h4>
+                                    </div>
+
+                                    <h:panelGroup id="misValoresEliminar" class="modal-body">
+                                        Nombre:#{ControllerTipo.tipo.tipo} <br />
+                                        Apellido:#{ControllerTipo.tipo.descripcion}  <br />
+                                        Correo:#{ControllerTipo.tipo.precioxtipo}
+                                    </h:panelGroup>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Salir</button>
+                                        <h:commandButton class="btn btn-primary"
+                                                         action="#{ControllerTipo.eliminar()}"
+                                                         value="Eliminar">
+                                        </h:commandButton>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+         <div class="modal fade" id="modalEditar" tabindex="-1"
+                        role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">Modificar Usuario</h4>
+                                </div>
+                                <h:panelGroup id="editar" styleClass="modal-mody">
+                                    <label>Nombre</label>
+                                    <h:inputText class="form-control"
+                                                 value="#{ControllerTipo.tipo.tipo}">
+                                    </h:inputText>
+                                    <label>Apellido</label>
+                                    <h:inputText class="form-control"
+                                                 value="#{ControllerTipo.tipo.descripcion}"></h:inputText>
+                                    <label>Correo</label>
+                                    <h:inputText class="form-control"
+                                                 value="#{ControllerTipo.tipo.precioxtipo}">
+                                    </h:inputText>
+                                    
+                                    
+                                </h:panelGroup>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default"
+                                        data-dismiss="modal">Salir</button>
+                                    <h:commandButton class="btn btn-primary"
+                                                     action="#{ControllerTipo.editar()}" value="Guardar">
+                                    </h:commandButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </h:form>
+        <!-- javascript
+            ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+       <script>
+		function modalEliminar() {
+			$('#myModalEliminar').modal('show');
+		}
+		function modalEditar() {
+			$('#modalEditar').modal('show');
+		}
+	</script>
+        <script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<script src="../js/bootstrap.min.js"></script>
+            
+        </div>
+    </body>
+</html>

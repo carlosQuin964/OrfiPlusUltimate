@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Ingresa a Orfi Plus</title>
         <link rel="icon" type="image/png" href="resources/images/favicon.ico" />
@@ -87,7 +88,8 @@
                                             <div id="nameError" class="alert" role="alert"></div>                
                                             <div class="input-group">
                                                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                                                <h:inputText id="username" required="required" class="form-control" value="#{login.user}"></h:inputText>
+                                                <h:inputText a:placeholder="Ingrese su documento"
+                                                             onkeypress="return valida(event)" maxlength="10" id="username" required="required" class="form-control" value="#{login.user}"></h:inputText>
                                                
                                             </div>
 
@@ -95,7 +97,7 @@
                                                 <div id="nameError" class="alert" role="alert"></div>             
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                                                    <h:inputSecret class="form-control" id="password" required="required" value="#{login.pwd}"></h:inputSecret>
+                                                    <h:inputSecret a:placeholder="Ingrese su contraseña" class="form-control" id="password" required="required" value="#{login.pwd}"></h:inputSecret>
                                                     <h:message for="password"></h:message>
                                                 </div>
                                             </div>
@@ -131,4 +133,19 @@ function nobackbutton(){
 	
 }
     </script>
+    <script>
+function valida(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla==8){
+        return true;
+    }
+        
+    // Patron de entrada, en este caso solo acepta numeros
+    patron =/[0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+</script>
 </html>

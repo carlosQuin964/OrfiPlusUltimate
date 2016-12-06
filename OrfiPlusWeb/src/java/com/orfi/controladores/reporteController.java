@@ -78,5 +78,22 @@ public class reporteController {
 
         
     }
+     public void exportarUPDF() throws JRException, IOException {
+        //Exportacion a PDF
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String,Object>parametros=new HashMap<>();
+       
+        String path = fc.getExternalContext().getRealPath("./reportes/pdfUsuarios.jasper");
+        File archivo=new File(path);
+        JasperPrint jasper=JasperFillManager.fillReport(archivo.getPath(),parametros, new JRBeanCollectionDataSource(usuarios));
+        HttpServletResponse response=(HttpServletResponse) fc.getExternalContext().getResponse();
+        response.setHeader("Content-disposition","attachment;filename=reporte de usuarios"+new Date()+".pdf");
+        ServletOutputStream stream=response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasper, stream);
+        stream.flush();
+        stream.close();
+        fc.responseComplete();
+        
+    }
     
 }

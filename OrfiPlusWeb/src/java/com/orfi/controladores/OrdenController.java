@@ -45,6 +45,9 @@ private OrdenFacade ordenfacade;
         return "/protegido/pages/joya/index";
     }
     
+    public Orden buscarOrden() { 
+    return ordenfacade.buscarOrden();
+    }
      
 
 }

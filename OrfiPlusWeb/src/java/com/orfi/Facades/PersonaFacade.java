@@ -47,7 +47,7 @@ public class PersonaFacade extends AbstractFacade<Persona> {
         return persona;
     }
 
-    public Persona validate(String user, String password) {
+    public Persona validate(Integer user, String password) {
         Persona persona = null;
         try {
             TypedQuery<Persona> query = em.createNamedQuery("Persona.login", Persona.class);

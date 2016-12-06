@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteJoy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="879b4da5-b756-4ab0-9dda-5ddaed018263">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="6"/>
+	<subDataset name="dataset1" uuid="081189cb-e288-4947-96e0-b0bce425cb90"/>
+	<field name="idPERSONAS" class="java.lang.Integer"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="correoe" class="java.lang.String"/>
+	<field name="fechaCreacion" class="java.util.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="81" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="239" y="16" width="279" height="38" forecolor="#003333" backcolor="#FFFFFF" uuid="09868b4b-29c9-4db2-ac08-96669d96b443"/>
+				<textElement>
+					<font fontName="Verdana" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte De Joyas]]></text>
+			</staticText>
+			<image>
+				<reportElement x="38" y="16" width="134" height="60" uuid="f1b14c51-b2c2-4e90-8885-ee9a55dd3177"/>
+				<imageExpression><![CDATA["../reportes\\logo.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="472" y="56" width="100" height="20" uuid="3f6687f8-7fca-4743-b87a-ad25b5a8c19b"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="315" y="59" width="100" height="20" uuid="9cb114fa-ea7b-4966-87aa-f49822c6d069"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="424" y="54" width="48" height="21" forecolor="#003333" backcolor="#FFFFFF" uuid="c2e0f224-56c0-4971-948c-a68f487b2695"/>
+				<textElement>
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[paguinas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="36" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="10" y="10" width="145" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="89c59996-bf45-4a07-8b13-dbf1114d9cc4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="155" y="10" width="135" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="b8b6bc90-fb15-4337-91f2-e40ac6c5daaf"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="290" y="10" width="115" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="9cfe598d-7eb8-4b77-9eb2-d1327fcd21c8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="405" y="10" width="119" height="20" forecolor="#FFFFFF" backcolor="#3333FF" uuid="fdb8faf2-5b9c-450b-929c-ad9dfebd7dee"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[correo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="26" y="0" width="100" height="20" uuid="d2a881c1-6bc1-49d1-8434-61b31b96b543"/>
+				<textFieldExpression><![CDATA[$F{idPERSONAS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="2" width="100" height="20" uuid="1a18403c-f23c-4bc4-8225-79e648749069"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="315" y="2" width="100" height="20" uuid="4f661ae9-1675-449e-af20-63d506b98eb1"/>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="424" y="2" width="100" height="20" uuid="9d9bae20-851d-4c8d-9eb4-800ef55b9414"/>
+				<textFieldExpression><![CDATA[$F{correoe}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="54" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

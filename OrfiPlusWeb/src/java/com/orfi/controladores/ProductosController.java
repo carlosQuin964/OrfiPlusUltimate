@@ -13,6 +13,8 @@ import com.orfi.Facades.TipoFacade;
 import com.orfi.entity.Joya;
 import com.orfi.entity.Orden;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import javax.annotation.PostConstruct;
@@ -33,10 +35,14 @@ public class ProductosController implements Serializable {
     private int valorJoya, valorMaterial, valorDisenio, valorTipo, valorTootal, idtipo, idmaterial, iddisenio;
     private String rutaImagen="000.jpg" ;
     private Joya joya;
+    private Orden orden;
+    private Integer prueba=0;
+    private String nuevo="";
     private boolean estado;
 
     @EJB
     private JoyaFacade joyaFacade;
+   
     @EJB
     private TipoFacade tipoFacade;
     private OrdenFacade OrdenFacade;
@@ -48,8 +54,18 @@ public class ProductosController implements Serializable {
     @PostConstruct
     public void init() {
         joya = new Joya();
+        orden = new Orden();
 
     }
+     public void ProductosController() {
+        orden = new Orden();
+
+    }
+
+    public ProductosController(Orden orden) {
+        this.orden = orden;
+    }
+     
 
     public ProductosController() {
     }
@@ -102,6 +118,15 @@ public class ProductosController implements Serializable {
         this.joya = joya;
     }
 
+    public Orden getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Orden orden) {
+        this.orden = orden;
+    }
+    
+
     public boolean isEstado() {
         return estado;
     }
@@ -127,7 +152,7 @@ public class ProductosController implements Serializable {
 
     public void registrarJoya() {
         try {
-
+            
             joyaFacade.create(joya);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Creaciòn", "Se ha registrado corectamente la joya"));
@@ -139,20 +164,7 @@ public class ProductosController implements Serializable {
         }
     }
 
-    public void clienteregistrarJoya() {
-        try {
-
-            joya.setValorTotal(valorTootal);
-            joyaFacade.create(joya);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Creaciòn", "Se ha registrado corectamente la joya"));
-            estado = true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            System.out.println("Error en envio de datos");
-        }
-    }
+ 
 
     public void calcularjoya() {
         joya.setIdJoya(100003);
@@ -161,6 +173,7 @@ public class ProductosController implements Serializable {
         valorMaterial = joya.getIdMaterial().getPrecioxmaterial();
         valorJoya = valorDisenio + valorMaterial + valorTipo;
         valorTootal = valorJoya;
+       
 
         idtipo = joya.getIdTipo().getIdTIPO();
         idmaterial = joya.getIdMaterial().getIdMATERIAL();
@@ -309,8 +322,26 @@ public class ProductosController implements Serializable {
                 }
                 break;
         }
-        
+      
 
+    }
+    
+       public void clienteregistrarJoya() {
+        try {
+                    
+            orden.setFechaOrden(new Date());
+            joya.setIdOrden(orden);
+            
+           
+            joyaFacade.create(joya);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Creaciòn", "Se ha registrado corectamente la joya"));
+            estado = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("Error en envio de datos");
+        }
     }
 
     public void cambiarEstado() {

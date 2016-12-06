@@ -7,6 +7,7 @@
 
 
     <body>
+        
         <ui:composition template="./../../WEB-INF/template/adminTemplate.xhtml">
 
             <ui:define name="title">
@@ -14,14 +15,20 @@
             </ui:define>
 
             <ui:define name="content">
-                <div class="container text-center center_content">
+                <style>.arriba{margin-top: -50px;}</style>
+                <div class="container text-center center_content arriba">
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center_content ">
-                        <h2>Selecciona un tema para el Informe Grafico:</h2>
+                        <h2>Seleccione el tipo de  Informe Grafico:</h2>
+                        <br>
+                            <div class="alert alert-success">Escoja el reporte que desea visualizar ya sea reporte de diseño, estado, tipo o reporte de material</div>
+                        </br>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 center_content">
                         <p:commandButton value="Materiales" type="button" onclick="PF('dlg1').show();" />
-                    </div>
+                        
+                     </div>
+                    
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 center_content">
                         <p:commandButton value="Estados" type="button" onclick="PF('dlg2').show();" />
                     </div>

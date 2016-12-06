@@ -20,6 +20,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import static sun.security.jgss.GSSUtil.login;
+import util.Emailu;
 
 /**
  *
@@ -36,6 +38,9 @@ public class ClienteController implements Serializable {
     @EJB
     private RolFacade rolFacade;
     private Persona persona;
+    private Emailu email;
+    private String asunto="Registro OrfiPlus";
+    private String contenido = "Bienvenido a la familia orfi usted se registro a nuestro sistema de información OrfiPlus con el correo  y la contraseña";
 
     /**
      * Creates a new instance of EmpleadoController
@@ -45,8 +50,19 @@ public class ClienteController implements Serializable {
         persona = new Persona();
 
     }
+    
+     public ClienteController() {
+         email = new Emailu();
+    }
+    
+    
     private boolean estado;
 
+    public ClienteController(Emailu email) {
+        this.email = email;
+    }
+
+   
  public boolean isEstado() {
         return estado;
     }
@@ -65,6 +81,15 @@ public class ClienteController implements Serializable {
         this.persona = persona;
     }
 
+    public Emailu getEmail() {
+        return email;
+    }
+
+    public void setEmail(Emailu email) {
+        this.email = email;
+    }
+    
+
     public void registrarCliente() {
         try {
             
@@ -73,6 +98,24 @@ public class ClienteController implements Serializable {
             persona.getRolList().add(rol);
             persona.setFechaCreacion(new Date());
             personaFacade.create(persona);
+          email.setEmailRemitente("orfiplus@gmail.com");
+         email.setPassRemitente("Cl4v3123");
+         email.setEmailDestinatario(persona.getCorreoe());
+         email.setEmailAsunto(asunto);
+         email.setContenido(contenido="Bienvenido "+persona.getNombres()+" "+persona.getApellidos()+" a la familia orfi usted se registro a nuestro sistema de información OrfiPlus con el correo :"+
+                 persona.getCorreoe()+" y la contraseña  :"+persona.getPassword()+"apartir de haora usted puede ingresar "
+                 + "con el usuario"+persona.getIdPERSONAS()+" y su contraseña ");
+         email.setRemitente("orfiplus@gmail.com");
+         email.setDestinatario(persona.getCorreoe());
+          if(email.enviar(asunto, contenido)){
+            
+          estado = true;
+            
+        
+        } else{
+           
+           estado = false;
+        }
              FacesContext.getCurrentInstance().addMessage(null, new
          FacesMessage(FacesMessage.SEVERITY_INFO,
           "Creaciòn", "Se ha registrado corectamente"));
@@ -92,6 +135,7 @@ public class ClienteController implements Serializable {
             persona.getRolList().add(rol);
             persona.setFechaCreacion(new Date());
             personaFacade.create(persona);
+        
              FacesContext.getCurrentInstance().addMessage(null, new
          FacesMessage(FacesMessage.SEVERITY_INFO,
           "Creaciòn", "Se ha registrado corectamente"));
@@ -107,6 +151,7 @@ public class ClienteController implements Serializable {
   
      public void editar(){
         try {
+            
            personaFacade.edit(persona);
            
            FacesContext.getCurrentInstance().addMessage(null, new
