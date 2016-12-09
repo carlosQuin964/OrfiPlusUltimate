@@ -9,28 +9,39 @@ import com.orfi.Facades.TipoFacade;
 import com.orfi.entity.Tipo;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import util.JsfUtil;
 
 /**
  *
  * @author USUARIO
  */
 @Named(value = "ControllerTipo")
-@RequestScoped
+@SessionScoped
 public class ControllerTipo implements Serializable {
      @EJB
     private TipoFacade tipoFacade;
       private Tipo tipo;
+      Integer selectedItemIndex;
       
         private boolean estado;
 
     public ControllerTipo() {
+    }
+    
+     @PostConstruct
+    public void init(){
+        tipo = new Tipo();
+       
     }
 
     public ControllerTipo(TipoFacade tipoFacade, Tipo tipo) {
@@ -77,6 +88,13 @@ public class ControllerTipo implements Serializable {
             
         }
     }
+           public Tipo getSelected() {
+       if (tipo == null) {
+           tipo = new Tipo();
+           selectedItemIndex =-1;
+       }
+       return tipo;
+   }
           
            public void eliminar(){
         try {
@@ -85,6 +103,14 @@ public class ControllerTipo implements Serializable {
             
         }
     }
+           
+            public SelectItem[] getItemsAvailableSelectOne() {
+       return JsfUtil.getSelectItems(tipoFacade.findAll(),false);
+   }
+   
+    public Tipo getUsuario(java.lang.Integer id) {
+       return tipoFacade.find(id);
+   }
           
           
           

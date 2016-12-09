@@ -20,6 +20,8 @@
                     <div class="container">
                         <h:form>
                             
+                            
+                            
                             <h:selectOneMenu id="idEstado" class="form-control col-xs-8 hidden"
                                              value="#{ProductosController.joya.idEstado}"
                                              requiredMessage=" ingrese un estado"
@@ -154,6 +156,7 @@
                                 <div class="form-group col-md-12 col-lg-12 col-xs-12 col-sm-12">          
                                     <h:outputLabel value="Inscripción:"/>
                                     <h:inputText
+                                        
                                         requiredMessage=" ingrese una Inscripcion"
                                         id="Inscripcion" 
                                         value="#{ProductosController.joya.inscripcion}" 
@@ -162,18 +165,7 @@
                                     </h:inputText>
                                     <h:message for="Inscripcion" style="color:blue"></h:message>
                                 </div>
-                                 <div class="form-group col-md-12 col-lg-12 col-xs-12 col-sm-12 hidden">          
-                                    <h:outputLabel value="Inscripción:"/>
-                                    <h:inputText
-                                        requiredMessage=" ingrese una value"
-                                        id="value" 
-                                        value="#{ProductosController.joya.valorTotal}"
-                                        label="#{ProductosController.valorJoya}"
-                                        maxlength="50"
-                                        class="form-control">
-                                    </h:inputText>
-                                    <h:message for="value" style="color:blue"></h:message>
-                                </div>
+                                
 
                                 <div class="form-group col-md-12 col-lg-12 col-xs-12 col-sm-12">          
                                     <h:outputLabel value="Cantidad:"/>
@@ -196,8 +188,8 @@
                             </div>       
                             <div class="form-group col-md-5 col-lg-5 col-xs-5 col-sm-5">
                                 <div class="form-group col-md-4 col-lg-4 col-xs-4 col-sm-4">          
-                                    <h3> <h:outputLabel value="Precio   :  "/>
-                                        <h:outputLabel value="#{ProductosController.valorJoya}"/>
+                                    <h3> <h:outputLabel value="Precio   :  $"/>
+                                        <h:outputLabel  value="#{ProductosController.valorJoya}"/>
                                     </h3>
                                 </div>
                                 <div class="form-group col-md-8 col-lg-8 col-xs-8 col-sm-8 boton">
@@ -227,7 +219,7 @@
                                     <c:if test="#{ProductosController.estado==true}">
                                         <script language="JavaScript" type="text/javascript">
                                             $(document).ready(function () {
-                                                swal({type: "success", title: "¡Producto Creado !",
+                                                swal({type: "success", title: "¡Producto Solicitado !",
                                                     confirmButtonText: "Aceptar",
                                                     showConfirmButton: true,
                                                     allowOutsideClick: true, time: 3000},
@@ -244,6 +236,19 @@
                                         style="width: 100%"
                                         library="joyas"
                                         />
+                                </div>
+                                 <div class="form-group col-md-12 col-lg-12 col-xs-12 col-sm-12 hidden ">          
+                                    <h:outputLabel value="InscripciónV:"/>
+                                    <h:inputText
+                                        requiredMessage=" ingrese una value"
+                                        id="value" 
+                                       
+                                        value="#{ProductosController.valorJoya}"
+                                        
+                                        maxlength="50"
+                                        class="form-control">
+                                    </h:inputText>
+                                    <h:message for="value" style="color:blue"></h:message>
                                 </div>
                             </div>
                         </h:form>

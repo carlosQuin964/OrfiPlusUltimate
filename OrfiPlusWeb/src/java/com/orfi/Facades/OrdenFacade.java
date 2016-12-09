@@ -46,10 +46,10 @@ public class OrdenFacade extends AbstractFacade<Orden> {
     }
     
     public Orden buscarOrden(){
-        Orden orden=null;
+        Orden orden = new Orden ();
         
         Query query=em.createQuery("SELECT MAX(o.idORDEN) FROM Orden o");
-        orden=(Orden) query.getSingleResult();
+        orden.setIdORDEN((Integer) query.getSingleResult());
         
         return orden;
             

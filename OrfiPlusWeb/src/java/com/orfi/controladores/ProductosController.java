@@ -12,8 +12,12 @@ import com.orfi.Facades.OrdenFacade;
 import com.orfi.Facades.TipoFacade;
 import com.orfi.entity.Joya;
 import com.orfi.entity.Orden;
+import com.orfi.entity.Persona;
+import com.orfi.log2.Login;
 import java.io.Serializable;
+import java.sql.Array;
 import java.util.ArrayList;
+import static java.util.Collections.list;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -23,6 +27,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import util.Emailu;
 
 /**
  *
@@ -39,12 +44,17 @@ public class ProductosController implements Serializable {
     private Integer prueba=0;
     private String nuevo="";
     private boolean estado;
+     private boolean estadoe;
+     private String asunto="";
+    private String contenido = "";
+     private Emailu email;
 
     @EJB
     private JoyaFacade joyaFacade;
    
     @EJB
     private TipoFacade tipoFacade;
+    @EJB
     private OrdenFacade OrdenFacade;
     @EJB
     private MaterialFacade materialFacade;
@@ -55,12 +65,38 @@ public class ProductosController implements Serializable {
     public void init() {
         joya = new Joya();
         orden = new Orden();
+         email = new Emailu();
 
     }
      public void ProductosController() {
         orden = new Orden();
 
     }
+
+    public String getAsunto() {
+        return asunto;
+    }
+
+    public void setAsunto(String asunto) {
+        this.asunto = asunto;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public int getValorTootal() {
+        return valorTootal;
+    }
+
+    public void setValorTootal(int valorTootal) {
+        this.valorTootal = valorTootal;
+    }
+     
 
     public ProductosController(Orden orden) {
         this.orden = orden;
@@ -81,6 +117,19 @@ public class ProductosController implements Serializable {
     public int getValorMaterial() {
         return valorMaterial;
     }
+
+    public ProductosController(Emailu email) {
+        this.email = email;
+    }
+
+    public Emailu getEmail() {
+        return email;
+    }
+
+    public void setEmail(Emailu email) {
+        this.email = email;
+    }
+    
 
     public void setValorMaterial(int valorMaterial) {
         this.valorMaterial = valorMaterial;
@@ -328,15 +377,44 @@ public class ProductosController implements Serializable {
     
        public void clienteregistrarJoya() {
         try {
-                    
+            List<Joya> joyas =  new ArrayList<>();
+            List<Persona> personas = new ArrayList<>();
+             Persona persona = new Persona();    
             orden.setFechaOrden(new Date());
-            joya.setIdOrden(orden);
-            
-           
+            OrdenFacade.create(orden);
+            joya.setValorTotal(valorJoya);
+            joya.setIdOrden(OrdenFacade.buscarOrden());
+            joyas.add(joya);          
+            Persona login = (Persona) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+            persona.setIdPERSONAS(login.getIdPERSONAS());
+            personas.add(persona);
+            orden.setJoyaList(joyas);         
+            /*orden.setPersonaList(personas); */                 
             joyaFacade.create(joya);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Creaciòn", "Se ha registrado corectamente la joya"));
-            estado = true;
+           
+            
+         email.setEmailRemitente("orfiplus@gmail.com");
+         email.setPassRemitente("Cl4v3123");
+         email.setEmailDestinatario("aminorfiplus@gmail.com");
+         email.setEmailAsunto(asunto="Solicitud de : "+login.getNombres()+" "+login.getApellidos()+"" );
+         email.setContenido(contenido=" se ha registrado una nueva solicitud de   : "+login.getNombres() +"  "+login.getApellidos()+" con el correo registrado  : "+login.getCorreoe()+"   y el telefono "+login.getTelefonos()+""
+         + " el valor de la solicitud fue de   "+valorJoya+ "$ el producto solicitado es "+joya.getIdTipo().getTipo()+" de material "+joya.getIdMaterial().getMaterial()+
+         "   con un diseño de :"+joya.getIdDisenio().getDisenio()+" y un gramaje de "
+        +joya.getGramaje()+" con la inscripcion de "+joya.getInscripcion()+" "+" la cantidad es de   "+joya.getCantidad()+"  unidades");
+         email.setRemitente("orfiplus@gmail.com");
+         email.setDestinatario("aminorfiplus@gmail.com");
+          if(email.enviar(asunto, contenido)){
+            
+          estadoe = true;
+            
+        
+        } else{
+           
+           estadoe = false;
+        }
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+            "Creaciòn", "Se ha registrado corectamente la joya"));
+          estado = true;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -9,25 +9,33 @@ and open the template in the editor.
        xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:jsf="http://xmlns.jcp.org/jsf"
         xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>TODO supply a title</title>
+        <title>Tipos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link href="../../resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../../resources/js/jquery-1.12.0.min.js" type="text/javascript"></script>
+        <script src="../css/bootstrap.min.js" type="text/javascript"></script>
+        
     </h:head>
     <h:body>
-        <div class="container">
+        <ui:composition template="./../../WEB-INF/template/emplyTemplate.xhtml">
+
            
-            <h:form>
-                    <table class="table table-hover">
+
+            <ui:define name="content">
+        <div class="container">
+            <style> .aba{margin-top: 60px;}</style>
+           
+            <h:form class="aba">
+                    <table class="table table-hover table-condensed table-responsive">
                         <tr>
-                            <td>Nombre</td>
-                            <td>Apellido</td>
-                            <td>Correo</td>
-                            <td>Contrasena</td>
-                            <td>Eliminar o Editar</td>
+                            <td>NumeroTipo</td>
+                            <td>Tipo de joya</td>
+                            <td>Descripcion</td>
+                            <td>Precio Tipo</td>
+                            <td>Editar</td>
 
                         </tr>
                         <c:forEach items="#{ControllerTipo.all}" var="v">
@@ -37,15 +45,15 @@ and open the template in the editor.
                                 <td>#{v.descripcion}</td>
                                 <td>#{v.precioxtipo}</td>
                                 <td>
-
+                                   <!--
                                     <h:commandLink onclick="modalEliminar()">
                                         <h:graphicImage value="../../resources/images/delete.png"  height="32px" width="32px" />
                                         
                                         <f:ajax render="fomVentanas:misValoresEliminar"
                                                 listener="#{ControllerTipo.setTipo(v)}">
                                         </f:ajax>
-                                    </h:commandLink> 
-                                    <h:commandLink onclick="modalEditar()">
+                                    </h:commandLink> --> 
+                                   <h:commandLink onclick="modalEditar()" class="aba">
                                         <h:graphicImage value="../../resources/images/Find.png"   height="32px" width="32px" />
                                         <!--El render es el id que se le da h:panelGroup sirve para pasar los valores que se quieren enlistar-->
                                        
@@ -55,7 +63,7 @@ and open the template in the editor.
                                     </h:commandLink></td>
                             </tr>
                             
-                            <img src="../../resources/images/Find.png" alt=""/>
+                            
                         </c:forEach>
 
                       
@@ -76,15 +84,15 @@ and open the template in the editor.
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
+                                            <span aria-hidden="true"></span>
                                         </button>
-                                        <h4 class="modal-title">Desea Eliminar El usuario?</h4>
+                                        <h4 class="modal-title">Desea Eliminar El Tipo?</h4>
                                     </div>
 
                                     <h:panelGroup id="misValoresEliminar" class="modal-body">
-                                        Nombre:#{ControllerTipo.tipo.tipo} <br />
-                                        Apellido:#{ControllerTipo.tipo.descripcion}  <br />
-                                        Correo:#{ControllerTipo.tipo.precioxtipo}
+                                        Tipo:#{ControllerTipo.tipo.tipo} <br />
+                                        Descripcion:#{ControllerTipo.tipo.descripcion}  <br />
+                                        Precio:#{ControllerTipo.tipo.precioxtipo}
                                     </h:panelGroup>
 
                                     <div class="modal-footer">
@@ -100,26 +108,26 @@ and open the template in the editor.
                             </div>
                             <!-- /.modal-dialog -->
                         </div>
-         <div class="modal fade" id="modalEditar" tabindex="-1"
+         <div class="modal fade aba" id="modalEditar" tabindex="-1"
                         role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"
                                         aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <span aria-hidden="true"></span>
                                     </button>
-                                    <h4 class="modal-title" id="myModalLabel">Modificar Usuario</h4>
+                                    <h4 class="modal-title" id="myModalLabel">Modificar Tipo</h4>
                                 </div>
                                 <h:panelGroup id="editar" styleClass="modal-mody">
-                                    <label>Nombre</label>
+                                    <label> tipo de joya</label>
                                     <h:inputText class="form-control"
                                                  value="#{ControllerTipo.tipo.tipo}">
                                     </h:inputText>
-                                    <label>Apellido</label>
+                                    <label>Descripciòn</label>
                                     <h:inputText class="form-control"
                                                  value="#{ControllerTipo.tipo.descripcion}"></h:inputText>
-                                    <label>Correo</label>
+                                    <label>precio Tipo</label>
                                     <h:inputText class="form-control"
                                                  value="#{ControllerTipo.tipo.precioxtipo}">
                                     </h:inputText>
@@ -151,8 +159,10 @@ and open the template in the editor.
         <script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-	<script src="../js/bootstrap.min.js"></script>
-            
+	
+        <script src="../css/bootstrap.min.js" type="text/javascript"></script>
         </div>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
