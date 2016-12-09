@@ -37,7 +37,7 @@ import util.Emailu;
 @RequestScoped
 public class ProductosController implements Serializable {
 
-    private int valorJoya, valorMaterial, valorDisenio, valorTipo, valorTootal, idtipo, idmaterial, iddisenio;
+    private int valorJoya,cantidad, valorMaterial, valorDisenio, valorTipo, valorTootal, idtipo, idmaterial, iddisenio;
     private String rutaImagen="000.jpg" ;
     private Joya joya;
     private Orden orden;
@@ -154,9 +154,18 @@ public class ProductosController implements Serializable {
     public JoyaFacade getJoyaFacade() {
         return joyaFacade;
     }
+    
 
     public void setJoyaFacade(JoyaFacade joyaFacade) {
         this.joyaFacade = joyaFacade;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public Joya getJoya() {
@@ -220,8 +229,9 @@ public class ProductosController implements Serializable {
         valorDisenio = joya.getIdDisenio().getPrecioxdisenio();
         valorTipo = joya.getIdTipo().getPrecioxtipo();
         valorMaterial = joya.getIdMaterial().getPrecioxmaterial();
+        cantidad = joya.getCantidad();
         valorJoya = valorDisenio + valorMaterial + valorTipo;
-        valorTootal = valorJoya;
+        valorTootal = valorJoya*cantidad;
        
 
         idtipo = joya.getIdTipo().getIdTIPO();
@@ -274,6 +284,22 @@ public class ProductosController implements Serializable {
                                 break;
                         }
                         break;
+                        case 201013:
+                        rutaImagen += "4";
+                        switch (iddisenio) {
+                            case 30101:
+                                rutaImagen += "1.jpg";
+                                break;
+                            case 30102:
+                                rutaImagen += "2.jpg";
+                                break;
+                            case 30104:
+                                rutaImagen += "3.jpg";
+                                break;
+                        }
+                        break;
+                        
+                        
                 }
                 break;
             case 401012:
@@ -309,6 +335,21 @@ public class ProductosController implements Serializable {
                         break;
                     case 201012:
                         rutaImagen += "3";
+                        switch (iddisenio) {
+                            case 30101:
+                                rutaImagen += "1.jpg";
+                                break;
+                            case 30102:
+                                rutaImagen += "2.jpg";
+                                break;
+                            case 30104:
+                                rutaImagen += "3.jpg";
+                                break;
+                        }
+                        break;
+                        
+                        case 201013:
+                        rutaImagen += "4";
                         switch (iddisenio) {
                             case 30101:
                                 rutaImagen += "1.jpg";
@@ -368,6 +409,21 @@ public class ProductosController implements Serializable {
                                 break;
                         }
                         break;
+                        case 201013:
+                        rutaImagen += "4";
+                        switch (iddisenio) {
+                            case 30101:
+                                rutaImagen += "1.jpg";
+                                break;
+                            case 30102:
+                                rutaImagen += "2.jpg";
+                                break;
+                            case 30104:
+                                rutaImagen += "3.jpg";
+                                break;
+                        }
+                        break;
+                        
                 }
                 break;
         }
@@ -381,8 +437,11 @@ public class ProductosController implements Serializable {
             List<Persona> personas = new ArrayList<>();
              Persona persona = new Persona();    
             orden.setFechaOrden(new Date());
+            orden.setValorTotal(valorTootal);
+            
             OrdenFacade.create(orden);
-            joya.setValorTotal(valorJoya);
+            joya.setValorTotal(valorTootal);
+            joya.setValorUnitario(valorJoya);
             joya.setIdOrden(OrdenFacade.buscarOrden());
             joyas.add(joya);          
             Persona login = (Persona) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
@@ -398,9 +457,9 @@ public class ProductosController implements Serializable {
          email.setEmailDestinatario("aminorfiplus@gmail.com");
          email.setEmailAsunto(asunto="Solicitud de : "+login.getNombres()+" "+login.getApellidos()+"" );
          email.setContenido(contenido=" se ha registrado una nueva solicitud de   : "+login.getNombres() +"  "+login.getApellidos()+" con el correo registrado  : "+login.getCorreoe()+"   y el telefono "+login.getTelefonos()+""
-         + " el valor de la solicitud fue de   "+valorJoya+ "$ el producto solicitado es "+joya.getIdTipo().getTipo()+" de material "+joya.getIdMaterial().getMaterial()+
+         + " el valor de la solicitud fue de   "+valorTootal+ "$ el producto solicitado es "+joya.getIdTipo().getTipo()+" de material "+joya.getIdMaterial().getMaterial()+
          "   con un diseño de :"+joya.getIdDisenio().getDisenio()+" y un gramaje de "
-        +joya.getGramaje()+" con la inscripcion de "+joya.getInscripcion()+" "+" la cantidad es de   "+joya.getCantidad()+"  unidades");
+        +joya.getGramaje()+" con la inscripcion de -- "+joya.getInscripcion()+" "+" -- la cantidad es de   "+joya.getCantidad()+"  unidades");
          email.setRemitente("orfiplus@gmail.com");
          email.setDestinatario("aminorfiplus@gmail.com");
           if(email.enviar(asunto, contenido)){
