@@ -3,18 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/reportes/graficoTiposJoya.jrxml</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/src/java/com/orfi/controladores/ReportesJoyas.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/employer/ini.xhtml</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/src/java/com/orfi/controladores/ControllerTipo.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/src/java/com/orfi/controladores/ProductosController.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/employer/index.xhtml</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/WEB-INF/template/emplyTemplate.xhtml</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/reportes/graficoDisenioJoya.jrxml</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/admin/consultarJoyas.xhtml</file>
+            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/src/java/com/orfi/log2/Login.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/client/actualizar.xhtml</file>
             <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/client/crearJoya.xhtml</file>
-            <file>file:/C:/Users/USUARIO/Documents/OrfiPlusUltimate/OrfiPlusWeb/web/protegido/employer/diseño.xhtml</file>
         </group>
     </open-files>
 </project-private>

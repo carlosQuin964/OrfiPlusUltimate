@@ -248,8 +248,7 @@ public class Login implements Serializable {
          email.setPassRemitente("Cl4v3123");
          email.setEmailDestinatario(usuario.getCorreoe());
          email.setEmailAsunto(asunto="Actualizacion de datos");
-         email.setContenido(contenido="se le informa que usted acaba de actualizar los datos en nuestro"
-        + " sistema de información OrfiPlus"
+         email.setContenido(contenido="Gracias por mantener sus datos actualizados en nuestro sistema de información esto nos ayuda a prestarle un servicio mas oportuno  "
                  + " Nombres : "+usuario.getNombres()+ ""
                  + " Apellidos : "+usuario.getApellidos()+""
                  + " correo :"+usuario.getCorreoe()+""
