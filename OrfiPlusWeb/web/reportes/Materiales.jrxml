@@ -55,10 +55,10 @@ Group BY joyas.idMaterial]]>
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="255" splitType="Stretch">
+		<band height="316" splitType="Stretch">
 			<pieChart>
 				<chart>
-					<reportElement x="44" y="19" width="513" height="225" uuid="634a7f36-e0fd-4a68-a0ff-6933c7735e5e"/>
+					<reportElement x="-51" y="0" width="611" height="316" uuid="634a7f36-e0fd-4a68-a0ff-6933c7735e5e"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>

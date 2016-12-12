@@ -18,7 +18,7 @@
             <ui:define name="content">
                 <f:view>
                     <div class="container">
-                        <div class="alert alert-success">En el siguiente formulario se crea un producto con las indicaciones que piden los campos para poderlo publicar</div>
+                        <div class="alert alert-success"><h1>Crear Joya</h1>En el siguiente formulario se crea un producto con las indicaciones que piden los campos para poderlo publicar</div>
                         <h:form>
                             <div class="form-group col-md-6 hidden">       
                                 <h:outputLabel value="Numero de Orden:"/>
@@ -35,7 +35,7 @@
 
                             <div class="form-group col-md-6">       
                                 <h:outputLabel value="Material de elaboración:"/>         
-                                <h:selectOneMenu id="idMaterial" class="form-control col-xs-8"
+                                <h:selectOneMenu id="idMaterial" class="form-control"
                                                  value="#{ProductosController.joya.idMaterial}"
                                                  requiredMessage=" ingrese un material de elaboración"
                                                  required="true"
@@ -48,7 +48,7 @@
 
                             <div class="form-group col-md-6">       
                                 <h:outputLabel value="Diseño de la Joya::"/>         
-                                <h:selectOneMenu id="idDisenio" class="form-control col-xs-8"
+                                <h:selectOneMenu id="idDisenio" class="form-control"
                                                  value="#{ProductosController.joya.idDisenio}"
                                                  requiredMessage=" ingrese un diseño de Joya"
                                                  required="true"
@@ -62,7 +62,7 @@
                             <div class="form-group col-md-6">       
                                 <h:outputLabel value="Tipo de Joya:"/>           
                                 <h:selectOneMenu id="idTipo"
-                                                 class="form-control col-xs-8"
+                                                 class="form-control "
                                                  value="#{ProductosController.joya.idTipo}"
                                                  requiredMessage="ingrese un tipo de joya"
                                                  required="true"
@@ -75,7 +75,7 @@
 
                             <div class="form-group col-md-6 hidden" >       
                                 <h:outputLabel value="Estado de elaboración:"/>
-                                <h:selectOneMenu id="idEstado" class="form-control col-xs-8"
+                                <h:selectOneMenu id="idEstado" class="form-control"
                                                  value="#{ProductosController.joya.idEstado}"
                                                  requiredMessage=" ingrese un estado"
                                                  required="true"

@@ -82,7 +82,7 @@ group by tipos.Tipo]]>
 				<pieDataset>
 					<keyExpression><![CDATA[$F{tipo}]]></keyExpression>
 					<valueExpression><![CDATA[$F{count(joyas.idTipo)}]]></valueExpression>
-					<labelExpression><![CDATA[""+$F{(count(joyas.idTipo) * 100 ) / (select count(joyas.idTipo) from joyas  )}]]></labelExpression>
+					<labelExpression><![CDATA[""+$F{(count(joyas.idTipo) * 100 ) / (select count(joyas.idTipo) from joyas  )}+" %"]]></labelExpression>
 				</pieDataset>
 				<pie3DPlot>
 					<plot/>

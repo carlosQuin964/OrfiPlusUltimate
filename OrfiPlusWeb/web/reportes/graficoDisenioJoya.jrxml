@@ -5,7 +5,9 @@
 	<property name="ireport.y" value="0"/>
 	<parameter name="generadoPor" class="java.lang.String" isForPrompting="false"/>
 	<queryString>
-		<![CDATA[select count(joyas.idDisenio),disenios.disenio
+		<![CDATA[
+select count(joyas.idDisenio),disenios.disenio,
+(count(joyas.idDisenio) * 100 ) / (select count(joyas.idDisenio) from joyas  )
 from joyas
 inner join disenios
 on disenios.idDisenio = joyas.idDisenio
@@ -15,6 +17,7 @@ group by disenios.disenio]]>
 	<field name="disenio" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="(count(joyas.idDisenio) * 100 ) / (select count(joyas.idDisenio) from joyas  )" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -80,6 +83,7 @@ group by disenios.disenio]]>
 				<pieDataset>
 					<keyExpression><![CDATA[$F{disenio}]]></keyExpression>
 					<valueExpression><![CDATA[$F{count(joyas.idDisenio)}]]></valueExpression>
+					<labelExpression><![CDATA[""+$F{(count(joyas.idDisenio) * 100 ) / (select count(joyas.idDisenio) from joyas  )}+" %"]]></labelExpression>
 				</pieDataset>
 				<pie3DPlot>
 					<plot/>
